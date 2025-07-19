@@ -1,6 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { posts } from '../page';
+import { posts } from '../posts';
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   // Find the post by slug

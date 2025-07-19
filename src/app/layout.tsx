@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 // Google Fonts imports for Orbitron and IBM Plex Mono
 import { Orbitron, IBM_Plex_Mono } from "next/font/google";
 import Head from 'next/head';
+import Script from 'next/script';
 
 const orbitron = Orbitron({ subsets: ["latin"], weight: ["700", "800"] });
 const ibmPlexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "700"] });
@@ -114,6 +115,19 @@ export default function RootLayout({
           ]
         }) }} />
       </Head>
+      {/* Google Analytics */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-1XXFLDM2LL"
+        strategy="afterInteractive"
+      />
+      <Script id="gtag-init" strategy="afterInteractive">
+        {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1XXFLDM2LL');
+          `}
+      </Script>
       <body className={`${orbitron.className} ${ibmPlexMono.className} bg-[#0D0D0D] min-h-screen flex flex-col`}>
         <TestSessionProvider>
           <Navbar />
