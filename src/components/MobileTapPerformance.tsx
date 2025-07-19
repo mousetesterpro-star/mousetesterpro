@@ -93,7 +93,7 @@ export default function MobileTapPerformance() {
           {tapTestActive ? "Wait..." : "Start Tap Test"}
         </button>
         <div
-          className={`w-32 h-32 rounded-full flex items-center justify-center text-xl font-bold ${tapTestActive ? 'bg-[#60A5FA] text-black animate-pulse' : 'bg-[#10131a] text-white border border-[#23272e]'}`}
+          className={`w-full min-w-0 max-w-xs h-32 rounded-full flex items-center justify-center text-xl font-bold ${tapTestActive ? 'bg-[#60A5FA] text-black animate-pulse' : 'bg-[#10131a] text-white border border-[#23272e]'} break-words text-center overflow-x-auto`}
           onTouchStart={handleTap}
         >
           {tapTestActive ? "TAP!" : tapDelay !== null ? `${tapDelay.toFixed(1)} ms` : ""}
@@ -110,7 +110,7 @@ export default function MobileTapPerformance() {
           {multiTestActive ? "Testing..." : "Start Multi-Touch Test"}
         </button>
         <div
-          className="w-32 h-32 rounded-xl flex items-center justify-center text-xl font-bold bg-[#10131a] text-white border border-[#23272e]"
+          className="w-full min-w-0 max-w-xs h-32 rounded-xl flex items-center justify-center text-xl font-bold bg-[#10131a] text-white border border-[#23272e] break-words text-center overflow-x-auto"
           onTouchStart={handleMultiTouch}
         >
           {multiTestActive ? `${multiJitter.length}/10` : multiJitter.length > 0 ? `Jitter: ${multiJitter.length > 1 ? (multiJitter[multiJitter.length-1] - multiJitter[0]).toFixed(1) : "-"} ms` : ""}
@@ -127,7 +127,7 @@ export default function MobileTapPerformance() {
           {swipeTestActive ? "Testing..." : "Start Swipe Test"}
         </button>
         <div
-          className="w-32 h-32 rounded-xl flex items-center justify-center text-xl font-bold bg-[#10131a] text-white border border-[#23272e]"
+          className="w-full min-w-0 max-w-xs h-32 rounded-xl flex items-center justify-center text-xl font-bold bg-[#10131a] text-white border border-[#23272e] break-words text-center overflow-x-auto"
           onTouchStart={handleSwipe}
           onTouchEnd={handleSwipe}
         >
