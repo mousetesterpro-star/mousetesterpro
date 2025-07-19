@@ -53,7 +53,7 @@ export default function Navbar() {
             ×
           </button>
           <a href="/leaderboard" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={() => setMenuOpen(false)}>Leaderboard</a>
-          <a href="#test-area" onClick={handleTestAgain} className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={() => setMenuOpen(false)}>Test Again</a>
+          <a href="#test-area" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={e => { handleTestAgain(e); setMenuOpen(false); }}>Test Again</a>
           <a href="/about" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={() => setMenuOpen(false)}>About</a>
           <a href="/guides" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={() => setMenuOpen(false)}>Guides/FAQ</a>
           <a href="/contact" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={() => setMenuOpen(false)}>Contact</a>
