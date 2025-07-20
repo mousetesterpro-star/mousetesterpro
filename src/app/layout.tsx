@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     site: "@MouseTesterPro"
   },
   other: {
-    'google-site-verification': 'your-verification-code',
+    'google-site-verification': 'VuktZVfop_TtmjmC2sfWPPIxZtK5ovyB8wKHpY4OFfY',
   }
 };
 
