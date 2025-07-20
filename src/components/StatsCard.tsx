@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { supabase } from '@/utils/supabaseClient';
+import { supabase, isSupabaseConfigured } from '@/utils/supabaseClient';
 import { useTestSession } from '@/context/TestSessionContext';
 
 interface TestResult {
@@ -23,28 +23,56 @@ function formatStat(val: number) {
 export default function StatsCard() {
   const [history, setHistory] = useState<TestResult[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const { resultsUpdated } = useTestSession();
 
   useEffect(() => {
     async function fetchStats() {
       setLoading(true);
-      let anon_id = '';
-      if (typeof window !== 'undefined') {
-        anon_id = localStorage.getItem('anon_id') || '';
-      }
-      if (!anon_id) {
+      setError(null);
+      
+      try {
+        // Check if Supabase is configured
+        if (!isSupabaseConfigured()) {
+          setError('Database not configured. Stats will be available once database is set up.');
+          setHistory([]);
+          setLoading(false);
+          return;
+        }
+
+        let anon_id = '';
+        if (typeof window !== 'undefined') {
+          anon_id = localStorage.getItem('anon_id') || '';
+        }
+        
+        if (!anon_id) {
+          setHistory([]);
+          setLoading(false);
+          return;
+        }
+        
+        const { data, error } = await supabase
+          .from('test_results')
+          .select('id,created_at,latency,polling,jitter')
+          .eq('anon_id', anon_id)
+          .order('created_at', { ascending: true });
+          
+        if (error) {
+          console.error('Error fetching stats:', error);
+          setError('Failed to load stats from database');
+          setHistory([]);
+        } else {
+          setHistory(data as TestResult[] || []);
+        }
+      } catch (err) {
+        console.error('Error in fetchStats:', err);
+        setError('Failed to load stats');
         setHistory([]);
+      } finally {
         setLoading(false);
-        return;
       }
-      const { data, error } = await supabase
-        .from('test_results')
-        .select('id,created_at,latency,polling,jitter')
-        .eq('anon_id', anon_id)
-        .order('created_at', { ascending: true });
-      if (data) setHistory(data as TestResult[]);
-      setLoading(false);
     }
+    
     fetchStats();
   }, [resultsUpdated]);
 
@@ -53,6 +81,15 @@ export default function StatsCard() {
       <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
         <h2 className="text-2xl font-heading text-white mb-2">Your Stats</h2>
         <div className="text-gray-400 text-sm">Loading...</div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
+        <h2 className="text-2xl font-heading text-white mb-2">Your Stats</h2>
+        <div className="text-red-400 text-sm">{error}</div>
       </section>
     );
   }

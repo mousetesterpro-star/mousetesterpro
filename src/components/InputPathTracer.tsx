@@ -56,12 +56,13 @@ export default function InputPathTracer() {
     };
   }, []);
 
-  // Calculate relative times
+  // Calculate relative times and max time for scaling
   const base = timeline.length > 0 ? timeline[0].timestamp : 0;
+  const maxTime = timeline.length > 0 ? Math.max(...timeline.map(evt => evt.timestamp - base)) : 100;
 
   return (
     <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
-      <h2 className="text-2xl font-heading text-white mb-2">Input Path Tracer (Event Timeline)</h2>
+      <h2 className="text-2xl font-heading text-white mb-2 text-center">Input Path Tracer (Event Timeline)</h2>
       <p className="text-gray-400 text-sm mb-4 text-center max-w-md">
         Click the button below to trace the journey of a mouse click from hardware to frame render. See the timing of each stage in the browser event pipeline.
       </p>
@@ -83,23 +84,45 @@ export default function InputPathTracer() {
         </div>
       )}
       {timeline.length > 0 && (
-        <div className="w-full max-w-md mt-4">
-          <h3 className="text-lg font-bold text-white mb-2">Event Timeline</h3>
-          <div className="flex flex-col gap-2">
-            {timeline.map((evt, i) => (
-              <div key={i} className="flex items-center gap-4">
-                <div className="w-40 text-gray-300 font-mono">{evt.label}</div>
-                <div className="flex-1 h-2 bg-[#23272e] relative">
-                  <div
-                    className="h-2 bg-[#60A5FA] rounded"
-                    style={{ width: i === 0 ? 0 : ((evt.timestamp - base) / 2) + 'px', minWidth: 2 }}
-                  />
+        <div className="w-full max-w-2xl mt-4">
+          <h3 className="text-lg font-bold text-white mb-4 text-center">Event Timeline</h3>
+          <div className="space-y-3">
+            {timeline.map((evt, i) => {
+              const relativeTime = evt.timestamp - base;
+              const positionPercentage = maxTime > 0 ? (relativeTime / maxTime) * 100 : 0;
+              
+              return (
+                <div key={i} className="bg-[#23272e] rounded-lg p-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="text-gray-300 font-mono text-sm sm:text-base min-w-0 break-words">
+                        {evt.label}
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="h-3 bg-[#10131a] rounded-full relative overflow-hidden">
+                        <div
+                          className="h-3 bg-[#60A5FA] rounded-full transition-all duration-300"
+                          style={{ 
+                            width: '20px',
+                            marginLeft: `${positionPercentage}%`,
+                            transform: 'translateX(-50%)'
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <div className="text-gray-400 font-mono text-xs sm:text-sm text-right">
+                        +{relativeTime.toFixed(2)} ms
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="w-24 text-right text-gray-400 font-mono text-xs">
-                  +{i === 0 ? '0.0' : (evt.timestamp - base).toFixed(2)} ms
-                </div>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+          <div className="mt-4 text-xs text-gray-500 text-center">
+            Timeline shows the progression of a mouse click through the browser's event pipeline
           </div>
         </div>
       )}

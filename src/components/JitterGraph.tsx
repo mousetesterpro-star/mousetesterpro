@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { Line } from 'react-chartjs-2';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { useTestSession } from '@/context/TestSessionContext';
 import {
   Chart as ChartJS,
@@ -23,6 +22,9 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
+// Lazy load the Line component to reduce initial bundle
+const Line = lazy(() => import('react-chartjs-2').then(module => ({ default: module.Line })));
 
 const MAX_DATA_POINTS = 100;
 
@@ -121,7 +123,9 @@ export default function JitterGraph() {
     <div className="flex flex-col items-center w-full h-80 bg-transparent border-none">
       <div className="text-5xl font-extrabold mb-4 text-white">{jitter.toFixed(4)} ms</div>
       <div className="w-full h-full bg-transparent border-none">
+        <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-gray-400">Loading chart...</div>}>
         <Line data={chartData} options={options} />
+        </Suspense>
       </div>
     </div>
   );

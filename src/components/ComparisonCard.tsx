@@ -1,12 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { supabase } from '@/utils/supabaseClient';
+import { supabase, isSupabaseConfigured } from '@/utils/supabaseClient';
 import { useTestSession } from '@/context/TestSessionContext';
-
-const benchmarks = {
-  avg: { latency: 15, polling: 500, jitter: 0.5 },
-  pro: { latency: 8, polling: 1000, jitter: 0.1 },
-};
 
 interface TestResult {
   id: string;
@@ -19,30 +14,58 @@ interface TestResult {
 export default function ComparisonCard() {
   const [userBest, setUserBest] = useState<TestResult | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const { resultsUpdated } = useTestSession();
 
   useEffect(() => {
     async function fetchBest() {
       setLoading(true);
-      let anon_id = '';
-      if (typeof window !== 'undefined') {
-        anon_id = localStorage.getItem('anon_id') || '';
-      }
-      if (!anon_id) {
+      setError(null);
+      
+      try {
+        // Check if Supabase is configured
+        if (!isSupabaseConfigured()) {
+          setError('Database not configured. Comparison will be available once database is set up.');
+          setUserBest(null);
+          setLoading(false);
+          return;
+        }
+
+        let anon_id = '';
+        if (typeof window !== 'undefined') {
+          anon_id = localStorage.getItem('anon_id') || '';
+        }
+        
+        if (!anon_id) {
+          setUserBest(null);
+          setLoading(false);
+          return;
+        }
+        
+        const { data, error } = await supabase
+          .from('test_results')
+          .select('id,created_at,latency,polling,jitter')
+          .eq('anon_id', anon_id)
+          .order('latency', { ascending: true })
+          .limit(1);
+          
+        if (error) {
+          console.error('Error fetching best result:', error);
+          setError('Failed to load best result from database');
+          setUserBest(null);
+        } else {
+          setUserBest(data && data.length > 0 ? data[0] as TestResult : null);
+        }
+      } catch (err) {
+        console.error('Error in fetchBest:', err);
+        setError('Failed to load best result');
         setUserBest(null);
+      } finally {
         setLoading(false);
-        return;
       }
-      const { data, error } = await supabase
-        .from('test_results')
-        .select('id,created_at,latency,polling,jitter')
-        .eq('anon_id', anon_id)
-        .order('latency', { ascending: true })
-        .limit(1);
-      if (data && data.length > 0) setUserBest(data[0] as TestResult);
-      setLoading(false);
     }
+    
     fetchBest();
   }, [resultsUpdated]);
 
@@ -63,53 +86,43 @@ export default function ComparisonCard() {
     );
   }
 
+  if (error) {
+    return (
+      <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
+        <h2 className="text-2xl font-heading text-white mb-2">Compare Your Results</h2>
+        <div className="text-red-400 text-sm">{error}</div>
+      </section>
+    );
+  }
+
+  if (!userBest) {
+    return (
+      <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
+        <h2 className="text-2xl font-heading text-white mb-2">Compare Your Results</h2>
+        <div className="text-gray-400 text-sm">No test data yet. Run some tests to see your best results here!</div>
+      </section>
+    );
+  }
+
   return (
     <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
       <h2 className="text-2xl font-heading text-white mb-2">Compare Your Results</h2>
-      {!userBest ? (
-        <div className="text-gray-400 text-sm">No test data yet. Run some tests to see your comparison here!</div>
-      ) : (
-        <>
-          <table className="w-full text-left mt-2">
-            <thead>
-              <tr className="border-b border-gray-700">
-                <th className="py-2 px-2 text-sm text-gray-400 font-medium">Metric</th>
-                <th className="py-2 px-2 text-sm text-[#60A5FA] font-medium">Your Best</th>
-                <th className="py-2 px-2 text-sm text-gray-400 font-medium">Global Avg</th>
-                <th className="py-2 px-2 text-sm text-gray-400 font-medium">Pro Benchmark</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-gray-800">
-                <td className="py-2 px-2 text-white">Latency (ms)</td>
-                <td className="py-2 px-2 text-[#60A5FA] font-bold">{userBest.latency.toFixed(2)}</td>
-                <td className="py-2 px-2 text-white">{benchmarks.avg.latency}</td>
-                <td className="py-2 px-2 text-white">{benchmarks.pro.latency}</td>
-              </tr>
-              <tr className="border-b border-gray-800">
-                <td className="py-2 px-2 text-white">Polling (Hz)</td>
-                <td className="py-2 px-2 text-[#60A5FA] font-bold">{userBest.polling.toFixed(2)}</td>
-                <td className="py-2 px-2 text-white">{benchmarks.avg.polling}</td>
-                <td className="py-2 px-2 text-white">{benchmarks.pro.polling}</td>
-              </tr>
-              <tr>
-                <td className="py-2 px-2 text-white">Jitter (ms)</td>
-                <td className="py-2 px-2 text-[#60A5FA] font-bold">{userBest.jitter.toFixed(2)}</td>
-                <td className="py-2 px-2 text-white">{benchmarks.avg.jitter}</td>
-                <td className="py-2 px-2 text-white">{benchmarks.pro.jitter}</td>
-              </tr>
-            </tbody>
-          </table>
-          <button
-            onClick={handleCopy}
-            className="mt-4 bg-white text-black px-4 py-2 rounded-lg font-medium text-sm hover:shadow transition-all ease-in-out duration-300 focus:outline-none focus:ring-2 focus:ring-[#60A5FA]"
-            disabled={!userBest}
-          >
-            {copied ? 'Link copied!' : 'Copy Link'}
-          </button>
-          <div className="text-xs text-gray-500 mt-2">Benchmarks are for illustration. Pro values reflect top-tier gaming mice and users.</div>
-        </>
-      )}
+      <div className="bg-[#181c24] border border-[#23272e] rounded-xl p-4 mb-4">
+        <div className="text-sm text-gray-400 mb-2">Your Best Result</div>
+        <div className="text-2xl font-bold text-[#60A5FA] font-mono mb-2">{userBest.latency.toFixed(2)} ms</div>
+        <div className="text-xs text-gray-500 font-mono">
+          Polling: {userBest.polling.toFixed(0)} Hz | Jitter: {userBest.jitter.toFixed(2)} ms
+        </div>
+        <div className="text-xs text-gray-400 mt-2">
+          Achieved on {new Date(userBest.created_at).toLocaleDateString()}
+        </div>
+      </div>
+      <button
+        onClick={handleCopy}
+        className="w-full bg-white text-black font-bold px-4 py-2 rounded-lg hover:shadow transition-all ease-in-out duration-300 focus:outline-none focus:ring-2 focus:ring-[#60A5FA]"
+      >
+        {copied ? 'Link Copied!' : 'Copy Best Result Link'}
+      </button>
     </section>
   );
 } 

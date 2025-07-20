@@ -10,15 +10,25 @@ import ComparisonCard from '@/components/ComparisonCard';
 import StatsCard from '@/components/StatsCard';
 import SessionReportModal from '@/components/SessionReportModal';
 import { useTestSession } from '@/context/TestSessionContext';
-import React, { useState, useEffect } from 'react';
-import FpsReactionTest from '@/components/FpsReactionTest';
-import DpiCalibrationTest from '@/components/DpiCalibrationTest';
-import ClickPatternTest from '@/components/ClickPatternTest';
-import InputPathTracer from '@/components/InputPathTracer';
-import CrossDeviceLatencyTest from '@/components/CrossDeviceLatencyTest';
-import InputBottleneckScanner from '@/components/InputBottleneckScanner';
-import CloudInputDiagnostic from '@/components/CloudInputDiagnostic';
-import MobileTapPerformance from '@/components/MobileTapPerformance';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+
+// Lazy load advanced components
+const FpsReactionTest = lazy(() => import('@/components/FpsReactionTest'));
+const DpiCalibrationTest = lazy(() => import('@/components/DpiCalibrationTest'));
+const ClickPatternTest = lazy(() => import('@/components/ClickPatternTest'));
+const InputPathTracer = lazy(() => import('@/components/InputPathTracer'));
+const CrossDeviceLatencyTest = lazy(() => import('@/components/CrossDeviceLatencyTest'));
+const InputBottleneckScanner = lazy(() => import('@/components/InputBottleneckScanner'));
+const CloudInputDiagnostic = lazy(() => import('@/components/CloudInputDiagnostic'));
+const MobileTapPerformance = lazy(() => import('@/components/MobileTapPerformance'));
+
+// Loading component for lazy-loaded features
+const AdvancedFeatureLoader = () => (
+  <div className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#60A5FA] mb-4"></div>
+    <p className="text-gray-400 text-sm">Loading advanced feature...</p>
+  </div>
+);
 
 function isCompleteSession(session: any): session is { latency: number; polling: number; jitter: number; device_info?: any } {
   return (
@@ -102,26 +112,25 @@ export default function Home() {
               </div>
             </div>
             {/* Finish Test Button */}
-            <div className="flex justify-center mb-8">
-              <button
-                className="bg-[#60A5FA] text-black font-bold px-6 py-3 rounded-lg text-lg shadow hover:bg-[#4090e6] transition disabled:opacity-50 disabled:cursor-not-allowed"
-                onClick={finalizeSession}
-                disabled={!allMetricsSet || finalized}
-              >
-                Finish Test & View Report
-              </button>
-            </div>
-            <div className="grid grid-cols-1 gap-8 mb-8">
+            {allMetricsSet && (
+              <div className="flex justify-center mb-8">
+                <button
+                  onClick={finalizeSession}
+                  className="bg-[#60A5FA] text-black font-bold px-8 py-3 rounded-lg text-lg shadow-lg hover:bg-[#4090e6] transition-all duration-200 transform hover:scale-105"
+                >
+                  Finish Test & View Report
+                </button>
+              </div>
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
                 <HistoryCard />
               </div>
-            </div>
-            <div className="grid grid-cols-1 gap-8 mb-8">
               <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
                 <ComparisonCard />
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-8">
+            <div className="grid grid-cols-1 gap-8 mb-8">
               <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
                 <TipsCard />
               </div>
@@ -130,30 +139,46 @@ export default function Home() {
         ) : (
           <>
             {/* Advanced dashboard: show all basic cards plus advanced features */}
-            <div className="mb-8">
-              <FpsReactionTest />
-            </div>
-            <div className="mb-8">
-              <DpiCalibrationTest />
-            </div>
-            <div className="mb-8">
-              <ClickPatternTest />
-            </div>
-            <div className="mb-8">
-              <InputPathTracer />
-            </div>
-            <div className="mb-8">
-              <CrossDeviceLatencyTest />
-            </div>
-            <div className="mb-8">
-              <InputBottleneckScanner />
-            </div>
-            <div className="mb-8">
-              <CloudInputDiagnostic />
-            </div>
-            <div className="mb-8">
-              <MobileTapPerformance />
-            </div>
+            <Suspense fallback={<AdvancedFeatureLoader />}>
+              <div className="mb-8">
+                <FpsReactionTest />
+              </div>
+            </Suspense>
+            <Suspense fallback={<AdvancedFeatureLoader />}>
+              <div className="mb-8">
+                <DpiCalibrationTest />
+              </div>
+            </Suspense>
+            <Suspense fallback={<AdvancedFeatureLoader />}>
+              <div className="mb-8">
+                <ClickPatternTest />
+              </div>
+            </Suspense>
+            <Suspense fallback={<AdvancedFeatureLoader />}>
+              <div className="mb-8">
+                <InputPathTracer />
+              </div>
+            </Suspense>
+            <Suspense fallback={<AdvancedFeatureLoader />}>
+              <div className="mb-8">
+                <CrossDeviceLatencyTest />
+              </div>
+            </Suspense>
+            <Suspense fallback={<AdvancedFeatureLoader />}>
+              <div className="mb-8">
+                <InputBottleneckScanner />
+              </div>
+            </Suspense>
+            <Suspense fallback={<AdvancedFeatureLoader />}>
+              <div className="mb-8">
+                <CloudInputDiagnostic />
+              </div>
+            </Suspense>
+            <Suspense fallback={<AdvancedFeatureLoader />}>
+              <div className="mb-8">
+                <MobileTapPerformance />
+              </div>
+            </Suspense>
             {/* Placeholder for more advanced features */}
             <div className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
               <h2 className="text-xl font-bold text-white mb-2">More Advanced Features Coming Soon</h2>

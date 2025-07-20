@@ -1,6 +1,6 @@
 "use client";
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import { supabase } from "@/utils/supabaseClient";
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { supabase, isSupabaseConfigured } from '@/utils/supabaseClient';
 
 interface TestSession {
   latency?: number;
@@ -23,9 +23,11 @@ interface TestSessionContextType {
 const TestSessionContext = createContext<TestSessionContextType | undefined>(undefined);
 
 export function useTestSession() {
-  const ctx = useContext(TestSessionContext);
-  if (!ctx) throw new Error("useTestSession must be used within TestSessionProvider");
-  return ctx;
+  const context = useContext(TestSessionContext);
+  if (context === undefined) {
+    throw new Error('useTestSession must be used within a TestSessionProvider');
+  }
+  return context;
 }
 
 function getAnonId() {
@@ -47,17 +49,32 @@ export function TestSessionProvider({ children }: { children: ReactNode }) {
 
   const saveSession = async (next: TestSession) => {
     if (next.latency && next.polling && next.jitter) {
-      const anon_id = getAnonId();
-      await supabase.from("test_results").insert([
-        {
-          latency: next.latency,
-          polling: next.polling,
-          jitter: next.jitter,
-          device_info: next.device_info || null,
-          anon_id,
-        },
-      ]);
-      notifyResultsUpdated();
+      try {
+        // Check if Supabase is configured
+        if (!isSupabaseConfigured()) {
+          console.warn('Database not configured. Test results will not be saved.');
+          return;
+        }
+
+        const anon_id = getAnonId();
+        const { error } = await supabase.from("test_results").insert([
+          {
+            latency: next.latency,
+            polling: next.polling,
+            jitter: next.jitter,
+            device_info: next.device_info || null,
+            anon_id,
+          },
+        ]);
+        
+        if (error) {
+          console.error('Error saving test results:', error);
+        } else {
+          notifyResultsUpdated();
+        }
+      } catch (error) {
+        console.error('Error in saveSession:', error);
+      }
     }
   };
 

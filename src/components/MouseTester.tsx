@@ -23,11 +23,11 @@ export default function MouseTester() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <section className="bg-[#161b22] rounded-lg p-6 flex flex-col items-center">
           <h2 className="text-xl font-semibold text-white mb-4 w-full text-left">Polling Rate</h2>
-          <PollingRateVisualizer />
+              <PollingRateVisualizer />
         </section>
         <section className="bg-[#161b22] rounded-lg p-6 flex flex-col items-center">
           <h2 className="text-xl font-semibold text-white mb-4 w-full text-left">Click Latency</h2>
-          <LatencyTester />
+            <LatencyTester />
         </section>
       </div>
       <section className="bg-[#161b22] rounded-lg p-6 flex flex-col items-center">
