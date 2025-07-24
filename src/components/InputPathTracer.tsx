@@ -12,6 +12,16 @@ export default function InputPathTracer() {
   const [startTime, setStartTime] = useState<number | null>(null);
   const rafRef = useRef<number | null>(null);
 
+  const getInstructionText = () => {
+    if (testActive) {
+      return "Now, click the 'Click Me' button below. This will trace the event's path from hardware to render.";
+    }
+    if (timeline.length > 0) {
+      return "Trace complete. The timeline below shows the journey of your click through the browser's event pipeline.";
+    }
+    return "Click 'Start Trace', then click the 'Click Me' button that appears. This test visualizes input latency.";
+  };
+
   // Start a new trace
   const startTrace = () => {
     setTimeline([]);
@@ -63,8 +73,8 @@ export default function InputPathTracer() {
   return (
     <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
       <h2 className="text-2xl font-heading text-white mb-2 text-center">Input Path Tracer (Event Timeline)</h2>
-      <p className="text-gray-400 text-sm mb-4 text-center max-w-md">
-        Click the button below to trace the journey of a mouse click from hardware to frame render. See the timing of each stage in the browser event pipeline.
+      <p className="text-gray-400 text-sm mb-4 text-center max-w-md h-10 flex items-center justify-center">
+        {getInstructionText()}
       </p>
       <button
         className={`bg-[#60A5FA] text-black font-bold px-6 py-2 rounded-lg text-lg shadow hover:bg-[#4090e6] transition mb-4 ${testActive ? 'animate-pulse' : ''}`}

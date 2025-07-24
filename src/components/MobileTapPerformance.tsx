@@ -85,6 +85,7 @@ export default function MobileTapPerformance() {
       {/* Tap Delay Test */}
       <div className="w-full max-w-xs mb-6 flex flex-col items-center">
         <h3 className="text-lg font-bold text-white mb-2">Tap Delay Test</h3>
+        <p className="text-gray-400 text-xs mb-2 text-center">Click 'Start', then tap the circle as soon as it pulses.</p>
         <button
           className="bg-[#60A5FA] text-black font-bold px-6 py-2 rounded-lg text-lg shadow hover:bg-[#4090e6] transition mb-2"
           onClick={startTapTest}
@@ -102,6 +103,7 @@ export default function MobileTapPerformance() {
       {/* Multi-Touch Jitter Test */}
       <div className="w-full max-w-xs mb-6 flex flex-col items-center">
         <h3 className="text-lg font-bold text-white mb-2">Multi-Touch Jitter Test</h3>
+        <p className="text-gray-400 text-xs mb-2 text-center">Start the test, then tap with multiple fingers at the same time.</p>
         <button
           className="bg-[#60A5FA] text-black font-bold px-6 py-2 rounded-lg text-lg shadow hover:bg-[#4090e6] transition mb-2"
           onClick={startMultiTest}
@@ -119,6 +121,7 @@ export default function MobileTapPerformance() {
       {/* Swipe-to-Frame Rendering Delay */}
       <div className="w-full max-w-xs mb-6 flex flex-col items-center">
         <h3 className="text-lg font-bold text-white mb-2">Swipe-to-Frame Delay</h3>
+        <p className="text-gray-400 text-xs mb-2 text-center">Start the test, then perform a quick swipe across the box below.</p>
         <button
           className="bg-[#60A5FA] text-black font-bold px-6 py-2 rounded-lg text-lg shadow hover:bg-[#4090e6] transition mb-2"
           onClick={startSwipeTest}

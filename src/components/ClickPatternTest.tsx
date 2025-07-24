@@ -18,6 +18,16 @@ export default function ClickPatternTest() {
   const [beatTimes, setBeatTimes] = useState<number[]>([]);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
+  const getInstructionText = () => {
+    if (testActive) {
+      return "Click anywhere in this card in time with the moving visual beat. Try to be as precise as possible!";
+    }
+    if (attempts.length > 0) {
+      return "Test complete. Check your timing results below or start a new test.";
+    }
+    return "When you're ready, click 'Start Test'. A visual metronome will appear. Click anywhere in this card in time with the moving beat.";
+  };
+
   // Start a new attempt
   const startAttempt = () => {
     setTestActive(true);
@@ -84,10 +94,13 @@ export default function ClickPatternTest() {
   }, []);
 
   return (
-    <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
+    <section 
+      className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8 cursor-pointer"
+      onClick={testActive ? handleClick : undefined}
+    >
       <h2 className="text-2xl font-heading text-white mb-2">Click Timing Pattern Recognition</h2>
-      <p className="text-gray-400 text-sm mb-4 text-center max-w-md">
-        Click in rhythm with the metronome. Your timing drift, consistency, and missed beats will be measured. Try to keep your clicks as close to the beat as possible!
+      <p className="text-gray-400 text-sm mb-4 text-center max-w-md h-10 flex items-center justify-center">
+        {getInstructionText()}
       </p>
       <div className="flex flex-col items-center mb-4">
         <div className="flex gap-1 mb-2">
@@ -100,7 +113,7 @@ export default function ClickPatternTest() {
         </div>
         <button
           className={`bg-[#60A5FA] text-black font-bold px-6 py-2 rounded-lg text-lg shadow hover:bg-[#4090e6] transition mb-2 ${testActive ? 'animate-pulse' : ''}`}
-          onClick={testActive ? handleClick : startAttempt}
+          onClick={testActive ? (e) => e.stopPropagation() : startAttempt}
         >
           {testActive ? 'Click to the Beat!' : 'Start Test'}
         </button>

@@ -18,6 +18,8 @@ interface TestSessionContextType {
   finalizeSession: () => void;
   finalized: boolean;
   resultsUpdated: number;
+  isTesting: boolean;
+  startTest: () => void;
 }
 
 const TestSessionContext = createContext<TestSessionContextType | undefined>(undefined);
@@ -44,8 +46,13 @@ export function TestSessionProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<TestSession>({});
   const [finalized, setFinalized] = useState(false);
   const [resultsUpdated, setResultsUpdated] = useState(0);
+  const [isTesting, setIsTesting] = useState(false);
 
   const notifyResultsUpdated = () => setResultsUpdated((v) => v + 1);
+  const startTest = () => {
+    resetSession();
+    setIsTesting(true);
+  };
 
   const saveSession = async (next: TestSession) => {
     if (next.latency && next.polling && next.jitter) {
@@ -90,16 +97,18 @@ export function TestSessionProvider({ children }: { children: ReactNode }) {
   const resetSession = () => {
     setSession({});
     setFinalized(false);
+    setIsTesting(false);
   };
   const finalizeSession = () => {
     if (session.latency && session.polling && session.jitter && !finalized) {
       saveSession(session);
       setFinalized(true);
+      setIsTesting(false);
     }
   };
 
   return (
-    <TestSessionContext.Provider value={{ session, setLatency, setPolling, setJitter, resetSession, finalizeSession, finalized, resultsUpdated }}>
+    <TestSessionContext.Provider value={{ session, setLatency, setPolling, setJitter, resetSession, finalizeSession, finalized, resultsUpdated, isTesting, startTest }}>
       {children}
     </TestSessionContext.Provider>
   );

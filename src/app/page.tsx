@@ -21,6 +21,7 @@ const CrossDeviceLatencyTest = lazy(() => import('@/components/CrossDeviceLatenc
 const InputBottleneckScanner = lazy(() => import('@/components/InputBottleneckScanner'));
 const CloudInputDiagnostic = lazy(() => import('@/components/CloudInputDiagnostic'));
 const MobileTapPerformance = lazy(() => import('@/components/MobileTapPerformance'));
+const Heatmap = lazy(() => import('@/components/Heatmap')); // Lazy load Heatmap
 
 // Loading component for lazy-loaded features
 const AdvancedFeatureLoader = () => (
@@ -111,17 +112,6 @@ export default function Home() {
                 <JitterAnalysisCard />
               </div>
             </div>
-            {/* Finish Test Button */}
-            {allMetricsSet && (
-              <div className="flex justify-center mb-8">
-                <button
-                  onClick={finalizeSession}
-                  className="bg-[#60A5FA] text-black font-bold px-8 py-3 rounded-lg text-lg shadow-lg hover:bg-[#4090e6] transition-all duration-200 transform hover:scale-105"
-                >
-                  Finish Test & View Report
-                </button>
-              </div>
-            )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
                 <HistoryCard />
@@ -139,6 +129,11 @@ export default function Home() {
         ) : (
           <>
             {/* Advanced dashboard: show all basic cards plus advanced features */}
+            <Suspense fallback={<AdvancedFeatureLoader />}>
+                <div className="mb-8">
+                    <Heatmap />
+                </div>
+            </Suspense>
             <Suspense fallback={<AdvancedFeatureLoader />}>
               <div className="mb-8">
                 <FpsReactionTest />

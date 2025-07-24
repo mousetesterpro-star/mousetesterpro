@@ -62,8 +62,8 @@ export default function CloudInputDiagnostic() {
   return (
     <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
       <h2 className="text-2xl font-heading text-white mb-2">Cloud Input Diagnostic Snapshot</h2>
-      <p className="text-gray-400 text-sm mb-4 text-center max-w-md">
-        Generate a one-click diagnostic report with your mouse stats, device info, and tuning advice. Share it for support or debugging.
+      <p className="text-gray-400 text-sm mb-4 text-center max-w-md h-10 flex items-center justify-center">
+        Click the button to generate a snapshot of your device and performance stats. This is useful for troubleshooting or sharing with support.
       </p>
       <button
         className="bg-[#60A5FA] text-black font-bold px-6 py-2 rounded-lg text-lg shadow hover:bg-[#4090e6] transition mb-4"

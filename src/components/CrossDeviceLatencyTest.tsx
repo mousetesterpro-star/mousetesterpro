@@ -18,6 +18,19 @@ export default function CrossDeviceLatencyTest() {
   const [waiting, setWaiting] = useState(false);
   const [summary, setSummary] = useState<{ faster: string; percent: number } | null>(null);
 
+  const getInstructionText = () => {
+    if (step === "setup") {
+      return "Name two devices you want to compare (e.g., 'Wired Mouse', 'Wireless Mouse'). Then, click 'Start Test' to begin.";
+    }
+    if (step === "test") {
+      return `Testing now. Use your '${devices[currentDevice]}'. Click the button when it pulses.`;
+    }
+    if (step === "results") {
+      return "Test complete! The results below show which device performed better. You can test again with different devices.";
+    }
+    return "Compare the latency between two different input devices.";
+  };
+
   // Setup device names
   const handleDeviceName = (idx: number, name: string) => {
     setDevices((prev) => prev.map((d, i) => (i === idx ? name : d)));
@@ -90,8 +103,8 @@ export default function CrossDeviceLatencyTest() {
   return (
     <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
       <h2 className="text-2xl font-heading text-white mb-2">Cross-Device Latency Sync Test</h2>
-      <p className="text-gray-400 text-sm mb-4 text-center max-w-md">
-        Alternate clicks between two devices (e.g., wired and wireless mouse). The test will measure and compare latency for each device. Use different mice or input devices for each round.
+      <p className="text-gray-400 text-sm mb-4 text-center max-w-md h-10 flex items-center justify-center">
+        {getInstructionText()}
       </p>
       {step === "setup" && (
         <div className="flex flex-col items-center gap-4 w-full max-w-xs mb-4">

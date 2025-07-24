@@ -25,6 +25,16 @@ export default function FpsReactionTest() {
   const [testActive, setTestActive] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  const getInstructionText = () => {
+    if (testActive) {
+        return "A test is running... Click the white target as quickly as possible!";
+    }
+    if (attempts.length > 0) {
+        return "Test complete. Click 'Start Test' to try again.";
+    }
+    return "When you're ready, click 'Start Test'. A white target will appear. Click it as fast as you can.";
+  };
+
   // Start a new attempt
   const startAttempt = () => {
     setAimPath([]);
@@ -102,8 +112,8 @@ export default function FpsReactionTest() {
   return (
     <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
       <h2 className="text-2xl font-heading text-white mb-2">FPS Click Reaction Test</h2>
-      <p className="text-gray-400 text-sm mb-4 text-center max-w-md">
-        A target will appear at a random spot. Move your mouse and click the target as quickly and accurately as possible. Your aim path and reaction time will be tracked.
+      <p className="text-gray-400 text-sm mb-4 text-center max-w-md h-10 flex items-center justify-center">
+        {getInstructionText()}
       </p>
       <canvas
         ref={canvasRef}

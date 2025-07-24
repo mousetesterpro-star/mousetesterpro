@@ -36,6 +36,16 @@ export default function DpiCalibrationTest() {
   const animationRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
 
+  const getInstructionText = () => {
+    if (testActive) {
+      return "Follow the moving target as closely as possible with your mouse.";
+    }
+    if (attempts.length > 0) {
+      return "Calibration complete. Check your results below or start a new test.";
+    }
+    return "When you're ready, click 'Start Calibration'. A target will appear and move along a path. Follow it with your mouse.";
+  };
+
   // Start a new attempt
   const startAttempt = () => {
     setUserPath([]);
@@ -173,8 +183,8 @@ export default function DpiCalibrationTest() {
   return (
     <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
       <h2 className="text-2xl font-heading text-white mb-2">DPI Accuracy Calibration Tool</h2>
-      <p className="text-gray-400 text-sm mb-4 text-center max-w-md">
-        Follow the moving target as closely as possible with your mouse. Your path accuracy, overshoot, and hand stability will be measured.
+      <p className="text-gray-400 text-sm mb-4 text-center max-w-md h-10 flex items-center justify-center">
+        {getInstructionText()}
       </p>
       <canvas
         ref={canvasRef}

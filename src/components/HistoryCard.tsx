@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase, isSupabaseConfigured } from '@/utils/supabaseClient';
 import { useTestSession } from '@/context/TestSessionContext';
+import HistoryItem from './HistoryItem'; // Import the new component
 
 interface TestResult {
   id: string;
@@ -15,7 +16,6 @@ export default function HistoryCard() {
   const [history, setHistory] = useState<TestResult[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
   const [expanded, setExpanded] = useState(false);
   const { resultsUpdated } = useTestSession();
 
@@ -69,16 +69,9 @@ export default function HistoryCard() {
     fetchHistory();
   }, [resultsUpdated]);
 
-  const handleCopy = (result: TestResult, idx: number) => {
-    const url = `${window.location.origin}/?latency=${result.latency}&polling=${result.polling}&jitter=${result.jitter}`;
-    navigator.clipboard.writeText(url);
-    setCopiedIdx(idx);
-    setTimeout(() => setCopiedIdx(null), 1500);
-  };
-
   const shownHistory = expanded ? history : history.slice(0, 5);
 
-  if (loading) {
+  if (loading && !history.length) {
     return (
       <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
         <h2 className="text-2xl font-heading text-white mb-2">Test History</h2>
@@ -109,23 +102,8 @@ export default function HistoryCard() {
     <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
       <h2 className="text-2xl font-heading text-white mb-2">Test History</h2>
       <div className="space-y-3">
-        {shownHistory.map((result, idx) => (
-          <div key={result.id} className="bg-[#181c24] border border-[#23272e] rounded-xl p-4 flex justify-between items-center">
-            <div className="flex-1">
-              <div className="text-sm text-gray-400 mb-1">
-                {new Date(result.created_at).toLocaleDateString()} at {new Date(result.created_at).toLocaleTimeString()}
-              </div>
-              <div className="text-white font-mono">
-                {result.latency.toFixed(2)}ms | {result.polling.toFixed(0)}Hz | {result.jitter.toFixed(2)}ms
-              </div>
-            </div>
-            <button
-              onClick={() => handleCopy(result, idx)}
-              className="ml-4 px-3 py-1 bg-[#60A5FA] text-black text-sm rounded hover:bg-[#4090e6] transition"
-            >
-              {copiedIdx === idx ? 'Copied!' : 'Copy'}
-            </button>
-          </div>
+        {shownHistory.map((result) => (
+          <HistoryItem key={result.id} result={result} />
         ))}
         {history.length > 5 && (
           <button

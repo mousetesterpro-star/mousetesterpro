@@ -83,8 +83,8 @@ export default function InputBottleneckScanner() {
   return (
     <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
       <h2 className="text-2xl font-heading text-white mb-2">Browser-to-OS Input Bottleneck Scanner</h2>
-      <p className="text-gray-400 text-sm mb-4 text-center max-w-md">
-        Move your mouse rapidly. This tool detects if your browser or OS is throttling input events. Watch for spikes or warnings below.
+      <p className="text-gray-400 text-sm mb-4 text-center max-w-md h-10 flex items-center justify-center">
+        Move your mouse quickly and continuously across the screen. This test detects if your browser or OS is delaying input events, which can cause lag.
       </p>
       <div ref={containerRef} className="w-full flex flex-col items-center mb-4">
         <canvas width={400} height={80} className="bg-[#10131a] rounded border border-[#23272e]" />

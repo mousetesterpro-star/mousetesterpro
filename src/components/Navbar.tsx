@@ -4,10 +4,10 @@ import { useTestSession } from '@/context/TestSessionContext';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { resetSession } = useTestSession();
+  const { startTest } = useTestSession();
   const handleTestAgain = (e: React.MouseEvent) => {
     e.preventDefault();
-    resetSession();
+    startTest();
     const el = document.getElementById('test-area');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);

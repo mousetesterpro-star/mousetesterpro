@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase, isSupabaseConfigured } from '@/utils/supabaseClient';
 import { useTestSession } from '@/context/TestSessionContext';
+import CopyBestResultButton from './CopyBestResultButton';
 
 interface TestResult {
   id: string;
@@ -15,7 +16,6 @@ export default function ComparisonCard() {
   const [userBest, setUserBest] = useState<TestResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
   const { resultsUpdated } = useTestSession();
 
   useEffect(() => {
@@ -69,15 +69,7 @@ export default function ComparisonCard() {
     fetchBest();
   }, [resultsUpdated]);
 
-  const handleCopy = () => {
-    if (!userBest) return;
-    const url = `${window.location.origin}/?latency=${userBest.latency}&polling=${userBest.polling}&jitter=${userBest.jitter}`;
-    navigator.clipboard.writeText(url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  };
-
-  if (loading) {
+  if (loading && !userBest) {
     return (
       <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
         <h2 className="text-2xl font-heading text-white mb-2">Compare Your Results</h2>
@@ -117,12 +109,7 @@ export default function ComparisonCard() {
           Achieved on {new Date(userBest.created_at).toLocaleDateString()}
         </div>
       </div>
-      <button
-        onClick={handleCopy}
-        className="w-full bg-white text-black font-bold px-4 py-2 rounded-lg hover:shadow transition-all ease-in-out duration-300 focus:outline-none focus:ring-2 focus:ring-[#60A5FA]"
-      >
-        {copied ? 'Link Copied!' : 'Copy Best Result Link'}
-      </button>
+      <CopyBestResultButton bestResult={userBest} />
     </section>
   );
 } 
