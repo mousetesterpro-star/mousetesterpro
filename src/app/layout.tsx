@@ -21,8 +21,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ultimate Mouse Performance Tester for Gamers, Streamers, and Hardware Enthusiasts",
-  description: "Test mouse latency, polling rate & jitter like a pro. Built for gamers, developers & streamers. Real-time graphs, leaderboard & session analytics.",
+  title: "Mouse Latency Tester - Free Click Speed & Jitter Test Tool",
+  description: "Test your mouse latency, click speed, and jitter for free. Professional-grade mouse testing tool for gamers, developers, and hardware enthusiasts.",
   keywords: [
     "mouse latency tester",
     "polling rate test",
@@ -72,10 +72,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="google-adsense-account" content="ca-pub-1310810766620297" />
+        <link rel="canonical" href="https://mousetester.pro" />
         <script 
           type="application/ld+json" 
           dangerouslySetInnerHTML={{ 
@@ -84,7 +86,37 @@ export default function RootLayout({
               '@type': 'WebSite',
               name: 'Mouse Tester Pro',
               url: 'https://mousetester.pro',
-              description: 'Ultimate Mouse Performance Tester for Gamers, Streamers, and Hardware Enthusiasts. Test mouse latency, polling rate & jitter like a pro. Real-time graphs, leaderboard & session analytics.',
+              description: 'Test your mouse latency, click speed, and jitter for free. Professional-grade mouse testing tool for gamers, developers, and hardware enthusiasts.',
+              applicationCategory: 'Productivity',
+              operatingSystem: 'Web Browser',
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'USD',
+                availability: 'https://schema.org/InStock'
+              },
+              potentialAction: {
+                '@type': 'UseAction',
+                target: 'https://mousetester.pro',
+                name: 'Test Mouse Latency'
+              },
+              hasPart: [
+                {
+                  '@type': 'SoftwareApplication',
+                  name: 'Click Latency Test',
+                  description: 'Measure mouse response time and click accuracy'
+                },
+                {
+                  '@type': 'SoftwareApplication',
+                  name: 'Polling Rate Test',
+                  description: 'Test mouse polling rate and jitter analysis'
+                },
+                {
+                  '@type': 'SoftwareApplication',
+                  name: 'Mobile Tap Test',
+                  description: 'Test touch screen response time and accuracy'
+                }
+              ],
               sameAs: [
                 'https://github.com/shashi123454/MouseTesterPro',
                 'https://twitter.com/MouseTesterPro'

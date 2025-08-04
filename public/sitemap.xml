@@ -2,26 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mousetester.pro/</loc>
+    <lastmod>2024-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://mousetester.pro/leaderboard</loc>
+    <lastmod>2024-08-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mousetester.pro/about</loc>
+    <lastmod>2024-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://mousetester.pro/blog</loc>
+    <lastmod>2024-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mousetester.pro/contact</loc>
+    <lastmod>2024-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://mousetester.pro/guides</loc>
+    <lastmod>2024-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mousetester.pro/accessibility</loc>
+    <lastmod>2024-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://mousetester.pro/advanced</loc>
+    <lastmod>2024-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mousetester.pro/blog/how-to-test-mouse-latency</loc>
+    <lastmod>2024-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mousetester.pro/blog/mouse-jitter-vs-polling-rate</loc>
+    <lastmod>2024-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset> 
