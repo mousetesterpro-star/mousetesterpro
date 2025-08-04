@@ -32,6 +32,22 @@ export default function AdSense({ adSlot, adFormat = 'auto', className = '', sty
     }
   };
 
+  // Show placeholder until AdSense is approved
+  const showPlaceholder = true; // Set to false when AdSense is approved
+
+  if (showPlaceholder) {
+    return (
+      <div className={`ad-container ${className}`} style={style}>
+        <div className="w-full h-24 bg-gray-900 rounded-xl flex items-center justify-center text-gray-400 text-sm border border-gray-800">
+          <div className="text-center">
+            <div className="text-xs text-gray-500 mb-1">Advertisement</div>
+            <div className="text-xs text-gray-600">AdSense Pending Approval</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`ad-container ${className}`} style={style}>
       <ins
