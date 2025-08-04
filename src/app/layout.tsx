@@ -60,6 +60,7 @@ export const metadata: Metadata = {
   },
   other: {
     'google-site-verification': 'VuktZVfop_TtmjmC2sfWPPIxZtK5ovyB8wKHpY4OFfY',
+    'google-adsense-account': 'ca-pub-1310810766620297',
   }
 };
 
@@ -74,6 +75,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <meta name="google-adsense-account" content="ca-pub-1310810766620297" />
         <script 
           type="application/ld+json" 
           dangerouslySetInnerHTML={{ 
