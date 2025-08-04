@@ -77,7 +77,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="google-adsense-account" content="ca-pub-1310810766620297" />
-        <link rel="canonical" href="https://mousetester.pro" />
+        <link rel="canonical" href="https://mouse-tester-pro.vercel.app" />
         <script 
           type="application/ld+json" 
           dangerouslySetInnerHTML={{ 
@@ -85,7 +85,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
               name: 'Mouse Tester Pro',
-              url: 'https://mousetester.pro',
+              url: 'https://mouse-tester-pro.vercel.app',
               description: 'Test your mouse latency, click speed, and jitter for free. Professional-grade mouse testing tool for gamers, developers, and hardware enthusiasts.',
               applicationCategory: 'Productivity',
               operatingSystem: 'Web Browser',
@@ -97,7 +97,7 @@ export default function RootLayout({
               },
               potentialAction: {
                 '@type': 'UseAction',
-                target: 'https://mousetester.pro',
+                target: 'https://mouse-tester-pro.vercel.app',
                 name: 'Test Mouse Latency'
               },
               hasPart: [

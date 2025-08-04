@@ -69,11 +69,11 @@ export default function SessionReportModal({ isOpen, onClose, session, proBenchm
     doc.text('Session Report', textX, y);
     y += 32;
     doc.setFontSize(12);
-    doc.text(`Latency: ${session.latency.toFixed(2)} ms`, textX, y);
+    doc.text(`Latency: ${session.latency.toFixed(1)} ms`, textX, y);
     y += 20;
     doc.text(`Polling: ${session.polling} Hz`, textX, y);
     y += 20;
-    doc.text(`Jitter: ${session.jitter.toFixed(2)} ms`, textX, y);
+    doc.text(`Jitter: ${session.jitter.toFixed(1)} ms`, textX, y);
     y += 32;
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(13);
@@ -106,13 +106,13 @@ export default function SessionReportModal({ isOpen, onClose, session, proBenchm
     doc.line(40, 780, 555, 780);
     doc.setFontSize(10);
     doc.setTextColor('#888');
-    doc.text('Mouse Tester Pro — https://mousetester.pro', 40, 795);
+    doc.text('Mouse Tester Pro — https://mouse-tester-pro.vercel.app', 40, 795);
     doc.save('session-report.pdf');
   };
 
   const handleShareLink = () => {
     if (!session) return;
-    const url = `${window.location.origin}/?latency=${session.latency}&polling=${session.polling}&jitter=${session.jitter}`;
+    const url = `https://mouse-tester-pro.vercel.app/?latency=${session.latency}&polling=${session.polling}&jitter=${session.jitter}`;
     navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);

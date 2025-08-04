@@ -17,7 +17,7 @@ const HistoryItem = ({ result }: HistoryItemProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    const url = `${window.location.origin}/?latency=${result.latency}&polling=${result.polling}&jitter=${result.jitter}`;
+    const url = `https://mouse-tester-pro.vercel.app/?latency=${result.latency}&polling=${result.polling}&jitter=${result.jitter}`;
     navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
