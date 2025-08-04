@@ -51,6 +51,13 @@ export default function Home() {
     }
   }, [finalized]);
 
+  // Auto-finalize session when all metrics are collected
+  useEffect(() => {
+    if (session.latency && session.polling && session.jitter && !finalized) {
+      finalizeSession();
+    }
+  }, [session.latency, session.polling, session.jitter, finalized, finalizeSession]);
+
   const handleCloseModal = () => {
     setShowModal(false);
     resetSession();
