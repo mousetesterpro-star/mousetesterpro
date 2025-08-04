@@ -33,7 +33,7 @@ export default function AdSense({ adSlot, adFormat = 'auto', className = '', sty
   };
 
   // Show placeholder until AdSense is approved
-  const showPlaceholder = true; // Set to false when AdSense is approved
+  const showPlaceholder = false; // Set to false when AdSense is approved
 
   if (showPlaceholder) {
     return (

@@ -91,13 +91,13 @@ export default function RootLayout({
           }} 
         />
       </head>
-      {/* Google AdSense - Uncomment when approved */}
-      {/* <Script
+      {/* Google AdSense */}
+      <Script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1310810766620297"
         crossOrigin="anonymous"
         strategy="afterInteractive"
-      /> */}
+      />
       {/* Google Analytics */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-1XXFLDM2LL"
