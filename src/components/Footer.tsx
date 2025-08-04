@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { FooterAd } from './AdSense';
 
 const privacyContent = (
   <div className="space-y-4 text-gray-200 text-sm max-h-[60vh] overflow-y-auto">
@@ -37,6 +38,7 @@ export default function Footer() {
 
   return (
     <>
+      <FooterAd />
       <footer className="w-full bg-[#10131a] border-t border-[#23272e] py-6 px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-400 text-sm mt-12">
         <div className="flex items-center gap-2">
           <span className="font-bold text-white">Mouse Tester Pro</span>

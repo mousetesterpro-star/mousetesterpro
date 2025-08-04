@@ -11,6 +11,7 @@ import StatsCard from '@/components/StatsCard';
 import SessionReportModal from '@/components/SessionReportModal';
 import { useTestSession } from '@/context/TestSessionContext';
 import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { ContentAd } from '@/components/AdSense';
 
 // Lazy load advanced components
 const FpsReactionTest = lazy(() => import('@/components/FpsReactionTest'));
@@ -93,12 +94,7 @@ export default function Home() {
               </div>
             </div>
             {/* Responsive Ad Slot (between Device Info/Stats and main cards) */}
-            <div className="w-full flex justify-center my-2">
-              {/* AdSense Placeholder: Insert your AdSense code here */}
-              <div className="w-full max-w-xl h-24 bg-gray-900 rounded-xl flex items-center justify-center text-gray-400 text-sm border border-gray-800">
-                Advertisement
-              </div>
-            </div>
+            <ContentAd />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
                 <PollingRateCard />
@@ -134,6 +130,7 @@ export default function Home() {
                     <Heatmap />
                 </div>
             </Suspense>
+            <ContentAd />
             <Suspense fallback={<AdvancedFeatureLoader />}>
               <div className="mb-8">
                 <FpsReactionTest />
@@ -174,6 +171,7 @@ export default function Home() {
                 <MobileTapPerformance />
               </div>
             </Suspense>
+            <ContentAd />
             {/* Placeholder for more advanced features */}
             <div className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
               <h2 className="text-xl font-bold text-white mb-2">More Advanced Features Coming Soon</h2>
