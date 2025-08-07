@@ -89,7 +89,37 @@ export default function Home() {
         </div>
         {mode === 'basic' ? (
           <>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center md:text-left">Mouse Performance Dashboard</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center md:text-left">Free Mouse Latency Tester - Professional Gaming Mouse Performance Test Tool</h1>
+            
+            {/* SEO-Optimized Intro Section */}
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <p className="text-gray-300 text-lg leading-relaxed">
+                Test your mouse latency, click speed, and polling rate instantly with our free online mouse performance tester. Whether you're a competitive gamer in India, a professional esports player in the US, a gaming enthusiast in Europe, or a mobile gamer in Asia, our advanced mouse testing tool provides accurate, real-time results. No downloads required - test your mouse performance directly in your browser and get detailed insights into your gaming peripheral's responsiveness for optimal gaming performance worldwide.
+              </p>
+            </div>
+
+            {/* FAQ-Style SEO Headers */}
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-4">What is Mouse Latency and Why Does It Matter for Competitive Gaming?</h2>
+              <p className="text-gray-300 mb-4">
+                Mouse latency, also known as click response time, measures how quickly your mouse responds to clicks. For competitive gaming in India, US, Europe, and worldwide, even a few milliseconds can make the difference between winning and losing. Our free mouse latency tester helps you identify if your current mouse is holding you back in games like Valorant, CS2, PUBG, or any competitive title.
+              </p>
+            </div>
+
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-4">How to Test Mouse Polling Rate and Jitter for Better Gaming Performance</h2>
+              <p className="text-gray-300 mb-4">
+                Polling rate determines how often your mouse reports its position to your computer. Higher polling rates (1000Hz) provide smoother tracking, while jitter measures consistency. Use our mouse polling rate test to see if your gaming mouse is performing optimally for competitive play, whether you're gaming in India, the US, or anywhere globally.
+              </p>
+            </div>
+
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-4">Which Mouse Latency is Best for Gaming in 2024?</h2>
+              <p className="text-gray-300 mb-4">
+                Professional gamers worldwide typically aim for mouse latency under 8ms for optimal performance. Our mouse latency tester helps you measure your current performance and compare it against professional standards. Whether you're gaming in India, competing in US tournaments, or playing in European leagues, accurate mouse testing is crucial for competitive advantage.
+              </p>
+            </div>
+
             <div className="grid grid-cols-1 gap-8 mb-8">
               <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
                 <DeviceInfoCard />
@@ -115,6 +145,14 @@ export default function Home() {
                 <JitterAnalysisCard />
               </div>
             </div>
+
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-4">How to Improve Mouse Performance for Competitive Gaming</h2>
+              <p className="text-gray-300 mb-4">
+                Start by testing your current mouse latency and polling rate. If results show high latency or inconsistent polling, consider upgrading to a gaming mouse with better sensors. Our free mouse performance tester helps you make informed decisions about your gaming peripherals, regardless of your location or gaming setup.
+              </p>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
                 <HistoryCard />
@@ -123,10 +161,25 @@ export default function Home() {
                 <ComparisonCard />
               </div>
             </div>
+
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-4">Free Mouse Testing Tools vs Paid Software - Which is Better?</h2>
+              <p className="text-gray-300 mb-4">
+                Our free online mouse latency tester provides professional-grade accuracy without expensive software. Test your mouse performance instantly, get detailed reports, and compare results with other gamers worldwide. No registration or download required - accessible to gamers everywhere.
+              </p>
+            </div>
+
             <div className="grid grid-cols-1 gap-8 mb-8">
               <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
                 <TipsCard />
               </div>
+            </div>
+
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-4">Mouse Latency Test Results - What Do the Numbers Mean?</h2>
+              <p className="text-gray-300 mb-4">
+                Our mouse testing tool measures three key metrics: Click Latency (response time), Polling Rate (update frequency), and Jitter (consistency). Lower latency numbers indicate better performance, while higher polling rates provide smoother tracking for competitive gaming across all regions and gaming communities.
+              </p>
             </div>
           </>
         ) : (
