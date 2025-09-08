@@ -1,3 +1,21 @@
 User-agent: *
 Allow: /
-Sitemap: https://mouse-tester-pro.vercel.app/sitemap.xml 
+
+# Disallow admin and private areas
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow important pages
+Allow: /blog/
+Allow: /about/
+Allow: /contact/
+Allow: /guides/
+Allow: /leaderboard/
+Allow: /accessibility/
+
+# Sitemap
+Sitemap: https://mouse-tester-pro.vercel.app/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1 

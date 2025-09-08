@@ -1,22 +1,99 @@
-import React from 'react';
-import { posts } from './posts';
+import type { Metadata } from "next";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Gaming Mouse Blog | Tips, Guides & Performance Insights",
+  description: "Expert gaming mouse guides, performance tips, and latency optimization advice. Learn how to improve your gaming setup and reduce input lag.",
+  openGraph: {
+    title: "Gaming Mouse Blog | Tips, Guides & Performance Insights",
+    description: "Expert gaming mouse guides, performance tips, and latency optimization advice. Learn how to improve your gaming setup and reduce input lag.",
+    url: "https://mouse-tester-pro.vercel.app/blog",
+    siteName: "Mouse Tester Pro",
+    type: "website"
+  }
+};
+
+const blogPosts = [
+  {
+    id: "top-5-ways-reduce-mouse-latency",
+    title: "Top 5 Ways to Reduce Mouse Latency",
+    description: "Learn the most effective methods to reduce mouse latency and improve your gaming performance. From hardware upgrades to software optimizations.",
+    date: "2025-01-15",
+    readTime: "5 min read",
+    category: "Performance"
+  },
+  {
+    id: "why-input-lag-matters-gamers",
+    title: "Why Input Lag Matters for Gamers",
+    description: "Understanding the impact of input lag on competitive gaming and how even small improvements can give you a significant advantage.",
+    date: "2025-01-10",
+    readTime: "4 min read",
+    category: "Gaming"
+  },
+  {
+    id: "mouse-latency-vs-response-time",
+    title: "Mouse Latency vs Response Time: Key Differences",
+    description: "Explore the differences between mouse latency and response time, and why both metrics are crucial for optimal gaming performance.",
+    date: "2025-01-05",
+    readTime: "6 min read",
+    category: "Education"
+  }
+];
 
 export default function BlogPage() {
   return (
-    <section className="w-full max-w-3xl mx-auto px-4 py-12 md:py-20">
-      <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Blog & Updates</h1>
-      <div className="space-y-6">
-        {posts.map((post, idx) => (
-          <div key={idx} className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
-            <div className="flex items-center justify-between mb-2">
-              <h2 className="text-xl font-semibold text-[#60A5FA]">{post.title}</h2>
-              <span className="text-xs text-gray-400">{new Date(post.date).toLocaleDateString()}</span>
+    <div className="w-full max-w-6xl mx-auto px-4 py-8">
+      <div className="text-center mb-12">
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          Gaming Mouse Blog
+        </h1>
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          Expert guides, performance tips, and insights to help you optimize your gaming setup and reduce input lag for competitive advantage.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {blogPosts.map((post) => (
+          <article key={post.id} className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 border border-[#3A3A3A] hover:border-[#60A5FA] transition-all duration-300">
+            <div className="mb-4">
+              <span className="inline-block bg-blue-600 text-white text-xs px-3 py-1 rounded-full">
+                {post.category}
+              </span>
             </div>
-            <p className="text-gray-300 text-base">{post.summary}</p>
-            <a href={`/blog/${post.slug}`} className="inline-block mt-2 text-[#60A5FA] underline hover:text-white font-medium">Read More</a>
-          </div>
+            <h2 className="text-xl font-bold text-white mb-3 hover:text-[#60A5FA] transition-colors">
+              <Link href={`/blog/${post.id}`}>
+                {post.title}
+              </Link>
+            </h2>
+            <p className="text-gray-300 text-sm mb-4 line-clamp-3">
+              {post.description}
+            </p>
+            <div className="flex items-center justify-between text-xs text-gray-400">
+              <span>{post.date}</span>
+              <span>{post.readTime}</span>
+            </div>
+            <Link 
+              href={`/blog/${post.id}`}
+              className="inline-block mt-4 text-[#60A5FA] hover:text-blue-400 font-medium text-sm transition-colors"
+            >
+              Read More →
+            </Link>
+          </article>
         ))}
       </div>
-    </section>
+
+      <div className="mt-16 text-center">
+        <h2 className="text-2xl font-bold text-white mb-6">Ready to Test Your Mouse?</h2>
+        <p className="text-gray-300 mb-8">
+          Use our free mouse latency test to measure your current performance and see how it compares to professional standards.
+        </p>
+        <Link 
+          href="/"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-block"
+        >
+          Start Mouse Latency Test
+        </Link>
+      </div>
+    </div>
   );
 } 

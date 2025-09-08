@@ -78,7 +78,7 @@ export default function StatsCard() {
 
   if (loading) {
     return (
-      <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
+      <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
         <h2 className="text-2xl font-heading text-white mb-2">Your Stats</h2>
         <div className="text-gray-400 text-sm">Loading...</div>
       </section>
@@ -87,7 +87,7 @@ export default function StatsCard() {
 
   if (error) {
     return (
-      <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
+      <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
         <h2 className="text-2xl font-heading text-white mb-2">Your Stats</h2>
         <div className="text-red-400 text-sm">{error}</div>
       </section>
@@ -96,7 +96,7 @@ export default function StatsCard() {
 
   if (!history.length) {
     return (
-      <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
+      <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
         <h2 className="text-2xl font-heading text-white mb-2">Your Stats</h2>
         <div className="text-gray-400 text-sm">No test data yet. Run some tests to see your stats here!</div>
       </section>
@@ -110,7 +110,7 @@ export default function StatsCard() {
   const recent = history[history.length - 1];
 
   return (
-    <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
+    <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
       <h2 className="text-2xl font-heading text-white mb-2">Your Stats</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
         <div className="bg-[#181c24] border border-[#23272e] rounded-xl p-4 flex flex-col items-center w-full min-w-0 overflow-x-auto">

@@ -8,12 +8,29 @@ export default function Navbar() {
   const handleTestAgain = (e: React.MouseEvent) => {
     e.preventDefault();
     startTest();
+    
+    // Add visual feedback
+    const button = e.currentTarget as HTMLAnchorElement;
+    const originalText = button.textContent;
+    button.textContent = 'Starting...';
+    button.style.opacity = '0.7';
+    
+    // Scroll to test area
     const el = document.getElementById('test-area');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Reset button after a short delay
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.style.opacity = '1';
+    }, 1000);
+    
     setMenuOpen(false);
   };
   return (
-    <nav className="w-full bg-[#0D0D0D] border-b border-[#1A1A1A] px-4 md:px-8 py-3 flex items-center justify-between relative z-20">
+    <nav className="w-full bg-[#0D0D0D] border-b border-[#1A1A1A] px-4 md:px-8 py-3 flex items-center justify-between sticky top-0 z-50 backdrop-blur-sm bg-[#0D0D0D]/95">
       <div className="flex items-center gap-3">
         <a href="/" className="flex items-center gap-3">
           <img src="/logo.png" alt="Mouse Tester Pro Logo" width={48} height={48} className="drop-shadow-[0_0_8px_#60A5FA55]" style={{objectFit: 'contain'}} />
@@ -31,6 +48,18 @@ export default function Navbar() {
         <a href="/contact" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">Contact</a>
         <a href="/blog" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">Blog</a>
         <a href="/accessibility" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">Accessibility</a>
+        
+        {/* CTA Button */}
+        <button 
+          onClick={() => {
+            startTest();
+            const testArea = document.getElementById('test-area');
+            if (testArea) testArea.scrollIntoView({ behavior: 'smooth' });
+          }}
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+        >
+          Test Now
+        </button>
       </div>
       {/* Hamburger Icon */}
       <button
@@ -53,12 +82,48 @@ export default function Navbar() {
             ×
           </button>
           <a href="/leaderboard" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={() => setMenuOpen(false)}>Leaderboard</a>
-          <a href="#test-area" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={e => { handleTestAgain(e); setMenuOpen(false); }}>Test Again</a>
+          <a href="#test-area" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={e => { 
+            e.preventDefault();
+            startTest();
+            
+            // Add visual feedback for mobile
+            const button = e.currentTarget as HTMLAnchorElement;
+            const originalText = button.textContent;
+            button.textContent = 'Starting...';
+            button.style.opacity = '0.7';
+            
+            // Scroll to test area
+            const el = document.getElementById('test-area');
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Reset button after a short delay
+            setTimeout(() => {
+              button.textContent = originalText;
+              button.style.opacity = '1';
+            }, 1000);
+            
+            setMenuOpen(false);
+          }}>Test Again</a>
           <a href="/about" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={() => setMenuOpen(false)}>About</a>
           <a href="/guides" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={() => setMenuOpen(false)}>Guides/FAQ</a>
           <a href="/contact" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={() => setMenuOpen(false)}>Contact</a>
           <a href="/blog" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={() => setMenuOpen(false)}>Blog</a>
           <a href="/accessibility" className="text-2xl font-heading text-gray-200 hover:text-[#60A5FA]" onClick={() => setMenuOpen(false)}>Accessibility</a>
+          
+          {/* Mobile CTA Button */}
+          <button 
+            onClick={() => {
+              startTest();
+              const testArea = document.getElementById('test-area');
+              if (testArea) testArea.scrollIntoView({ behavior: 'smooth' });
+              setMenuOpen(false);
+            }}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          >
+            Start Test Now
+          </button>
         </div>
       )}
     </nav>

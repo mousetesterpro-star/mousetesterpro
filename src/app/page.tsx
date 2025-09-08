@@ -9,6 +9,7 @@ import DeviceInfoCard from '@/components/DeviceInfoCard';
 import ComparisonCard from '@/components/ComparisonCard';
 import StatsCard from '@/components/StatsCard';
 import SessionReportModal from '@/components/SessionReportModal';
+import BasicMouseTest from '@/components/BasicMouseTest';
 import { useTestSession } from '@/context/TestSessionContext';
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { ContentAd } from '@/components/AdSense';
@@ -23,6 +24,9 @@ const InputBottleneckScanner = lazy(() => import('@/components/InputBottleneckSc
 const CloudInputDiagnostic = lazy(() => import('@/components/CloudInputDiagnostic'));
 const MobileTapPerformance = lazy(() => import('@/components/MobileTapPerformance'));
 const Heatmap = lazy(() => import('@/components/Heatmap')); // Lazy load Heatmap
+const AdvancedHeatmap = lazy(() => import('@/components/AdvancedHeatmap'));
+const SessionReplay = lazy(() => import('@/components/SessionReplay'));
+const PerformanceComparison = lazy(() => import('@/components/PerformanceComparison'));
 
 // Loading component for lazy-loaded features
 const AdvancedFeatureLoader = () => (
@@ -41,7 +45,7 @@ function isCompleteSession(session: any): session is { latency: number; polling:
 }
 
 export default function Home() {
-  const { session, resetSession, finalizeSession, finalized } = useTestSession();
+  const { session, resetSession, finalizeSession, finalized, startTest } = useTestSession();
   const [showModal, setShowModal] = useState(false);
   const [mode, setMode] = useState<'basic' | 'advanced'>('basic');
 
@@ -89,35 +93,32 @@ export default function Home() {
         </div>
         {mode === 'basic' ? (
           <>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center md:text-left">Free Mouse Latency Tester - Professional Gaming Mouse Performance Test Tool</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center md:text-left">Mouse Latency Test (Free & Accurate)</h1>
             
-            {/* SEO-Optimized Intro Section */}
+            {/* Quick Intro - Keep it short and focused on the tool */}
             <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
               <p className="text-gray-300 text-lg leading-relaxed">
-                Test your mouse latency, click speed, and polling rate instantly with our free online mouse performance tester. Whether you're a competitive gamer in India, a professional esports player in the US, a gaming enthusiast in Europe, or a mobile gamer in Asia, our advanced mouse testing tool provides accurate, real-time results. No downloads required - test your mouse performance directly in your browser and get detailed insights into your gaming peripheral's responsiveness for optimal gaming performance worldwide.
+                Test your gaming mouse performance with <strong>instant results</strong>. Get accurate measurements for latency, polling rate, and jitter. <strong>No download required</strong> - professional-grade results in seconds.
               </p>
+              
+              {/* Prominent CTA Button */}
+              <div className="mt-6 text-center">
+                <button 
+                  onClick={() => {
+                    startTest();
+                    const testArea = document.getElementById('test-area');
+                    if (testArea) testArea.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                >
+                  Start Mouse Latency Test Now
+                </button>
+              </div>
             </div>
 
-            {/* FAQ-Style SEO Headers */}
-            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
-              <h2 className="text-2xl font-bold text-white mb-4">What is Mouse Latency and Why Does It Matter for Competitive Gaming?</h2>
-              <p className="text-gray-300 mb-4">
-                Mouse latency, also known as click response time, measures how quickly your mouse responds to clicks. For competitive gaming in India, US, Europe, and worldwide, even a few milliseconds can make the difference between winning and losing. Our free mouse latency tester helps you identify if your current mouse is holding you back in games like Valorant, CS2, PUBG, or any competitive title.
-              </p>
-            </div>
-
-            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
-              <h2 className="text-2xl font-bold text-white mb-4">How to Test Mouse Polling Rate and Jitter for Better Gaming Performance</h2>
-              <p className="text-gray-300 mb-4">
-                Polling rate determines how often your mouse reports its position to your computer. Higher polling rates (1000Hz) provide smoother tracking, while jitter measures consistency. Use our mouse polling rate test to see if your gaming mouse is performing optimally for competitive play, whether you're gaming in India, the US, or anywhere globally.
-              </p>
-            </div>
-
-            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
-              <h2 className="text-2xl font-bold text-white mb-4">Which Mouse Latency is Best for Gaming in 2024?</h2>
-              <p className="text-gray-300 mb-4">
-                Professional gamers worldwide typically aim for mouse latency under 8ms for optimal performance. Our mouse latency tester helps you measure your current performance and compare it against professional standards. Whether you're gaming in India, competing in US tournaments, or playing in European leagues, accurate mouse testing is crucial for competitive advantage.
-              </p>
+            {/* AdSense Header Ad */}
+            <div className="mb-8">
+              <ContentAd />
             </div>
 
             <div className="grid grid-cols-1 gap-8 mb-8">
@@ -125,13 +126,17 @@ export default function Home() {
                 <DeviceInfoCard />
               </div>
             </div>
+            
+            {/* Quick Mouse Test Section */}
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <BasicMouseTest />
+            </div>
             <div className="grid grid-cols-1 gap-8 mb-8">
               <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
                 <StatsCard />
               </div>
             </div>
-            {/* Responsive Ad Slot (between Device Info/Stats and main cards) */}
-            <ContentAd />
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
                 <PollingRateCard />
@@ -146,13 +151,6 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
-              <h2 className="text-2xl font-bold text-white mb-4">How to Improve Mouse Performance for Competitive Gaming</h2>
-              <p className="text-gray-300 mb-4">
-                Start by testing your current mouse latency and polling rate. If results show high latency or inconsistent polling, consider upgrading to a gaming mouse with better sensors. Our free mouse performance tester helps you make informed decisions about your gaming peripherals, regardless of your location or gaming setup.
-              </p>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
                 <HistoryCard />
@@ -162,82 +160,216 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
-              <h2 className="text-2xl font-bold text-white mb-4">Free Mouse Testing Tools vs Paid Software - Which is Better?</h2>
-              <p className="text-gray-300 mb-4">
-                Our free online mouse latency tester provides professional-grade accuracy without expensive software. Test your mouse performance instantly, get detailed reports, and compare results with other gamers worldwide. No registration or download required - accessible to gamers everywhere.
-              </p>
-            </div>
-
             <div className="grid grid-cols-1 gap-8 mb-8">
               <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
                 <TipsCard />
               </div>
             </div>
 
+            {/* Quick Navigation Links */}
             <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
-              <h2 className="text-2xl font-bold text-white mb-4">Mouse Latency Test Results - What Do the Numbers Mean?</h2>
+              <h2 className="text-xl font-bold text-white mb-4">Quick Navigation</h2>
+              <div className="flex flex-wrap gap-3">
+                <a href="#what-is-mouse-latency" className="bg-[#23272e] hover:bg-[#3A3A3A] text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                  What is Mouse Latency?
+                </a>
+                <a href="#how-to-test" className="bg-[#23272e] hover:bg-[#3A3A3A] text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                  How to Test Mouse Delay?
+                </a>
+                <a href="#tips-to-reduce" className="bg-[#23272e] hover:bg-[#3A3A3A] text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                  Tips to Reduce Input Lag
+                </a>
+                <a href="#related-tools" className="bg-[#23272e] hover:bg-[#3A3A3A] text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                  Related Tools
+                </a>
+              </div>
+            </div>
+
+            {/* AdSense Content Ad */}
+            <div className="mb-8">
+              <ContentAd />
+            </div>
+
+            {/* SEO Content Section - Comprehensive */}
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 id="what-is-mouse-latency" className="text-2xl font-bold text-white mb-6">What is Mouse Latency?</h2>
               <p className="text-gray-300 mb-4">
-                Our mouse testing tool measures three key metrics: Click Latency (response time), Polling Rate (update frequency), and Jitter (consistency). Lower latency numbers indicate better performance, while higher polling rates provide smoother tracking for competitive gaming across all regions and gaming communities.
+                Mouse latency, also known as input lag or click response time, measures how quickly your mouse responds to clicks. For competitive gaming, even a few milliseconds can make the difference between winning and losing. Our <strong>mouse latency test online</strong> helps you identify if your current mouse is holding you back in games like Valorant, CS2, PUBG, or any competitive title.
               </p>
+              
+              <h3 id="how-to-test" className="text-xl font-bold text-white mb-4 mt-6">How to Test Mouse Delay?</h3>
+              <p className="text-gray-300 mb-4">
+                Our <strong>mouse response time checker</strong> provides instant results by measuring three key metrics: click latency, polling rate, and jitter. Simply click the test button and perform the required actions. The <strong>test mouse input lag</strong> tool will analyze your mouse performance and provide detailed results within seconds.
+              </p>
+              
+              <h3 id="tips-to-reduce" className="text-xl font-bold text-white mb-4 mt-6">Tips to Reduce Input Lag</h3>
+              <ul className="text-gray-300 mb-4 list-disc list-inside space-y-2">
+                <li>Use a gaming mouse with high polling rate (1000Hz)</li>
+                <li>Enable "Game Mode" in Windows settings</li>
+                <li>Update mouse drivers regularly</li>
+                <li>Use a wired connection instead of wireless</li>
+                <li>Close unnecessary background applications</li>
+                <li>Test your <strong>mouse click delay test</strong> regularly to monitor performance</li>
+              </ul>
+              
+              <h3 className="text-xl font-bold text-white mb-4 mt-6">Why Mouse Latency Matters for Gaming</h3>
+              <p className="text-gray-300 mb-4">
+                Professional gamers typically aim for mouse latency under 8ms for optimal performance. Higher latency can significantly impact your gaming experience, especially in fast-paced competitive games. Our <strong>mouse latency test online</strong> helps you measure your current performance and compare it against professional standards.
+              </p>
+            </div>
+
+            {/* Related Tools Section */}
+            <div id="related-tools" className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-6">Related Gaming Tools</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="bg-[#23272e] rounded-lg p-4 border border-[#3A3A3A]">
+                  <h3 className="text-lg font-bold text-white mb-2">Mouse CPS Test</h3>
+                  <p className="text-gray-300 text-sm mb-3">Test your clicks per second for gaming performance</p>
+                  <a href="/cps-test" className="text-blue-400 hover:text-blue-300 text-sm">Coming Soon →</a>
+                </div>
+                <div className="bg-[#23272e] rounded-lg p-4 border border-[#3A3A3A]">
+                  <h3 className="text-lg font-bold text-white mb-2">Keyboard Latency Test</h3>
+                  <p className="text-gray-300 text-sm mb-3">Measure keyboard input lag and response time</p>
+                  <a href="/keyboard-test" className="text-blue-400 hover:text-blue-300 text-sm">Coming Soon →</a>
+                </div>
+                <div className="bg-[#23272e] rounded-lg p-4 border border-[#3A3A3A]">
+                  <h3 className="text-lg font-bold text-white mb-2">Monitor Response Test</h3>
+                  <p className="text-gray-300 text-sm mb-3">Test monitor refresh rate and response time</p>
+                  <a href="/monitor-test" className="text-blue-400 hover:text-blue-300 text-sm">Coming Soon →</a>
+                </div>
+              </div>
+            </div>
+
+            {/* FAQ Section for Rich Snippets */}
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+              
+              <div className="space-y-4">
+                <div className="border-b border-[#23272e] pb-3">
+                  <h3 className="text-lg font-semibold text-white mb-2">What is mouse latency?</h3>
+                  <p className="text-gray-300 text-sm">
+                    Mouse latency is the time delay between when you move or click your mouse and when the action appears on screen. Lower latency means better responsiveness for gaming.
+                  </p>
+                </div>
+
+                <div className="border-b border-[#23272e] pb-3">
+                  <h3 className="text-lg font-semibold text-white mb-2">What is a good mouse latency for gaming?</h3>
+                  <p className="text-gray-300 text-sm">
+                    For competitive gaming, aim for latency under 10ms. Professional gamers typically achieve 3-8ms, while casual gaming is acceptable up to 15ms.
+                  </p>
+                </div>
+
+                <div className="pb-3">
+                  <h3 className="text-lg font-semibold text-white mb-2">How to reduce mouse latency?</h3>
+                  <p className="text-gray-300 text-sm">
+                    Use a gaming mouse with high polling rate (1000Hz), connect via USB 3.0, close background programs, and ensure your mouse drivers are updated.
+                  </p>
+                </div>
+              </div>
             </div>
           </>
         ) : (
           <>
-            {/* Advanced dashboard: show all basic cards plus advanced features */}
+            {/* Advanced dashboard: show advanced features */}
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center md:text-left">Advanced Mouse Testing Tools</h1>
+            
+            {/* Quick Intro for Advanced Mode */}
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <p className="text-gray-300 text-lg leading-relaxed">
+                Advanced mouse testing tools for professional gamers and enthusiasts. Get detailed analytics, heatmaps, session replay, and performance comparisons.
+              </p>
+            </div>
+
+            {/* Basic Mouse Heatmap */}
+            <div className="mb-8">
+              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 border border-[#3A3A3A]">
+                <Heatmap />
+              </div>
+            </div>
+
+            {/* Advanced Movement Heatmap */}
+            <div className="mb-8">
+              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 border border-[#3A3A3A]">
+                <AdvancedHeatmap />
+              </div>
+            </div>
+
+            {/* Session Replay */}
             <Suspense fallback={<AdvancedFeatureLoader />}>
-                <div className="mb-8">
-                    <Heatmap />
+              <div className="mb-8">
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 border border-[#3A3A3A]">
+                  <SessionReplay />
                 </div>
+              </div>
             </Suspense>
-            <ContentAd />
+
+            {/* Performance Comparison */}
+            <Suspense fallback={<AdvancedFeatureLoader />}>
+              <div className="mb-8">
+                <PerformanceComparison />
+              </div>
+            </Suspense>
+
+            {/* FPS Reaction Test */}
             <Suspense fallback={<AdvancedFeatureLoader />}>
               <div className="mb-8">
                 <FpsReactionTest />
               </div>
             </Suspense>
+
+            {/* DPI Calibration Test */}
             <Suspense fallback={<AdvancedFeatureLoader />}>
               <div className="mb-8">
                 <DpiCalibrationTest />
               </div>
             </Suspense>
+
+            {/* Click Pattern Test */}
             <Suspense fallback={<AdvancedFeatureLoader />}>
               <div className="mb-8">
                 <ClickPatternTest />
               </div>
             </Suspense>
+
+            {/* Input Path Tracer */}
             <Suspense fallback={<AdvancedFeatureLoader />}>
               <div className="mb-8">
                 <InputPathTracer />
               </div>
             </Suspense>
+
+            {/* Cross Device Latency Test */}
             <Suspense fallback={<AdvancedFeatureLoader />}>
               <div className="mb-8">
                 <CrossDeviceLatencyTest />
               </div>
             </Suspense>
+
+            {/* Input Bottleneck Scanner */}
             <Suspense fallback={<AdvancedFeatureLoader />}>
               <div className="mb-8">
                 <InputBottleneckScanner />
               </div>
             </Suspense>
+
+            {/* Cloud Input Diagnostic */}
             <Suspense fallback={<AdvancedFeatureLoader />}>
               <div className="mb-8">
                 <CloudInputDiagnostic />
               </div>
             </Suspense>
+
+            {/* Mobile Tap Performance */}
             <Suspense fallback={<AdvancedFeatureLoader />}>
               <div className="mb-8">
                 <MobileTapPerformance />
               </div>
             </Suspense>
-            <ContentAd />
-            {/* Placeholder for more advanced features */}
-            <div className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
-              <h2 className="text-xl font-bold text-white mb-2">More Advanced Features Coming Soon</h2>
-              <p className="text-gray-400 text-sm">Stay tuned for more next-gen mouse testing tools!</p>
+
+            {/* AdSense Content Ad */}
+            <div className="mb-8">
+              <ContentAd />
             </div>
-            {/* You can also show all basic cards here if you want, or only advanced ones */}
           </>
         )}
       </section>

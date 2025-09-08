@@ -21,9 +21,16 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Free Mouse Latency Tester 2024 | Click Speed Test Online | Gaming Mouse Performance Tool",
-  description: "Test your mouse latency, click speed & polling rate FREE online. Professional gaming mouse performance tester for gamers worldwide. Get instant results, compare scores & optimize your setup. No download required.",
+  title: "Mouse Latency Test | Accurate Online Tool",
+  description: "Test mouse latency, input lag, and click delay instantly online. Accurate, free, and easy-to-use tool for gamers & tech users.",
   keywords: [
+    "mouse test latency",
+    "mouse latency test",
+    "mouse click latency test online",
+    "free mouse latency test",
+    "instant mouse latency test",
+    "accurate mouse latency test",
+    "mouse latency test 2025",
     "free mouse latency tester",
     "mouse click speed test online",
     "gaming mouse performance test",
@@ -59,27 +66,36 @@ export const metadata: Metadata = {
     "gaming peripheral test free"
   ],
   openGraph: {
-    title: "Free Mouse Latency Tester 2024 - Professional Gaming Mouse Performance Test Tool",
-    description: "Test your mouse latency, click speed & polling rate FREE online. Professional gaming mouse performance tester for gamers worldwide. Get instant results, compare scores & optimize your setup.",
+    title: "Mouse Latency Test | Accurate Online Tool",
+    description: "Test mouse latency, input lag, and click delay instantly online. Accurate, free, and easy-to-use tool for gamers & tech users.",
+    url: "https://mouse-tester-pro.vercel.app",
+    siteName: "Mouse Tester Pro",
     images: [
       {
-        url: "/og-image.png",
-        alt: "Professional mouse latency tester dashboard with real-time performance metrics, polling rate graphs, and gaming-focused interface - accessible worldwide"
+        url: "https://mouse-tester-pro.vercel.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Professional mouse latency tester dashboard with real-time performance metrics, polling rate graphs, and gaming-focused interface"
       }
-    ]
+    ],
+    locale: "en_US",
+    type: "website"
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Mouse Latency Tester 2024 - Professional Gaming Mouse Performance Test Tool",
-    description: "Test your mouse latency, click speed & polling rate FREE online. Professional gaming mouse performance tester for gamers worldwide.",
+    title: "Mouse Latency Test | Accurate Online Tool",
+    description: "Test mouse latency, input lag, and click delay instantly online. Accurate, free, and easy-to-use tool for gamers & tech users.",
     images: [
-      "/og-image.png"
+      "https://mouse-tester-pro.vercel.app/og-image.png"
     ],
-    site: "@MouseTesterPro"
+    site: "@MouseTesterPro",
+    creator: "@MouseTesterPro"
   },
   other: {
     'google-site-verification': 'VuktZVfop_TtmjmC2sfWPPIxZtK5ovyB8wKHpY4OFfY',
     'google-adsense-account': 'ca-pub-1310810766620297',
+    'robots': 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    'referrer': 'origin-when-cross-origin',
   }
 };
 
@@ -95,7 +111,27 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
+        <link rel="preconnect" href="https://tpc.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+        <link rel="dns-prefetch" href="https://tpc.googlesyndication.com" />
         <meta name="google-adsense-account" content="ca-pub-1310810766620297" />
+        <meta httpEquiv="Content-Security-Policy" content="
+          default-src 'self';
+          script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com;
+          style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+          font-src 'self' https://fonts.gstatic.com;
+          img-src 'self' data: https: blob:;
+          connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://pagead2.googlesyndication.com https://*.google.com https://*.googleapis.com https://*.gstatic.com https://*.doubleclick.net https://*.googlesyndication.com;
+          frame-src 'self' https://*.google.com https://*.doubleclick.net https://*.googlesyndication.com;
+          object-src 'none';
+          base-uri 'self';
+          form-action 'self';
+        " />
         <link rel="canonical" href="https://mouse-tester-pro.vercel.app" />
         <script 
           type="application/ld+json" 
@@ -152,53 +188,86 @@ export default function RootLayout({
               mainEntity: [
                 {
                   '@type': 'Question',
-                  name: 'What is Mouse Latency and Why Does It Matter for Competitive Gaming?',
+                  name: 'What is mouse latency?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Mouse latency, also known as click response time, measures how quickly your mouse responds to clicks. For competitive gaming in India, US, Europe, and worldwide, even a few milliseconds can make the difference between winning and losing. Our free mouse latency tester helps you identify if your current mouse is holding you back in games like Valorant, CS2, PUBG, or any competitive title.'
+                    text: 'Mouse latency, also known as input lag or click response time, measures how quickly your mouse responds to clicks. For competitive gaming, even a few milliseconds can make the difference between winning and losing. Our mouse latency test online helps you identify if your current mouse is holding you back in games like Valorant, CS2, PUBG, or any competitive title.'
                   }
                 },
                 {
                   '@type': 'Question',
-                  name: 'How to Test Mouse Polling Rate and Jitter for Better Gaming Performance?',
+                  name: 'How to test mouse latency online?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Polling rate determines how often your mouse reports its position to your computer. Higher polling rates (1000Hz) provide smoother tracking, while jitter measures consistency. Use our mouse polling rate test to see if your gaming mouse is performing optimally for competitive play, whether you\'re gaming in India, the US, or anywhere globally.'
+                    text: 'Our mouse response time checker provides instant results by measuring three key metrics: click latency, polling rate, and jitter. Simply click the test button and perform the required actions. The test mouse input lag tool will analyze your mouse performance and provide detailed results within seconds.'
                   }
                 },
                 {
                   '@type': 'Question',
-                  name: 'Which Mouse Latency is Best for Gaming in 2024?',
+                  name: 'Does latency affect gaming?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Professional gamers worldwide typically aim for mouse latency under 8ms for optimal performance. Our mouse latency tester helps you measure your current performance and compare it against professional standards. Whether you\'re gaming in India, competing in US tournaments, or playing in European leagues, accurate mouse testing is crucial for competitive advantage.'
+                    text: 'Yes, mouse latency significantly affects gaming performance. Professional gamers typically aim for mouse latency under 8ms for optimal performance. Higher latency can impact your gaming experience, especially in fast-paced competitive games. Our mouse latency test online helps you measure your current performance and compare it against professional standards.'
                   }
                 },
                 {
                   '@type': 'Question',
-                  name: 'How to Improve Mouse Performance for Competitive Gaming?',
+                  name: 'How to reduce mouse input lag?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Start by testing your current mouse latency and polling rate. If results show high latency or inconsistent polling, consider upgrading to a gaming mouse with better sensors. Our free mouse performance tester helps you make informed decisions about your gaming peripherals, regardless of your location or gaming setup.'
+                    text: 'To reduce mouse input lag: use a gaming mouse with high polling rate (1000Hz), enable Game Mode in Windows settings, update mouse drivers regularly, use a wired connection instead of wireless, close unnecessary background applications, and test your mouse click delay test regularly to monitor performance.'
                   }
                 },
                 {
                   '@type': 'Question',
-                  name: 'Free Mouse Testing Tools vs Paid Software - Which is Better?',
+                  name: 'What is a good mouse latency for gaming?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Our free online mouse latency tester provides professional-grade accuracy without expensive software. Test your mouse performance instantly, get detailed reports, and compare results with other gamers worldwide. No registration or download required - accessible to gamers everywhere.'
-                  }
-                },
-                {
-                  '@type': 'Question',
-                  name: 'Mouse Latency Test Results - What Do the Numbers Mean?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Our mouse testing tool measures three key metrics: Click Latency (response time), Polling Rate (update frequency), and Jitter (consistency). Lower latency numbers indicate better performance, while higher polling rates provide smoother tracking for competitive gaming across all regions and gaming communities.'
+                    text: 'A good mouse latency for gaming is typically under 8ms. Professional gamers and competitive players aim for the lowest possible latency to gain an advantage in fast-paced games. Our mouse latency test online helps you measure your current performance and determine if your mouse meets gaming standards.'
                   }
                 }
               ]
+            }) 
+          }} 
+        />
+        <script 
+          type="application/ld+json" 
+          dangerouslySetInnerHTML={{ 
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebPage',
+              name: 'Mouse Latency Test | Accurate Online Tool',
+              description: 'Test mouse latency, input lag, and click delay instantly online. Accurate, free, and easy-to-use tool for gamers & tech users.',
+              url: 'https://mouse-tester-pro.vercel.app',
+              mainEntity: {
+                '@type': 'SoftwareApplication',
+                name: 'Mouse Latency Test',
+                description: 'Free online tool to test mouse latency, input lag, and click delay',
+                applicationCategory: 'ProductivityApplication',
+                operatingSystem: 'Web Browser',
+                offers: {
+                  '@type': 'Offer',
+                  price: '0',
+                  priceCurrency: 'USD'
+                }
+              },
+              breadcrumb: {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  {
+                    '@type': 'ListItem',
+                    position: 1,
+                    name: 'Home',
+                    item: 'https://mouse-tester-pro.vercel.app'
+                  },
+                  {
+                    '@type': 'ListItem',
+                    position: 2,
+                    name: 'Mouse Latency Test',
+                    item: 'https://mouse-tester-pro.vercel.app'
+                  }
+                ]
+              }
             }) 
           }} 
         />
@@ -252,13 +321,14 @@ export default function RootLayout({
             }) 
           }} 
         />
+
       </head>
       {/* Google AdSense */}
       <Script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1310810766620297"
         crossOrigin="anonymous"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
       {/* Google Analytics */}
       <Script
@@ -291,9 +361,11 @@ export default function RootLayout({
       </Script>
       <body className={`${orbitron.className} ${ibmPlexMono.className} bg-[#0D0D0D] min-h-screen flex flex-col`}>
         <TestSessionProvider>
-          <Navbar />
-          <main className="flex-1 flex flex-col">{children}</main>
-          <Footer />
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-1 flex flex-col">{children}</main>
+            <Footer />
+          </div>
         </TestSessionProvider>
       </body>
     </html>

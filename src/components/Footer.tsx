@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FooterAd } from './AdSense';
 
 const privacyContent = (
@@ -33,13 +33,38 @@ const termsContent = (
   </div>
 );
 
+const SupportContent = () => {
+  return (
+    <div className="space-y-4 text-gray-200 text-sm max-h-[80vh] sm:max-h-[60vh] overflow-y-auto px-2 sm:px-0">
+      <h2 className="text-xl sm:text-2xl font-bold mb-2 text-white text-center sm:text-left">Support Us</h2>
+      <p className="text-center sm:text-left">If you find this tool helpful, consider supporting us:</p>
+      
+      {/* Buy Me Coffee Section */}
+      <div className="bg-white rounded-lg p-3 sm:p-4 flex flex-col sm:flex-row items-center gap-3 mb-4">
+        <div className="text-2xl sm:text-3xl">☕</div>
+        <div className="text-center sm:text-left">
+          <div className="font-semibold text-gray-800 text-sm sm:text-base">Buy Me Coffee</div>
+          <a 
+            href="https://www.buymeacoffee.com/bobthetechbuilder" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline text-xs sm:text-sm"
+          >
+            Click here to support
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function Footer() {
-  const [modal, setModal] = useState<null | "privacy" | "terms">(null);
+  const [modal, setModal] = useState<null | "privacy" | "terms" | "support">(null);
 
   return (
     <>
       <FooterAd />
-      <footer className="w-full bg-[#10131a] border-t border-[#23272e] py-6 px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-400 text-sm mt-12">
+      <footer className="w-full bg-[#10131a] border-t border-[#23272e] py-6 px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-400 text-sm">
         <div className="flex items-center gap-2">
           <span className="font-bold text-white">Mouse Tester Pro</span>
           <span className="hidden md:inline">|</span>
@@ -48,26 +73,28 @@ export default function Footer() {
           <button className="hover:text-[#60A5FA] underline ml-2" onClick={() => setModal("terms")}>Terms of Service</button>
         </div>
         <div className="text-xs text-gray-500">&copy; {new Date().getFullYear()} Mouse Tester Pro. All rights reserved.</div>
+        
+        {/* Modal */}
         {modal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
-            <div className="bg-[#181c24] rounded-2xl shadow-2xl p-8 max-w-lg w-full relative border border-[#23272e]">
-              <button onClick={() => setModal(null)} className="absolute top-4 right-4 text-gray-400 hover:text-[#60A5FA] text-2xl font-bold focus:outline-none">×</button>
-              {modal === "privacy" ? privacyContent : termsContent}
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4">
+            <div className="bg-[#181c24] rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 w-full max-w-sm sm:max-w-md md:max-w-lg relative border border-[#23272e] max-h-[90vh] overflow-hidden">
+              <button onClick={() => setModal(null)} className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-400 hover:text-[#60A5FA] text-xl sm:text-2xl font-bold focus:outline-none z-10">×</button>
+              {modal === "privacy" ? privacyContent : modal === "terms" ? termsContent : <SupportContent />}
             </div>
           </div>
         )}
       </footer>
-      {/* Simple floating support button as fallback */}
-      <a
-        href="https://www.buymeacoffee.com/bobthetechbuilder"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-32 right-4 md:bottom-6 md:right-6 z-50 bg-[#4b4444] text-white px-5 py-2 md:px-6 md:py-3 rounded-full shadow-lg font-bold hover:bg-[#FFDD00] hover:text-black transition text-base md:text-lg"
+
+      {/* Simple floating support button */}
+      <button
+        onClick={() => setModal("support")}
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
+        title="Support Us"
       >
-        Support
-      </a>
-      {/* Mobile-only spacer to prevent overlap */}
-      <div className="block md:hidden" style={{ height: 80 }}></div>
+        <div className="text-red-500 text-xl group-hover:scale-110 transition-transform duration-300">
+          ☕
+        </div>
+      </button>
     </>
   );
 }

@@ -71,7 +71,7 @@ export default function ComparisonCard() {
 
   if (loading && !userBest) {
     return (
-      <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
+      <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
         <h2 className="text-2xl font-heading text-white mb-2">Compare Your Results</h2>
         <div className="text-gray-400 text-sm">Loading...</div>
       </section>
@@ -80,7 +80,7 @@ export default function ComparisonCard() {
 
   if (error) {
     return (
-      <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
+      <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
         <h2 className="text-2xl font-heading text-white mb-2">Compare Your Results</h2>
         <div className="text-red-400 text-sm">{error}</div>
       </section>
@@ -89,7 +89,7 @@ export default function ComparisonCard() {
 
   if (!userBest) {
     return (
-      <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
+      <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
         <h2 className="text-2xl font-heading text-white mb-2">Compare Your Results</h2>
         <div className="text-gray-400 text-sm">No test data yet. Run some tests to see your best results here!</div>
       </section>
@@ -97,7 +97,7 @@ export default function ComparisonCard() {
   }
 
   return (
-    <section className="bg-gradient-to-br from-[#181c24] to-[#10131a] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
+    <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
       <h2 className="text-2xl font-heading text-white mb-2">Compare Your Results</h2>
       <div className="bg-[#181c24] border border-[#23272e] rounded-xl p-4 mb-4">
         <div className="text-sm text-gray-400 mb-2">Your Best Result</div>
