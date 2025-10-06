@@ -101,62 +101,83 @@ export default function SessionReportModal({ isOpen, onClose, session, proBenchm
     doc.text('Performance Analysis Report', leftMargin, y);
     y += 35;
     
-    // Performance metrics in a professional table format
-    doc.setFillColor(248, 249, 250);
-    doc.rect(leftMargin, y - 10, contentWidth, 90, 'F');
+    // Performance metrics in a professional table format with borders
+    const metricsTableTop = y - 10;
+    const metricsTableHeight = 80;
+    const metricsRowHeight = 20;
     
-    // Table headers with better spacing
+    // Table background
+    doc.setFillColor(248, 249, 250);
+    doc.rect(leftMargin, metricsTableTop, contentWidth, metricsTableHeight, 'F');
+    
+    // Table border
+    doc.setDrawColor(200, 200, 200);
+    doc.setLineWidth(0.5);
+    doc.rect(leftMargin, metricsTableTop, contentWidth, metricsTableHeight);
+    
+    // Header row background
+    doc.setFillColor(230, 230, 230);
+    doc.rect(leftMargin, metricsTableTop, contentWidth, metricsRowHeight, 'F');
+    
+    // Column dividers for metrics table
+    const metricsCol1 = leftMargin + 120;
+    const metricsCol2 = leftMargin + 250;
+    const metricsCol3 = leftMargin + 380;
+    
+    doc.line(metricsCol1, metricsTableTop, metricsCol1, metricsTableTop + metricsTableHeight);
+    doc.line(metricsCol2, metricsTableTop, metricsCol2, metricsTableTop + metricsTableHeight);
+    doc.line(metricsCol3, metricsTableTop, metricsCol3, metricsTableTop + metricsTableHeight);
+    
+    // Table headers
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(11);
-    doc.text('Metric', leftMargin + 15, y + 10);
-    doc.text('Your Result', leftMargin + 120, y + 10);
-    doc.text('Rating', leftMargin + 250, y + 10);
-    doc.text('Industry Standard', leftMargin + 380, y + 10);
+    doc.setFontSize(10);
+    doc.text('Metric', leftMargin + 10, metricsTableTop + 14);
+    doc.text('Your Result', metricsCol1 + 10, metricsTableTop + 14);
+    doc.text('Rating', metricsCol2 + 10, metricsTableTop + 14);
+    doc.text('Industry Standard', metricsCol3 + 10, metricsTableTop + 14);
     
     // Table rows
-    y += 25;
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(10);
+    doc.setFontSize(9);
     
     // Latency row
     const latencyRating = session.latency < 10 ? 'Excellent' : session.latency < 15 ? 'Good' : 'Needs Improvement';
     const latencyColor = session.latency < 10 ? [0, 150, 0] : session.latency < 15 ? [255, 165, 0] : [220, 20, 60];
+    const latencyRowY = metricsTableTop + metricsRowHeight + 14;
     doc.setTextColor(0, 0, 0);
-    doc.text('Click Latency', leftMargin + 15, y);
-    doc.text(`${session.latency.toFixed(2)} ms`, leftMargin + 120, y);
+    doc.text('Click Latency', leftMargin + 10, latencyRowY);
+    doc.text(`${session.latency.toFixed(2)} ms`, metricsCol1 + 10, latencyRowY);
     doc.setTextColor(latencyColor[0], latencyColor[1], latencyColor[2]);
-    doc.text(latencyRating, leftMargin + 250, y);
+    doc.text(latencyRating, metricsCol2 + 10, latencyRowY);
     doc.setTextColor(0, 0, 0);
-    doc.text('< 10ms', leftMargin + 380, y);
-    
-    y += 20;
+    doc.text('< 10ms', metricsCol3 + 10, latencyRowY);
     
     // Polling rate row
     const pollingRating = session.polling > 900 ? 'Excellent' : session.polling > 500 ? 'Good' : 'Needs Improvement';
     const pollingColor = session.polling > 900 ? [0, 150, 0] : session.polling > 500 ? [255, 165, 0] : [220, 20, 60];
+    const pollingRowY = metricsTableTop + (metricsRowHeight * 2) + 14;
     doc.setTextColor(0, 0, 0);
-    doc.text('Polling Rate', leftMargin + 15, y);
-    doc.text(`${session.polling} Hz`, leftMargin + 120, y);
+    doc.text('Polling Rate', leftMargin + 10, pollingRowY);
+    doc.text(`${session.polling} Hz`, metricsCol1 + 10, pollingRowY);
     doc.setTextColor(pollingColor[0], pollingColor[1], pollingColor[2]);
-    doc.text(pollingRating, leftMargin + 250, y);
+    doc.text(pollingRating, metricsCol2 + 10, pollingRowY);
     doc.setTextColor(0, 0, 0);
-    doc.text('1000Hz', leftMargin + 380, y);
-    
-    y += 20;
+    doc.text('1000Hz', metricsCol3 + 10, pollingRowY);
     
     // Jitter row
     const jitterRating = session.jitter < 0.5 ? 'Excellent' : session.jitter < 1 ? 'Good' : 'Needs Improvement';
     const jitterColor = session.jitter < 0.5 ? [0, 150, 0] : session.jitter < 1 ? [255, 165, 0] : [220, 20, 60];
+    const jitterRowY = metricsTableTop + (metricsRowHeight * 3) + 14;
     doc.setTextColor(0, 0, 0);
-    doc.text('Jitter', leftMargin + 15, y);
-    doc.text(`${session.jitter.toFixed(2)} ms`, leftMargin + 120, y);
+    doc.text('Jitter', leftMargin + 10, jitterRowY);
+    doc.text(`${session.jitter.toFixed(2)} ms`, metricsCol1 + 10, jitterRowY);
     doc.setTextColor(jitterColor[0], jitterColor[1], jitterColor[2]);
-    doc.text(jitterRating, leftMargin + 250, y);
+    doc.text(jitterRating, metricsCol2 + 10, jitterRowY);
     doc.setTextColor(0, 0, 0);
-    doc.text('< 0.5ms', leftMargin + 380, y);
+    doc.text('< 0.5ms', metricsCol3 + 10, jitterRowY);
     
-    y += 50;
+    y = metricsTableTop + metricsTableHeight + 20;
     
     // Overall Assessment
     doc.setFont('helvetica', 'bold');
