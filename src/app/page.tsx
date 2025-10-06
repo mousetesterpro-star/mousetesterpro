@@ -351,101 +351,148 @@ export default function Home() {
           </>
         ) : (
           <>
-            {/* Advanced dashboard: show advanced features */}
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center md:text-left">Advanced Mouse Testing Tools</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">Advanced Mouse Analysis Tools</h1>
             
-            {/* Quick Intro for Advanced Mode */}
+            {/* Professional Overview */}
             <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
-              <p className="text-gray-300 text-lg leading-relaxed">
-                Advanced mouse testing tools for professional gamers and enthusiasts. Get detailed analytics, heatmaps, session replay, and performance comparisons.
+              <h2 className="text-xl font-bold text-white mb-3">Professional Analysis Suite</h2>
+              <p className="text-gray-300 leading-relaxed">
+                Advanced mouse performance analysis tools for competitive gaming and professional applications. Get detailed insights, movement analysis, and comprehensive performance metrics.
               </p>
             </div>
 
-            {/* Basic Mouse Heatmap */}
-            <div className="mb-8">
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 border border-[#3A3A3A]">
+            {/* Core Analysis Tools */}
+            <div className="space-y-8">
+              
+              {/* Movement Heatmap Analysis */}
+              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                <div className="mb-4">
+                  <h3 className="text-xl font-bold text-white mb-2">Movement Heatmap Analysis</h3>
+                  <p className="text-gray-300 text-sm">Track and analyze mouse movement patterns for precision optimization</p>
+                </div>
                 <Heatmap />
               </div>
-            </div>
 
-            {/* Advanced Movement Heatmap */}
-            <div className="mb-8">
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 border border-[#3A3A3A]">
+              {/* Advanced Performance Analysis */}
+              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                <div className="mb-4">
+                  <h3 className="text-xl font-bold text-white mb-2">Advanced Performance Analysis</h3>
+                  <p className="text-gray-300 text-sm">Comprehensive mouse performance evaluation with detailed metrics</p>
+                </div>
                 <AdvancedHeatmap />
               </div>
-            </div>
 
-            {/* Session Replay */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="mb-8">
-                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 border border-[#3A3A3A]">
+              {/* Session Replay & Analysis */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-white mb-2">Session Replay & Analysis</h3>
+                    <p className="text-gray-300 text-sm">Record and replay mouse sessions for detailed performance review</p>
+                  </div>
                   <SessionReplay />
                 </div>
-              </div>
-            </Suspense>
+              </Suspense>
 
-            {/* Performance Comparison */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="mb-8">
-                <PerformanceComparison />
-              </div>
-            </Suspense>
+              {/* Performance Comparison */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-white mb-2">Performance Comparison</h3>
+                    <p className="text-gray-300 text-sm">Compare your mouse performance against professional benchmarks</p>
+                  </div>
+                  <PerformanceComparison />
+                </div>
+              </Suspense>
 
-            {/* FPS Reaction Test */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="mb-8">
-                <FpsReactionTest />
-              </div>
-            </Suspense>
+              {/* FPS Gaming Analysis */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-white mb-2">FPS Gaming Analysis</h3>
+                    <p className="text-gray-300 text-sm">Specialized testing for FPS gaming performance optimization</p>
+                  </div>
+                  <FpsReactionTest />
+                </div>
+              </Suspense>
 
-            {/* DPI Calibration Test */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="mb-8">
-                <DpiCalibrationTest />
-              </div>
-            </Suspense>
+              {/* DPI Calibration */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-white mb-2">DPI Calibration Test</h3>
+                    <p className="text-gray-300 text-sm">Calibrate and optimize your mouse DPI settings for precision</p>
+                  </div>
+                  <DpiCalibrationTest />
+                </div>
+              </Suspense>
 
-            {/* Click Pattern Test */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="mb-8">
-                <ClickPatternTest />
-              </div>
-            </Suspense>
+              {/* Click Pattern Analysis */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-white mb-2">Click Pattern Analysis</h3>
+                    <p className="text-gray-300 text-sm">Analyze click patterns and timing for gaming optimization</p>
+                  </div>
+                  <ClickPatternTest />
+                </div>
+              </Suspense>
 
-            {/* Input Path Tracer */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="mb-8">
-                <InputPathTracer />
-              </div>
-            </Suspense>
+              {/* Input Path Tracing */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-white mb-2">Input Path Tracing</h3>
+                    <p className="text-gray-300 text-sm">Trace input signal paths for latency optimization</p>
+                  </div>
+                  <InputPathTracer />
+                </div>
+              </Suspense>
 
-            {/* Cross Device Latency Test */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="mb-8">
-                <CrossDeviceLatencyTest />
-              </div>
-            </Suspense>
+              {/* Cross-Device Analysis */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-white mb-2">Cross-Device Analysis</h3>
+                    <p className="text-gray-300 text-sm">Compare mouse performance across different devices and setups</p>
+                  </div>
+                  <CrossDeviceLatencyTest />
+                </div>
+              </Suspense>
 
-            {/* Input Bottleneck Scanner */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="mb-8">
-                <InputBottleneckScanner />
-              </div>
-            </Suspense>
+              {/* Input Bottleneck Scanner */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-white mb-2">Input Bottleneck Scanner</h3>
+                    <p className="text-gray-300 text-sm">Identify and resolve input performance bottlenecks</p>
+                  </div>
+                  <InputBottleneckScanner />
+                </div>
+              </Suspense>
 
-            {/* Cloud Input Diagnostic */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="mb-8">
-                <CloudInputDiagnostic />
-              </div>
-            </Suspense>
+              {/* Cloud Diagnostic */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-white mb-2">Cloud Diagnostic Analysis</h3>
+                    <p className="text-gray-300 text-sm">Cloud-based diagnostic analysis for comprehensive performance review</p>
+                  </div>
+                  <CloudInputDiagnostic />
+                </div>
+              </Suspense>
 
-            {/* Mobile Tap Performance */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="mb-8">
-                <MobileTapPerformance />
-              </div>
-            </Suspense>
+              {/* Mobile Performance */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-white mb-2">Mobile Performance Analysis</h3>
+                    <p className="text-gray-300 text-sm">Specialized testing for mobile device input performance</p>
+                  </div>
+                  <MobileTapPerformance />
+                </div>
+              </Suspense>
+
+            </div>
 
             {/* AdSense Content Ad */}
             <div className="mb-8">
