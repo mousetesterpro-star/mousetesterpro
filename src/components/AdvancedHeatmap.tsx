@@ -103,10 +103,10 @@ export default function AdvancedHeatmap() {
       const avgClickDistance = calculateAverageDistance(clicks);
       
       if (clickSpread > 100) {
-        insights.push('🎯 High click spread detected - consider adjusting mouse sensitivity');
+        insights.push('High click spread detected - consider adjusting mouse sensitivity');
       }
       if (avgClickDistance < 10) {
-        insights.push('⚡ Very precise clicking - excellent accuracy');
+        insights.push('Very precise clicking - high accuracy achieved');
       }
     }
 
@@ -116,10 +116,10 @@ export default function AdvancedHeatmap() {
       const hoverCount = hovers.length;
       
       if (avgHoverTime > 3000) {
-        insights.push('⏱️ Long hover times - consider faster decision making');
+        insights.push('Long hover times - consider faster decision making');
       }
       if (hoverCount > 10) {
-        insights.push('🤔 Many hover points - good for precision tasks');
+        insights.push('Multiple hover points - suitable for precision tasks');
       }
     }
 
@@ -129,10 +129,10 @@ export default function AdvancedHeatmap() {
       const movementSpeed = calculateMovementSpeed(movements);
       
       if (movementEfficiency < 0.5) {
-        insights.push('🔄 Inefficient movement patterns - practice smoother cursor control');
+        insights.push('Inefficient movement patterns - practice smoother cursor control');
       }
       if (movementSpeed > 500) {
-        insights.push('🚀 Fast movement detected - good for quick reactions');
+        insights.push('Fast movement detected - suitable for quick reactions');
       }
     }
 
@@ -142,7 +142,7 @@ export default function AdvancedHeatmap() {
     const eventsPerSecond = totalEvents / sessionDuration;
     
     if (eventsPerSecond > 50) {
-      insights.push('📊 High activity session - excellent engagement');
+      insights.push('High activity session - strong engagement detected');
     }
 
     setPerformanceInsights(insights);

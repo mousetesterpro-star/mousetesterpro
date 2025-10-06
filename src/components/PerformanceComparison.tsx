@@ -97,22 +97,22 @@ export default function PerformanceComparison() {
     const recommendations: string[] = [];
     
     if (latency > benchmark.latency + 3) {
-      recommendations.push('🖱️ Consider upgrading to a gaming mouse with better sensor (PixArt 3360/3389)');
+      recommendations.push('Consider upgrading to a gaming mouse with better sensor (PixArt 3360/3389)');
     }
     if (polling < benchmark.polling) {
-      recommendations.push('⚡ Enable higher polling rate in mouse software (1000Hz recommended)');
+      recommendations.push('Enable higher polling rate in mouse software (1000Hz recommended)');
     }
     if (jitter > benchmark.jitter + 1.5) {
-      recommendations.push('🎯 Practice smooth mouse movements and reduce sensitivity for better control');
+      recommendations.push('Practice smooth mouse movements and reduce sensitivity for better control');
     }
     if (latency > 12) {
-      recommendations.push('🔧 Check USB port - use USB 3.0/3.1 for better performance');
+      recommendations.push('Check USB port - use USB 3.0/3.1 for better performance');
     }
     if (polling < 500) {
-      recommendations.push('📈 Upgrade to a mouse with 1000Hz polling rate for competitive gaming');
+      recommendations.push('Upgrade to a mouse with 1000Hz polling rate for competitive gaming');
     }
     if (latency < 5 && polling >= 1000 && jitter < 1) {
-      recommendations.push('🏆 Excellent performance! Your setup is tournament-ready');
+      recommendations.push('High performance achieved - setup suitable for competitive play');
     }
 
     // Determine performance level
@@ -303,10 +303,10 @@ export default function PerformanceComparison() {
                       {session.latency > selectedBenchmark.latency ? '+' : ''}{(session.latency - selectedBenchmark.latency).toFixed(1)}ms
                     </span></div>
                     {session.latency > selectedBenchmark.latency + 5 && (
-                      <div className="text-yellow-400 text-xs mt-1">⚠️ High latency detected - consider hardware upgrade</div>
+                      <div className="text-yellow-400 text-xs mt-1">High latency detected - consider hardware upgrade</div>
                     )}
                     {session.latency < selectedBenchmark.latency && (
-                      <div className="text-green-400 text-xs mt-1">✅ Excellent latency performance!</div>
+                      <div className="text-green-400 text-xs mt-1">Latency performance exceeds benchmark</div>
                     )}
                   </div>
                 </div>
@@ -321,10 +321,10 @@ export default function PerformanceComparison() {
                       {session.polling < selectedBenchmark.polling ? '-' : '+'}{Math.abs(session.polling - selectedBenchmark.polling)}Hz
                     </span></div>
                     {session.polling < 500 && (
-                      <div className="text-yellow-400 text-xs mt-1">⚠️ Low polling rate - upgrade recommended for gaming</div>
+                      <div className="text-yellow-400 text-xs mt-1">Low polling rate - upgrade recommended for gaming</div>
                     )}
                     {session.polling >= 1000 && (
-                      <div className="text-green-400 text-xs mt-1">✅ Excellent polling rate for competitive gaming!</div>
+                      <div className="text-green-400 text-xs mt-1">High polling rate suitable for competitive gaming</div>
                     )}
                   </div>
                 </div>
@@ -339,10 +339,10 @@ export default function PerformanceComparison() {
                       {session.jitter > selectedBenchmark.jitter ? '+' : ''}{(session.jitter - selectedBenchmark.jitter).toFixed(1)}ms
                     </span></div>
                     {session.jitter > selectedBenchmark.jitter + 2 && (
-                      <div className="text-yellow-400 text-xs mt-1">⚠️ High jitter - practice smooth movements</div>
+                      <div className="text-yellow-400 text-xs mt-1">High jitter - practice smooth movements</div>
                     )}
                     {session.jitter < selectedBenchmark.jitter && (
-                      <div className="text-green-400 text-xs mt-1">✅ Excellent jitter control!</div>
+                      <div className="text-green-400 text-xs mt-1">Jitter control exceeds benchmark</div>
                     )}
                   </div>
                 </div>

@@ -244,9 +244,9 @@ export default function BasicMouseTest() {
         {testState === 'testing' && testStep === 1 && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="text-center space-y-4">
-              <div className="text-6xl animate-bounce">↔️</div>
+              <div className="w-16 h-16 border-4 border-white border-dashed rounded-full animate-spin mx-auto"></div>
               <p className="text-xl text-white font-semibold">
-                Move your mouse around!
+                Move your mouse around the screen
               </p>
             </div>
           </div>
@@ -255,16 +255,20 @@ export default function BasicMouseTest() {
         {testState === 'complete' && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center space-y-6">
-              <div className="text-6xl">✅</div>
-              <h3 className="text-2xl font-bold text-white">Test Complete!</h3>
+              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-white">Test Complete</h3>
               <p className="text-gray-300">
-                Scroll down to see your detailed results
+                Analysis results are displayed below
               </p>
               <button
                 onClick={startClickTest}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                Test Again
+                Run New Test
               </button>
             </div>
           </div>
@@ -273,11 +277,16 @@ export default function BasicMouseTest() {
 
       {testState === 'idle' && (
         <div className="bg-[#23272e] rounded-xl p-4">
-          <h4 className="text-white font-semibold mb-2">💡 How it works:</h4>
+          <h4 className="text-white font-semibold mb-2 flex items-center">
+            <svg className="w-5 h-5 mr-2 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Test Procedure
+          </h4>
           <ul className="text-gray-300 text-sm space-y-1">
-            <li>• <strong>Step 1:</strong> Click targets as fast as you can when they appear</li>
-            <li>• <strong>Step 2:</strong> Move your mouse around to measure polling rate</li>
-            <li>• <strong>Result:</strong> Get instant feedback on your mouse performance</li>
+            <li>• <strong>Phase 1:</strong> Click targets as they appear to measure click latency</li>
+            <li>• <strong>Phase 2:</strong> Move mouse to measure polling rate and jitter</li>
+            <li>• <strong>Analysis:</strong> Results are calculated and displayed below</li>
           </ul>
         </div>
       )}

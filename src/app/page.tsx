@@ -93,7 +93,7 @@ export default function Home() {
         </div>
         {mode === 'basic' ? (
           <>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">Desktop Mouse Latency Test - Free Gaming Mouse Tester 2025</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">Mouse Performance Analysis Tool</h1>
             
             {/* Hero Test Section - Above the fold */}
             <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
@@ -127,11 +127,11 @@ export default function Home() {
               </div>
             )}
 
-            {/* Quick Intro */}
+            {/* Technical Overview */}
             <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
-              <h2 className="text-xl font-bold text-white mb-3">Why Test Your Mouse?</h2>
+              <h2 className="text-xl font-bold text-white mb-3">Performance Analysis</h2>
               <p className="text-gray-300 leading-relaxed">
-                Test your <strong>desktop gaming mouse performance</strong> with instant results. Get accurate measurements for latency, polling rate, and jitter analysis. <strong>No download required</strong> - professional-grade results for competitive gaming.
+                Measure <strong>input latency, polling rate, and jitter</strong> with precision instrumentation. This tool provides quantitative analysis of mouse performance characteristics for competitive gaming and professional applications. <strong>Browser-based testing</strong> with millisecond accuracy.
               </p>
             </div>
 
@@ -193,9 +193,9 @@ export default function Home() {
               </div>
             </details>
 
-            {/* Tips Section */}
+            {/* Optimization Guidelines */}
             <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
-              <h2 className="text-xl font-bold text-white mb-4">Tips to Improve Your Mouse Performance</h2>
+              <h2 className="text-xl font-bold text-white mb-4">Performance Optimization Guidelines</h2>
               <TipsCard />
             </div>  
 
