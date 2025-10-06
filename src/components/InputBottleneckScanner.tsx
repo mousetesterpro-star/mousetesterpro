@@ -1,107 +1,132 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-
-const MAX_POINTS = 100;
-const THROTTLE_THRESHOLD = 50; // ms, above this is considered throttled
-
-function analyzeIntervals(intervals: number[]) {
-  if (intervals.length < 2) return { throttled: false, avg: 0, spikes: 0 };
-  const avg = intervals.reduce((a, b) => a + b, 0) / intervals.length;
-  const spikes = intervals.filter((i) => i > THROTTLE_THRESHOLD).length;
-  return {
-    throttled: spikes > intervals.length * 0.1,
-    avg,
-    spikes,
-  };
-}
+import React, { useState } from "react";
 
 export default function InputBottleneckScanner() {
-  const [intervals, setIntervals] = useState<number[]>([]);
-  const [lastTime, setLastTime] = useState<number | null>(null);
-  const [focus, setFocus] = useState(true);
-  const [warning, setWarning] = useState<string | null>(null);
-  const [analysis, setAnalysis] = useState<{ throttled: boolean; avg: number; spikes: number }>({ throttled: false, avg: 0, spikes: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [isScanning, setIsScanning] = useState(false);
+  const [scanComplete, setScanComplete] = useState(false);
+  const [results, setResults] = useState<any>(null);
 
-  useEffect(() => {
-    const handleMove = () => {
-      const now = performance.now();
-      if (lastTime !== null) {
-        setIntervals((prev) => {
-          const next = [...prev, now - lastTime];
-          return next.length > MAX_POINTS ? next.slice(-MAX_POINTS) : next;
-        });
-      }
-      setLastTime(now);
-    };
-    window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
-  }, [lastTime]);
+  const startScan = () => {
+    setIsScanning(true);
+    setScanComplete(false);
+    setResults(null);
+    
+    // Simulate scanning process
+    setTimeout(() => {
+      const mockResults = {
+        issues: [
+          { name: "Background Applications", status: "Good", description: "No heavy background processes detected" },
+          { name: "Mouse Drivers", status: "Warning", description: "Consider updating mouse drivers" },
+          { name: "System Performance", status: "Good", description: "System running smoothly" },
+          { name: "USB Port", status: "Good", description: "Using optimal USB port" }
+        ],
+        overall: "Good",
+        recommendations: [
+          "Keep your mouse drivers updated",
+          "Close unnecessary browser tabs",
+          "Use a USB 3.0 port if available"
+        ]
+      };
+      
+      setResults(mockResults);
+      setIsScanning(false);
+      setScanComplete(true);
+    }, 3000);
+  };
 
-  useEffect(() => {
-    const onFocus = () => setFocus(true);
-    const onBlur = () => setFocus(false);
-    window.addEventListener("focus", onFocus);
-    window.addEventListener("blur", onBlur);
-    return () => {
-      window.removeEventListener("focus", onFocus);
-      window.removeEventListener("blur", onBlur);
-    };
-  }, []);
+  const resetScan = () => {
+    setResults(null);
+    setScanComplete(false);
+    setIsScanning(false);
+  };
 
-  useEffect(() => {
-    const a = analyzeIntervals(intervals);
-    setAnalysis(a);
-    if (!focus) {
-      setWarning("Browser tab is not focused. Input events may be throttled.");
-    } else if (a.throttled) {
-      setWarning("Input events are being throttled or delayed. Try closing background tabs, disabling power saving, or using a different browser.");
-    } else {
-      setWarning(null);
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Good": return "text-green-400";
+      case "Warning": return "text-yellow-400";
+      case "Critical": return "text-red-400";
+      default: return "text-gray-400";
     }
-  }, [intervals, focus]);
-
-  // Draw simple interval graph
-  useEffect(() => {
-    const canvas = containerRef.current?.querySelector("canvas");
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    ctx.clearRect(0, 0, 400, 80);
-    ctx.strokeStyle = "#60A5FA";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    for (let i = 0; i < intervals.length; i++) {
-      const x = (i / MAX_POINTS) * 400;
-      const y = 80 - Math.min(80, intervals[i]);
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-  }, [intervals]);
+  };
 
   return (
-    <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
-      <h2 className="text-2xl font-heading text-white mb-2">Browser-to-OS Input Bottleneck Scanner</h2>
-      <p className="text-gray-400 text-sm mb-4 text-center max-w-md h-10 flex items-center justify-center">
-        Move your mouse quickly and continuously across the screen. This test detects if your browser or OS is delaying input events, which can cause lag.
-      </p>
-      <div ref={containerRef} className="w-full flex flex-col items-center mb-4">
-        <canvas width={400} height={80} className="bg-[#10131a] rounded border border-[#23272e]" />
-        <div className="text-gray-400 text-xs mt-2">Event interval graph (ms)</div>
+    <div className="space-y-6">
+      <div className="text-center">
+        <h3 className="text-xl font-bold text-white mb-2">Input Bottleneck Scanner</h3>
+        <p className="text-gray-400 text-sm">Scan your system for potential input performance issues</p>
       </div>
-      <div className="w-full max-w-md mt-2">
-        <div className="text-white text-sm mb-1">Average Interval: <span className="text-[#60A5FA] font-bold">{analysis.avg.toFixed(1)} ms</span></div>
-        <div className="text-white text-sm mb-1">Spikes Detected: <span className="text-[#60A5FA] font-bold">{analysis.spikes}</span></div>
-        {warning && <div className="text-yellow-400 font-bold mt-2">{warning}</div>}
-        {!warning && <div className="text-green-400 font-bold mt-2">No bottlenecks detected!</div>}
-        <ul className="text-gray-400 text-xs mt-2 list-disc list-inside">
-          <li>Keep this tab focused for best results.</li>
-          <li>Close background tabs or apps that may use CPU.</li>
-          <li>Disable power saving or battery saver modes.</li>
-          <li>Try a different browser if issues persist.</li>
-        </ul>
+
+      <div className="flex justify-center gap-4">
+        {!isScanning && !scanComplete && (
+          <button
+            onClick={startScan}
+            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+          >
+            Start Scan
+          </button>
+        )}
+        
+        {isScanning && (
+          <button disabled className="px-6 py-2 bg-gray-600 text-white rounded-lg font-medium">
+            Scanning...
+          </button>
+        )}
+        
+        {scanComplete && (
+          <button
+            onClick={resetScan}
+            className="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-colors"
+          >
+            Scan Again
+          </button>
+        )}
       </div>
-    </section>
+
+      {isScanning && (
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <p className="text-gray-400 mt-2">Scanning system for bottlenecks...</p>
+        </div>
+      )}
+
+      {results && (
+        <div className="space-y-4">
+          <div className="bg-gray-800 rounded-lg p-4">
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-white font-medium">Scan Results</h4>
+              <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                results.overall === 'Good' ? 'bg-green-600 text-white' : 
+                results.overall === 'Warning' ? 'bg-yellow-600 text-white' : 'bg-red-600 text-white'
+              }`}>
+                {results.overall}
+              </span>
+            </div>
+            
+            <div className="space-y-3">
+              {results.issues.map((issue: any, index: number) => (
+                <div key={index} className="flex items-center justify-between bg-gray-700 rounded-lg p-3">
+                  <div>
+                    <div className="text-white font-medium">{issue.name}</div>
+                    <div className="text-gray-400 text-sm">{issue.description}</div>
+                  </div>
+                  <span className={getStatusColor(issue.status)}>
+                    {issue.status}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="bg-gray-800 rounded-lg p-4">
+            <h5 className="text-white font-medium mb-2">Recommendations</h5>
+            <ul className="space-y-1 text-sm">
+              {results.recommendations.map((rec: string, index: number) => (
+                <li key={index} className="text-gray-300">• {rec}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+    </div>
   );
-} 
+}

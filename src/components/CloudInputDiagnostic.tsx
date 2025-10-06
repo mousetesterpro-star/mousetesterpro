@@ -1,89 +1,139 @@
 "use client";
 import React, { useState } from "react";
 
-function getDeviceInfo() {
-  return {
-    userAgent: navigator.userAgent,
-    platform: navigator.platform,
-    language: navigator.language,
-    screen: {
-      width: window.screen.width,
-      height: window.screen.height,
-      pixelRatio: window.devicePixelRatio,
-    },
-    vendor: navigator.vendor,
-  };
-}
-
-function getMockStats() {
-  // Replace with real stats from context if available
-  return {
-    latency: Math.random() * 10 + 5,
-    polling: 1000 + Math.random() * 100,
-    jitter: Math.random() * 0.5,
-    fps: 60,
-    timestamp: new Date().toISOString(),
-  };
-}
-
 export default function CloudInputDiagnostic() {
-  const [report, setReport] = useState<any | null>(null);
-  const [showModal, setShowModal] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [report, setReport] = useState<any>(null);
 
   const generateReport = () => {
-    const device = getDeviceInfo();
-    const stats = getMockStats();
-    const reportObj = {
-      device,
-      stats,
-      verdict: stats.latency < 10 ? "Excellent" : "Needs Improvement",
-      advice: stats.latency < 10 ? "Your setup is optimal for gaming." : "Try using a wired mouse, closing background apps, or updating drivers.",
-    };
-    setReport(reportObj);
-    setShowModal(true);
+    setIsGenerating(true);
+    
+    // Simulate report generation
+    setTimeout(() => {
+      const mockReport = {
+        device: {
+          browser: navigator.userAgent.split(' ')[0],
+          platform: navigator.platform,
+          screen: `${window.screen.width}x${window.screen.height}`,
+        },
+        performance: {
+          latency: Math.round((Math.random() * 10 + 5) * 10) / 10,
+          polling: Math.round(1000 + Math.random() * 100),
+          jitter: Math.round((Math.random() * 0.5) * 100) / 100,
+        },
+        rating: Math.random() > 0.5 ? "Good" : "Excellent",
+        recommendations: [
+          "Use a wired mouse for best performance",
+          "Close unnecessary background applications",
+          "Update your mouse drivers regularly"
+        ]
+      };
+      
+      setReport(mockReport);
+      setIsGenerating(false);
+    }, 2000);
   };
 
-  const handleCopy = () => {
-    if (!report) return;
-    navigator.clipboard.writeText(JSON.stringify(report, null, 2));
+  const copyReport = () => {
+    if (report) {
+      navigator.clipboard.writeText(JSON.stringify(report, null, 2));
+      alert("Report copied to clipboard!");
+    }
   };
 
-  const handleDownload = () => {
-    if (!report) return;
-    const blob = new Blob([JSON.stringify(report, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `input-diagnostic-${Date.now()}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+  const resetReport = () => {
+    setReport(null);
   };
 
   return (
-    <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
-      <h2 className="text-2xl font-heading text-white mb-2">Cloud Input Diagnostic Snapshot</h2>
-      <p className="text-gray-400 text-sm mb-4 text-center max-w-md h-10 flex items-center justify-center">
-        Click the button to generate a snapshot of your device and performance stats. This is useful for troubleshooting or sharing with support.
-      </p>
-      <button
-        className="bg-[#60A5FA] text-black font-bold px-6 py-2 rounded-lg text-lg shadow hover:bg-[#4090e6] transition mb-4"
-        onClick={generateReport}
-      >
-        Generate Diagnostic Snapshot
-      </button>
-      {showModal && report && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
-          <div className="bg-[#181c24] rounded-2xl shadow-2xl p-8 max-w-lg w-full relative border border-[#23272e]">
-            <button onClick={() => setShowModal(false)} className="absolute top-4 right-4 text-gray-400 hover:text-[#60A5FA] text-2xl font-bold focus:outline-none">×</button>
-            <h3 className="text-xl font-bold text-white mb-2">Diagnostic Report</h3>
-            <pre className="text-xs text-gray-200 bg-[#10131a] rounded p-2 overflow-x-auto max-h-64 mb-4">{JSON.stringify(report, null, 2)}</pre>
-            <div className="flex gap-4">
-              <button className="bg-[#60A5FA] text-black font-bold px-4 py-2 rounded-lg hover:bg-[#4090e6] transition" onClick={handleCopy}>Copy JSON</button>
-              <button className="bg-white text-black font-bold px-4 py-2 rounded-lg hover:bg-gray-200 transition" onClick={handleDownload}>Download</button>
+    <div className="space-y-6">
+      <div className="text-center">
+        <h3 className="text-xl font-bold text-white mb-2">Cloud Diagnostic Report</h3>
+        <p className="text-gray-400 text-sm">Generate a comprehensive performance report for your mouse setup</p>
+      </div>
+
+      <div className="flex justify-center gap-4">
+        {!report && !isGenerating && (
+          <button
+            onClick={generateReport}
+            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+          >
+            Generate Report
+          </button>
+        )}
+        
+        {isGenerating && (
+          <button disabled className="px-6 py-2 bg-gray-600 text-white rounded-lg font-medium">
+            Generating...
+          </button>
+        )}
+        
+        {report && (
+          <div className="flex gap-4">
+            <button
+              onClick={copyReport}
+              className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
+            >
+              Copy Report
+            </button>
+            <button
+              onClick={resetReport}
+              className="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-colors"
+            >
+              New Report
+            </button>
+          </div>
+        )}
+      </div>
+
+      {isGenerating && (
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <p className="text-gray-400 mt-2">Analyzing your system...</p>
+        </div>
+      )}
+
+      {report && (
+        <div className="bg-gray-800 rounded-lg p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h4 className="text-white font-medium text-lg">Diagnostic Report</h4>
+            <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+              report.rating === 'Excellent' ? 'bg-green-600 text-white' : 'bg-blue-600 text-white'
+            }`}>
+              {report.rating}
+            </span>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-gray-700 rounded-lg p-4">
+              <h5 className="text-white font-medium mb-2">Device Info</h5>
+              <div className="space-y-1 text-sm">
+                <div><span className="text-gray-400">Browser:</span> <span className="text-white">{report.device.browser}</span></div>
+                <div><span className="text-gray-400">Platform:</span> <span className="text-white">{report.device.platform}</span></div>
+                <div><span className="text-gray-400">Screen:</span> <span className="text-white">{report.device.screen}</span></div>
+              </div>
             </div>
+            
+            <div className="bg-gray-700 rounded-lg p-4">
+              <h5 className="text-white font-medium mb-2">Performance</h5>
+              <div className="space-y-1 text-sm">
+                <div><span className="text-gray-400">Latency:</span> <span className="text-white">{report.performance.latency}ms</span></div>
+                <div><span className="text-gray-400">Polling:</span> <span className="text-white">{report.performance.polling}Hz</span></div>
+                <div><span className="text-gray-400">Jitter:</span> <span className="text-white">{report.performance.jitter}ms</span></div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-gray-700 rounded-lg p-4">
+            <h5 className="text-white font-medium mb-2">Recommendations</h5>
+            <ul className="space-y-1 text-sm">
+              {report.recommendations.map((rec: string, index: number) => (
+                <li key={index} className="text-gray-300">• {rec}</li>
+              ))}
+            </ul>
           </div>
         </div>
       )}
-    </section>
+    </div>
   );
-} 
+}

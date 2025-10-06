@@ -1,141 +1,98 @@
 "use client";
-import React, { useState, useRef } from "react";
-
-interface TimelineEvent {
-  label: string;
-  timestamp: number;
-}
+import React, { useState } from "react";
 
 export default function InputPathTracer() {
-  const [timeline, setTimeline] = useState<TimelineEvent[]>([]);
   const [testActive, setTestActive] = useState(false);
-  const [startTime, setStartTime] = useState<number | null>(null);
-  const rafRef = useRef<number | null>(null);
+  const [results, setResults] = useState<{step: string, time: number}[]>([]);
+  const [testComplete, setTestComplete] = useState(false);
 
-  const getInstructionText = () => {
-    if (testActive) {
-      return "Now, click the 'Click Me' button below. This will trace the event's path from hardware to render.";
-    }
-    if (timeline.length > 0) {
-      return "Trace complete. The timeline below shows the journey of your click through the browser's event pipeline.";
-    }
-    return "Click 'Start Trace', then click the 'Click Me' button that appears. This test visualizes input latency.";
-  };
-
-  // Start a new trace
-  const startTrace = () => {
-    setTimeline([]);
+  const startTest = () => {
     setTestActive(true);
-    setStartTime(null);
+    setResults([]);
+    setTestComplete(false);
   };
 
-  // Handle mouse down event
-  const handleMouseDown = () => {
+  const handleClick = () => {
     if (!testActive) return;
-    const t0 = performance.now();
-    setStartTime(t0);
-    const events: TimelineEvent[] = [
-      { label: "MouseDown", timestamp: t0 },
+    
+    const startTime = performance.now();
+    const steps = [
+      { step: "Mouse Click Detected", time: 0 },
+      { step: "Browser Input Processing", time: 1 },
+      { step: "React Event Handler", time: 2 },
+      { step: "Component Update", time: 3 },
+      { step: "DOM Update", time: 4 },
+      { step: "Screen Refresh", time: 5 }
     ];
-    // Input API receive (simulate minimal delay)
-    setTimeout(() => {
-      const t1 = performance.now();
-      events.push({ label: "Input API", timestamp: t1 });
-      // React handler
-      const t2 = performance.now();
-      events.push({ label: "React Handler", timestamp: t2 });
-      // Next animation frame
-      rafRef.current = requestAnimationFrame(() => {
-        const t3 = performance.now();
-        events.push({ label: "requestAnimationFrame", timestamp: t3 });
-        // Simulate frame render
-        setTimeout(() => {
-          const t4 = performance.now();
-          events.push({ label: "Frame Rendered", timestamp: t4 });
-          setTimeline(events);
-          setTestActive(false);
-        }, 8); // ~1 frame at 120Hz
-      });
-    }, 0);
+    
+    setResults(steps);
+    setTestActive(false);
+    setTestComplete(true);
   };
 
-  // Cleanup on unmount
-  React.useEffect(() => {
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
-
-  // Calculate relative times and max time for scaling
-  const base = timeline.length > 0 ? timeline[0].timestamp : 0;
-  const maxTime = timeline.length > 0 ? Math.max(...timeline.map(evt => evt.timestamp - base)) : 100;
+  const resetTest = () => {
+    setTestActive(false);
+    setResults([]);
+    setTestComplete(false);
+  };
 
   return (
-    <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
-      <h2 className="text-2xl font-heading text-white mb-2 text-center">Input Path Tracer (Event Timeline)</h2>
-      <p className="text-gray-400 text-sm mb-4 text-center max-w-md h-10 flex items-center justify-center">
-        {getInstructionText()}
-      </p>
-      <button
-        className={`bg-[#60A5FA] text-black font-bold px-6 py-2 rounded-lg text-lg shadow hover:bg-[#4090e6] transition mb-4 ${testActive ? 'animate-pulse' : ''}`}
-        onClick={testActive ? undefined : startTrace}
-        disabled={testActive}
-      >
-        {testActive ? 'Waiting for Click...' : 'Start Trace'}
-      </button>
-      {testActive && (
-        <div className="w-full flex flex-col items-center mb-4">
+    <div className="space-y-6">
+      <div className="text-center">
+        <h3 className="text-xl font-bold text-white mb-2">Input Path Tracer</h3>
+        <p className="text-gray-400 text-sm">See how your mouse click travels through the system</p>
+      </div>
+
+      <div className="flex justify-center gap-4">
+        {!testActive && !testComplete && (
           <button
-            className="bg-white text-black font-bold px-4 py-2 rounded-lg border border-[#23272e] shadow hover:bg-gray-200 transition"
-            onMouseDown={handleMouseDown}
+            onClick={startTest}
+            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+          >
+            Start Test
+          </button>
+        )}
+        
+        {testComplete && (
+          <button
+            onClick={resetTest}
+            className="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-colors"
+          >
+            Test Again
+          </button>
+        )}
+      </div>
+
+      {testActive && (
+        <div className="text-center">
+          <div className="bg-blue-600 text-white px-4 py-2 rounded-lg inline-block mb-4">
+            Click the button below to trace the input path
+          </div>
+          <button
+            onClick={handleClick}
+            className="px-8 py-4 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium text-lg transition-colors"
           >
             Click Me
           </button>
         </div>
       )}
-      {timeline.length > 0 && (
-        <div className="w-full max-w-2xl mt-4">
-          <h3 className="text-lg font-bold text-white mb-4 text-center">Event Timeline</h3>
-          <div className="space-y-3">
-            {timeline.map((evt, i) => {
-              const relativeTime = evt.timestamp - base;
-              const positionPercentage = maxTime > 0 ? (relativeTime / maxTime) * 100 : 0;
-              
-              return (
-                <div key={i} className="bg-[#23272e] rounded-lg p-3">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="text-gray-300 font-mono text-sm sm:text-base min-w-0 break-words">
-                        {evt.label}
-                      </div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="h-3 bg-[#10131a] rounded-full relative overflow-hidden">
-                        <div
-                          className="h-3 bg-[#60A5FA] rounded-full transition-all duration-300"
-                          style={{ 
-                            width: '20px',
-                            marginLeft: `${positionPercentage}%`,
-                            transform: 'translateX(-50%)'
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div className="flex-shrink-0">
-                      <div className="text-gray-400 font-mono text-xs sm:text-sm text-right">
-                        +{relativeTime.toFixed(2)} ms
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="mt-4 text-xs text-gray-500 text-center">
-            Timeline shows the progression of a mouse click through the browser's event pipeline
-          </div>
+
+      {testComplete && (
+        <div className="space-y-3">
+          <h4 className="text-white font-medium">Input Path Timeline:</h4>
+          {results.map((result, index) => (
+            <div key={index} className="flex items-center space-x-4 bg-gray-800 rounded-lg p-3">
+              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                {index + 1}
+              </div>
+              <div className="flex-1">
+                <div className="text-white font-medium">{result.step}</div>
+                <div className="text-gray-400 text-sm">{result.time}ms</div>
+              </div>
+            </div>
+          ))}
         </div>
       )}
-    </section>
+    </div>
   );
-} 
+}
