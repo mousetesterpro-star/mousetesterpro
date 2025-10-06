@@ -169,13 +169,13 @@ export default function PerformanceComparison() {
   }
 
   return (
-    <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
-      <div className="text-center mb-6">
+    <div className="space-y-6">
+      <div className="text-center">
         <h3 className="text-xl font-bold text-white mb-2">Performance Comparison</h3>
         <p className="text-gray-400 text-sm">Compare your mouse performance against industry benchmarks</p>
       </div>
       
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <UserGuide 
             title="Performance Comparison"

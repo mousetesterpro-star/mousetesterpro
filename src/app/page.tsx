@@ -364,59 +364,83 @@ export default function Home() {
             {/* Advanced Tools Grid */}
             <div className="space-y-8">
               {/* Movement Heatmap Analysis */}
-              <Heatmap />
+              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                <Heatmap />
+              </div>
 
               {/* Advanced Performance Analysis */}
-              <AdvancedHeatmap />
+              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                <AdvancedHeatmap />
+              </div>
 
               {/* Session Replay & Analysis */}
               <Suspense fallback={<AdvancedFeatureLoader />}>
-                <SessionReplay />
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <SessionReplay />
+                </div>
               </Suspense>
 
               {/* Performance Comparison */}
               <Suspense fallback={<AdvancedFeatureLoader />}>
-                <PerformanceComparison />
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <PerformanceComparison />
+                </div>
               </Suspense>
 
               {/* FPS Gaming Analysis */}
               <Suspense fallback={<AdvancedFeatureLoader />}>
-                <FpsReactionTest />
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <FpsReactionTest />
+                </div>
               </Suspense>
 
               {/* DPI Calibration */}
               <Suspense fallback={<AdvancedFeatureLoader />}>
-                <DpiCalibrationTest />
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <DpiCalibrationTest />
+                </div>
               </Suspense>
 
               {/* Click Pattern Analysis */}
               <Suspense fallback={<AdvancedFeatureLoader />}>
-                <ClickPatternTest />
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <ClickPatternTest />
+                </div>
               </Suspense>
 
               {/* Input Path Tracing */}
               <Suspense fallback={<AdvancedFeatureLoader />}>
-                <InputPathTracer />
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <InputPathTracer />
+                </div>
               </Suspense>
 
               {/* Cross-Device Analysis */}
               <Suspense fallback={<AdvancedFeatureLoader />}>
-                <CrossDeviceLatencyTest />
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <CrossDeviceLatencyTest />
+                </div>
               </Suspense>
 
               {/* Input Bottleneck Scanner */}
               <Suspense fallback={<AdvancedFeatureLoader />}>
-                <InputBottleneckScanner />
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <InputBottleneckScanner />
+                </div>
               </Suspense>
 
               {/* Cloud Diagnostic */}
               <Suspense fallback={<AdvancedFeatureLoader />}>
-                <CloudInputDiagnostic />
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <CloudInputDiagnostic />
+                </div>
               </Suspense>
 
               {/* Mobile Performance */}
               <Suspense fallback={<AdvancedFeatureLoader />}>
-                <MobileTapPerformance />
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+                  <MobileTapPerformance />
+                </div>
               </Suspense>
             </div>
 

@@ -74,8 +74,8 @@ const Heatmap = () => {
   }
 
   return (
-    <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
-      <div className="text-center mb-6">
+    <div className="space-y-6">
+      <div className="text-center">
         <h3 className="text-xl font-bold text-white mb-2">Mouse Heatmap</h3>
         <p className="text-gray-400 text-sm">
           {isHeatmapActive ? "Move and click your mouse in the area below to generate the heatmap." : "Click 'Start Heatmap' to begin."}
@@ -88,7 +88,7 @@ const Heatmap = () => {
         style={{ pointerEvents: isHeatmapActive ? 'auto' : 'none', opacity: isHeatmapActive ? 1 : 0.5 }}
       />
       
-      <div className="flex justify-center gap-4 mt-6">
+      <div className="flex justify-center gap-4">
         <button
           onClick={startHeatmap}
           disabled={isHeatmapActive}
