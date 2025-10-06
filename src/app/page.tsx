@@ -10,6 +10,7 @@ import ComparisonCard from '@/components/ComparisonCard';
 import StatsCard from '@/components/StatsCard';
 import SessionReportModal from '@/components/SessionReportModal';
 import BasicMouseTest from '@/components/BasicMouseTest';
+import SearchBasedTestRouter from '@/components/SearchBasedTestRouter';
 import { useTestSession } from '@/context/TestSessionContext';
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { ContentAd } from '@/components/AdSense';
@@ -48,6 +49,7 @@ export default function Home() {
   const { session, resetSession, finalizeSession, finalized, startTest } = useTestSession();
   const [showModal, setShowModal] = useState(false);
   const [mode, setMode] = useState<'basic' | 'advanced'>('basic');
+  const [showSearchBasedTests, setShowSearchBasedTests] = useState(false);
 
   useEffect(() => {
     if (finalized) {
@@ -61,6 +63,20 @@ export default function Home() {
       finalizeSession();
     }
   }, [session.latency, session.polling, session.jitter, finalized, finalizeSession]);
+
+  // Check for search parameters to show search-based tests
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const hasSearchQuery = urlParams.get('q') || urlParams.get('query') || urlParams.get('test');
+      const hasDirectParams = urlParams.get('latency') || urlParams.get('polling') || urlParams.get('jitter');
+      
+      if (hasSearchQuery || hasDirectParams) {
+        setShowSearchBasedTests(true);
+        setMode('basic'); // Force basic mode for search-based tests
+      }
+    }
+  }, []);
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -95,10 +111,15 @@ export default function Home() {
           <>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">Mouse Performance Analysis Tool</h1>
             
-            {/* Hero Test Section - Above the fold */}
-            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
-              <BasicMouseTest />
-            </div>
+            {/* Show search-based tests if search parameters detected */}
+            {showSearchBasedTests ? (
+              <SearchBasedTestRouter />
+            ) : (
+              <>
+                {/* Hero Test Section - Above the fold */}
+                <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+                  <BasicMouseTest />
+                </div>
 
             {/* Results Display - Shows after test */}
             {allMetricsSet && (
@@ -325,6 +346,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
+              </>
+            )}
           </>
         ) : (
           <>
