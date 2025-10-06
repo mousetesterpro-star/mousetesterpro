@@ -107,21 +107,21 @@ export default function Home() {
                   <div className="text-4xl font-bold text-white">{session.latency?.toFixed(2)}ms</div>
                   <div className="text-blue-100 mt-2">Click Latency</div>
                   <div className="text-sm text-blue-200 mt-1">
-                    {(session.latency || 0) < 10 ? '🔥 Excellent' : (session.latency || 0) < 15 ? '✅ Good' : '⚠️ Can Improve'}
+                    {(session.latency || 0) < 10 ? 'Excellent' : (session.latency || 0) < 15 ? 'Good' : 'Can Improve'}
                   </div>
                 </div>
                 <div className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl shadow-lg p-6 text-center">
                   <div className="text-4xl font-bold text-white">{session.polling?.toFixed(0)}Hz</div>
                   <div className="text-green-100 mt-2">Polling Rate</div>
                   <div className="text-sm text-green-200 mt-1">
-                    {(session.polling || 0) > 900 ? '🔥 Excellent' : (session.polling || 0) > 500 ? '✅ Good' : '⚠️ Low'}
+                    {(session.polling || 0) > 900 ? 'Excellent' : (session.polling || 0) > 500 ? 'Good' : 'Low'}
                   </div>
                 </div>
                 <div className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl shadow-lg p-6 text-center">
                   <div className="text-4xl font-bold text-white">{session.jitter?.toFixed(2)}ms</div>
                   <div className="text-purple-100 mt-2">Jitter</div>
                   <div className="text-sm text-purple-200 mt-1">
-                    {(session.jitter || 0) < 0.5 ? '🔥 Stable' : (session.jitter || 0) < 1 ? '✅ Good' : '⚠️ Unstable'}
+                    {(session.jitter || 0) < 0.5 ? 'Stable' : (session.jitter || 0) < 1 ? 'Good' : 'Unstable'}
                   </div>
                 </div>
               </div>
@@ -156,7 +156,7 @@ export default function Home() {
             {allMetricsSet && (
               <details className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8 cursor-pointer">
                 <summary className="text-xl font-bold text-white mb-4 cursor-pointer hover:text-blue-400 transition-colors">
-                  📊 View Detailed Analysis & Charts
+                  View Detailed Analysis & Charts
                 </summary>
                 <div className="mt-6 space-y-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -179,7 +179,7 @@ export default function Home() {
             {/* History & Comparison - Collapsible */}
             <details className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8 cursor-pointer">
               <summary className="text-xl font-bold text-white mb-4 cursor-pointer hover:text-blue-400 transition-colors">
-                📈 View Test History & Comparisons
+                View Test History & Comparisons
               </summary>
               <div className="mt-6 space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -195,7 +195,7 @@ export default function Home() {
 
             {/* Tips Section */}
             <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
-              <h2 className="text-xl font-bold text-white mb-4">💡 Tips to Improve Your Mouse Performance</h2>
+              <h2 className="text-xl font-bold text-white mb-4">Tips to Improve Your Mouse Performance</h2>
               <TipsCard />
             </div>  
 

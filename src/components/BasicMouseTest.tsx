@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useRef, useCallback } from 'react';
 import { useTestSession } from '@/context/TestSessionContext';
@@ -164,7 +164,7 @@ export default function BasicMouseTest() {
 
   return (
     <div className="w-full">
-      <h2 className="text-2xl font-bold text-white mb-4">ðŸ–±ï¸ Quick Mouse Test</h2>
+      <h2 className="text-2xl font-bold text-white mb-4">Quick Mouse Test</h2>
       
       <div className="bg-[#23272e] rounded-xl p-4 mb-4">
         <p className="text-white text-lg font-semibold text-center">
@@ -195,7 +195,7 @@ export default function BasicMouseTest() {
         {testState === 'idle' && (
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <div className="text-center space-y-6">
-              <div className="text-6xl">ðŸŽ¯</div>
+              <div className="text-6xl">🎯</div>
               <h3 className="text-2xl font-bold text-white">Ready to test your mouse?</h3>
               <p className="text-gray-300 max-w-md mx-auto">
                 This test measures your click latency, polling rate, and mouse consistency in under 30 seconds.
@@ -244,7 +244,7 @@ export default function BasicMouseTest() {
         {testState === 'testing' && testStep === 1 && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="text-center space-y-4">
-              <div className="text-6xl animate-bounce">â†”ï¸</div>
+              <div className="text-6xl animate-bounce">↔️</div>
               <p className="text-xl text-white font-semibold">
                 Move your mouse around!
               </p>
@@ -255,7 +255,7 @@ export default function BasicMouseTest() {
         {testState === 'complete' && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center space-y-6">
-              <div className="text-6xl">âœ…</div>
+              <div className="text-6xl">✅</div>
               <h3 className="text-2xl font-bold text-white">Test Complete!</h3>
               <p className="text-gray-300">
                 Scroll down to see your detailed results
@@ -273,11 +273,11 @@ export default function BasicMouseTest() {
 
       {testState === 'idle' && (
         <div className="bg-[#23272e] rounded-xl p-4">
-          <h4 className="text-white font-semibold mb-2">ðŸ’¡ How it works:</h4>
+          <h4 className="text-white font-semibold mb-2">💡 How it works:</h4>
           <ul className="text-gray-300 text-sm space-y-1">
-            <li>â€¢ <strong>Step 1:</strong> Click targets as fast as you can when they appear</li>
-            <li>â€¢ <strong>Step 2:</strong> Move your mouse around to measure polling rate</li>
-            <li>â€¢ <strong>Result:</strong> Get instant feedback on your mouse performance</li>
+            <li>• <strong>Step 1:</strong> Click targets as fast as you can when they appear</li>
+            <li>• <strong>Step 2:</strong> Move your mouse around to measure polling rate</li>
+            <li>• <strong>Result:</strong> Get instant feedback on your mouse performance</li>
           </ul>
         </div>
       )}
