@@ -64,7 +64,7 @@ export default function Home() {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    resetSession();
+    // Don't reset session here - keep results visible after modal closes
   };
 
   const allMetricsSet = !!(session.latency && session.polling && session.jitter);
