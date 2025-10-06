@@ -142,12 +142,12 @@ export default function Home() {
 
             {/* Device Info - Compact */}
             <div className="grid grid-cols-1 gap-8 mb-8">
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
+              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
                 <DeviceInfoCard />
               </div>
             </div>
             <div className="grid grid-cols-1 gap-8 mb-8">
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 flex flex-col">
+              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
                 <StatsCard />
               </div>
             </div>
@@ -160,15 +160,15 @@ export default function Home() {
                 </summary>
                 <div className="mt-6 space-y-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="bg-[#23272e] rounded-xl shadow-sm p-6 flex flex-col">
+                    <div className="p-6">
                       <PollingRateCard />
                     </div>
-                    <div className="bg-[#23272e] rounded-xl shadow-sm p-6 flex flex-col">
+                    <div className="p-6">
                       <ClickLatencyCard />
                     </div>
                   </div>
                   <div className="grid grid-cols-1 gap-8">
-                    <div className="bg-[#23272e] rounded-xl shadow-sm p-6 flex flex-col">
+                    <div className="p-6">
                       <JitterAnalysisCard />
                     </div>
                   </div>
@@ -183,10 +183,10 @@ export default function Home() {
               </summary>
               <div className="mt-6 space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="bg-[#23272e] rounded-xl shadow-sm p-6 flex flex-col">
+                  <div className="p-6">
                     <HistoryCard />
                   </div>
-                  <div className="bg-[#23272e] rounded-xl shadow-sm p-6 flex flex-col">
+                  <div className="p-6">
                     <ComparisonCard />
                   </div>
                 </div>

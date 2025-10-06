@@ -195,7 +195,11 @@ export default function BasicMouseTest() {
         {testState === 'idle' && (
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <div className="text-center space-y-6">
-              <div className="text-6xl">🎯</div>
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                </svg>
+              </div>
               <h3 className="text-2xl font-bold text-white">Ready to test your mouse?</h3>
               <p className="text-gray-300 max-w-md mx-auto">
                 This test measures your click latency, polling rate, and mouse consistency in under 30 seconds.
