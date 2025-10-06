@@ -93,12 +93,12 @@ export default function Home() {
         </div>
         {mode === 'basic' ? (
           <>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center md:text-left">Mouse Latency Test (Free & Accurate)</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center md:text-left">Desktop Mouse Latency Test - Free Gaming Mouse Tester 2025</h1>
             
             {/* Quick Intro - Keep it short and focused on the tool */}
             <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
               <p className="text-gray-300 text-lg leading-relaxed">
-                Test your gaming mouse performance with <strong>instant results</strong>. Get accurate measurements for latency, polling rate, and jitter. <strong>No download required</strong> - professional-grade results in seconds.
+                Test your <strong>desktop gaming mouse performance</strong> with instant results. Get accurate measurements for latency, polling rate, CPS test, and jitter analysis. <strong>No download required</strong> - professional-grade results optimized for desktop gaming.
               </p>
               
               {/* Prominent CTA Button */}
@@ -190,16 +190,41 @@ export default function Home() {
               <ContentAd />
             </div>
 
+            {/* Desktop Gaming Focus Section */}
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-6">Desktop Mouse Testing Features</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-4">Desktop Gaming Optimized</h3>
+                  <ul className="text-gray-300 space-y-2">
+                    <li>• High-precision latency measurement for desktop gaming</li>
+                    <li>• Desktop-optimized CPS (Clicks Per Second) test</li>
+                    <li>• Polling rate analysis for gaming mice</li>
+                    <li>• Input lag detection for competitive gaming</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-4">Professional Results</h3>
+                  <ul className="text-gray-300 space-y-2">
+                    <li>• Instant desktop mouse performance analysis</li>
+                    <li>• Compare with professional gaming standards</li>
+                    <li>• Detailed jitter and response time metrics</li>
+                    <li>• Desktop-specific optimization recommendations</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
             {/* SEO Content Section - Comprehensive */}
             <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
               <h2 id="what-is-mouse-latency" className="text-2xl font-bold text-white mb-6">What is Mouse Latency?</h2>
               <p className="text-gray-300 mb-4">
-                Mouse latency, also known as input lag or click response time, measures how quickly your mouse responds to clicks. For competitive gaming, even a few milliseconds can make the difference between winning and losing. Our <strong>mouse latency test online</strong> helps you identify if your current mouse is holding you back in games like Valorant, CS2, PUBG, or any competitive title.
+                Mouse latency, also known as input lag or click response time, measures how quickly your mouse responds to clicks. For <strong>desktop competitive gaming</strong>, even a few milliseconds can make the difference between winning and losing. Our <strong>desktop mouse latency test</strong> helps you identify if your current mouse is holding you back in games like Valorant, CS2, PUBG, or any competitive title.
               </p>
               
               <h3 id="how-to-test" className="text-xl font-bold text-white mb-4 mt-6">How to Test Mouse Delay?</h3>
               <p className="text-gray-300 mb-4">
-                Our <strong>mouse response time checker</strong> provides instant results by measuring three key metrics: click latency, polling rate, and jitter. Simply click the test button and perform the required actions. The <strong>test mouse input lag</strong> tool will analyze your mouse performance and provide detailed results within seconds.
+                Our <strong>desktop mouse response time checker</strong> provides instant results by measuring three key metrics: click latency, polling rate, and jitter. Simply click the test button and perform the required actions. The <strong>desktop mouse input lag test</strong> tool will analyze your mouse performance and provide detailed results within seconds.
               </p>
               
               <h3 id="tips-to-reduce" className="text-xl font-bold text-white mb-4 mt-6">Tips to Reduce Input Lag</h3>
@@ -246,23 +271,23 @@ export default function Home() {
               
               <div className="space-y-4">
                 <div className="border-b border-[#23272e] pb-3">
-                  <h3 className="text-lg font-semibold text-white mb-2">What is mouse latency?</h3>
+                  <h3 className="text-lg font-semibold text-white mb-2">How to test mouse latency on desktop?</h3>
                   <p className="text-gray-300 text-sm">
-                    Mouse latency is the time delay between when you move or click your mouse and when the action appears on screen. Lower latency means better responsiveness for gaming.
+                    Use our free desktop mouse latency test. Click start, perform the test, and get instant results showing your mouse response time, polling rate, and jitter analysis.
                   </p>
                 </div>
 
                 <div className="border-b border-[#23272e] pb-3">
-                  <h3 className="text-lg font-semibold text-white mb-2">What is a good mouse latency for gaming?</h3>
+                  <h3 className="text-lg font-semibold text-white mb-2">What is a good mouse latency for desktop gaming?</h3>
                   <p className="text-gray-300 text-sm">
-                    For competitive gaming, aim for latency under 10ms. Professional gamers typically achieve 3-8ms, while casual gaming is acceptable up to 15ms.
+                    For desktop gaming, aim for mouse latency under 8ms. Professional gamers achieve 3-5ms, while casual gaming is acceptable up to 12ms on desktop.
                   </p>
                 </div>
 
                 <div className="pb-3">
-                  <h3 className="text-lg font-semibold text-white mb-2">How to reduce mouse latency?</h3>
+                  <h3 className="text-lg font-semibold text-white mb-2">How to test CPS (clicks per second) on desktop?</h3>
                   <p className="text-gray-300 text-sm">
-                    Use a gaming mouse with high polling rate (1000Hz), connect via USB 3.0, close background programs, and ensure your mouse drivers are updated.
+                    Our desktop mouse tester includes a CPS test feature. Simply click rapidly in the designated area and get instant results showing your clicks per second performance.
                   </p>
                 </div>
               </div>

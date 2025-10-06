@@ -21,8 +21,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mouse Latency Test | Accurate Online Tool",
-  description: "Test mouse latency, input lag, and click delay instantly online. Accurate, free, and easy-to-use tool for gamers & tech users.",
+  title: "Desktop Mouse Latency Test [2025] | Free Gaming Mouse Tester",
+  description: "Test mouse latency on desktop instantly. Free gaming mouse tester with CPS test, polling rate & input lag analysis. Professional results in seconds.",
   keywords: [
     "mouse test latency",
     "mouse latency test",
@@ -66,13 +66,13 @@ export const metadata: Metadata = {
     "gaming peripheral test free"
   ],
   openGraph: {
-    title: "Mouse Latency Test | Accurate Online Tool",
-    description: "Test mouse latency, input lag, and click delay instantly online. Accurate, free, and easy-to-use tool for gamers & tech users.",
-    url: "https://mouse-tester-pro.vercel.app",
+    title: "Desktop Mouse Latency Test [2025] | Free Gaming Mouse Tester",
+    description: "Test mouse latency on desktop instantly. Free gaming mouse tester with CPS test, polling rate & input lag analysis. Professional results in seconds.",
+    url: "https://www.mousetesterpro.com",
     siteName: "Mouse Tester Pro",
     images: [
       {
-        url: "https://mouse-tester-pro.vercel.app/og-image.png",
+        url: "https://www.mousetesterpro.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "Professional mouse latency tester dashboard with real-time performance metrics, polling rate graphs, and gaming-focused interface"
@@ -83,10 +83,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mouse Latency Test | Accurate Online Tool",
-    description: "Test mouse latency, input lag, and click delay instantly online. Accurate, free, and easy-to-use tool for gamers & tech users.",
+    title: "Desktop Mouse Latency Test [2025] | Free Gaming Mouse Tester",
+    description: "Test mouse latency on desktop instantly. Free gaming mouse tester with CPS test, polling rate & input lag analysis. Professional results in seconds.",
     images: [
-      "https://mouse-tester-pro.vercel.app/og-image.png"
+      "https://www.mousetesterpro.com/og-image.png"
     ],
     site: "@MouseTesterPro",
     creator: "@MouseTesterPro"
@@ -120,19 +120,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
         <link rel="dns-prefetch" href="https://tpc.googlesyndication.com" />
         <meta name="google-adsense-account" content="ca-pub-1310810766620297" />
-        <meta httpEquiv="Content-Security-Policy" content="
-          default-src 'self';
-          script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com;
-          style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-          font-src 'self' https://fonts.gstatic.com;
-          img-src 'self' data: https: blob:;
-          connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://pagead2.googlesyndication.com https://*.google.com https://*.googleapis.com https://*.gstatic.com https://*.doubleclick.net https://*.googlesyndication.com;
-          frame-src 'self' https://*.google.com https://*.doubleclick.net https://*.googlesyndication.com;
-          object-src 'none';
-          base-uri 'self';
-          form-action 'self';
-        " />
-        <link rel="canonical" href="https://mouse-tester-pro.vercel.app" />
+        <link rel="canonical" href="https://www.mousetesterpro.com" />
         <script 
           type="application/ld+json" 
           dangerouslySetInnerHTML={{ 
@@ -140,7 +128,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
               name: 'Mouse Tester Pro',
-              url: 'https://mouse-tester-pro.vercel.app',
+              url: 'https://www.mousetesterpro.com',
               description: 'Test your mouse latency, click speed & polling rate FREE online. Professional gaming mouse performance tester for gamers worldwide.',
               applicationCategory: 'Productivity',
               operatingSystem: 'Web Browser',
@@ -152,7 +140,7 @@ export default function RootLayout({
               },
               potentialAction: {
                 '@type': 'UseAction',
-                target: 'https://mouse-tester-pro.vercel.app',
+                target: 'https://www.mousetesterpro.com',
                 name: 'Test Mouse Latency'
               },
               hasPart: [
@@ -238,7 +226,7 @@ export default function RootLayout({
               '@type': 'WebPage',
               name: 'Mouse Latency Test | Accurate Online Tool',
               description: 'Test mouse latency, input lag, and click delay instantly online. Accurate, free, and easy-to-use tool for gamers & tech users.',
-              url: 'https://mouse-tester-pro.vercel.app',
+              url: 'https://www.mousetesterpro.com',
               mainEntity: {
                 '@type': 'SoftwareApplication',
                 name: 'Mouse Latency Test',
@@ -258,13 +246,13 @@ export default function RootLayout({
                     '@type': 'ListItem',
                     position: 1,
                     name: 'Home',
-                    item: 'https://mouse-tester-pro.vercel.app'
+                    item: 'https://www.mousetesterpro.com'
                   },
                   {
                     '@type': 'ListItem',
                     position: 2,
                     name: 'Mouse Latency Test',
-                    item: 'https://mouse-tester-pro.vercel.app'
+                    item: 'https://www.mousetesterpro.com'
                   }
                 ]
               }
@@ -279,7 +267,7 @@ export default function RootLayout({
               '@type': 'HowTo',
               name: 'How to Test Mouse Latency for Gaming',
               description: 'Complete guide on testing mouse latency, polling rate, and jitter for competitive gaming performance.',
-              image: 'https://mouse-tester-pro.vercel.app/og-image.png',
+              image: 'https://www.mousetesterpro.com/og-image.png',
               totalTime: 'PT5M',
               estimatedCost: {
                 '@type': 'MonetaryAmount',
@@ -291,31 +279,74 @@ export default function RootLayout({
                   '@type': 'HowToStep',
                   name: 'Open the Mouse Latency Tester',
                   text: 'Visit our free online mouse latency tester tool.',
-                  url: 'https://mouse-tester-pro.vercel.app'
+                  url: 'https://www.mousetesterpro.com'
                 },
                 {
                   '@type': 'HowToStep',
                   name: 'Run the Click Latency Test',
                   text: 'Click the start button and perform the click latency test to measure response time.',
-                  url: 'https://mouse-tester-pro.vercel.app'
+                  url: 'https://www.mousetesterpro.com'
                 },
                 {
                   '@type': 'HowToStep',
                   name: 'Test Polling Rate',
                   text: 'Use the polling rate test to measure how often your mouse reports position.',
-                  url: 'https://mouse-tester-pro.vercel.app'
+                  url: 'https://www.mousetesterpro.com'
                 },
                 {
                   '@type': 'HowToStep',
                   name: 'Analyze Jitter Results',
                   text: 'Review the jitter analysis to understand consistency of your mouse performance.',
-                  url: 'https://mouse-tester-pro.vercel.app'
+                  url: 'https://www.mousetesterpro.com'
                 },
                 {
                   '@type': 'HowToStep',
                   name: 'Compare Results',
                   text: 'Compare your results with professional standards and other gamers worldwide.',
-                  url: 'https://mouse-tester-pro.vercel.app'
+                  url: 'https://www.mousetesterpro.com'
+                }
+              ]
+            }) 
+          }} 
+        />
+        <script 
+          type="application/ld+json" 
+          dangerouslySetInnerHTML={{ 
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'How to test mouse latency on desktop?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Use our free desktop mouse latency test. Click start, perform the test, and get instant results showing your mouse response time, polling rate, and jitter analysis.'
+                  }
+                },
+                {
+                  '@type': 'Question', 
+                  name: 'What is a good mouse latency for desktop gaming?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'For desktop gaming, aim for mouse latency under 8ms. Professional gamers achieve 3-5ms, while casual gaming is acceptable up to 12ms on desktop.'
+                  }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How to test CPS (clicks per second) on desktop?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Our desktop mouse tester includes a CPS test feature. Simply click rapidly in the designated area and get instant results showing your clicks per second performance.'
+                  }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What is mouse polling rate and why does it matter for desktop gaming?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Mouse polling rate is how often your mouse reports its position to the computer. Higher polling rates (1000Hz) provide smoother cursor movement and better responsiveness for desktop gaming.'
+                  }
                 }
               ]
             }) 
@@ -324,11 +355,11 @@ export default function RootLayout({
 
       </head>
       {/* Google AdSense */}
-      <Script
+      <script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1310810766620297"
         crossOrigin="anonymous"
-        strategy="lazyOnload"
+        dangerouslySetInnerHTML={{ __html: '' }}
       />
       {/* Google Analytics */}
       <Script

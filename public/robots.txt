@@ -15,7 +15,7 @@ Allow: /leaderboard/
 Allow: /accessibility/
 
 # Sitemap
-Sitemap: https://mouse-tester-pro.vercel.app/sitemap.xml
+Sitemap: https://www.mousetesterpro.com/sitemap.xml
 
 # Crawl delay (optional)
 Crawl-delay: 1 

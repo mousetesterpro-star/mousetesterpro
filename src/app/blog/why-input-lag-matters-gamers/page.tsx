@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Why Input Lag Matters for Gamers | Competitive Gaming Impact",
     description: "Understanding the impact of input lag on competitive gaming and how even small improvements can give you a significant advantage in fast-paced games.",
-    url: "https://mouse-tester-pro.vercel.app/blog/why-input-lag-matters-gamers",
+    url: "https://www.mousetesterpro.com/blog/why-input-lag-matters-gamers",
     type: "article",
     publishedTime: "2025-01-10T00:00:00.000Z",
     authors: ["Mouse Tester Pro"],

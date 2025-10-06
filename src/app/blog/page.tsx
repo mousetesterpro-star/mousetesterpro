@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Gaming Mouse Blog | Tips, Guides & Performance Insights",
     description: "Expert gaming mouse guides, performance tips, and latency optimization advice. Learn how to improve your gaming setup and reduce input lag.",
-    url: "https://mouse-tester-pro.vercel.app/blog",
+    url: "https://www.mousetesterpro.com/blog",
     siteName: "Mouse Tester Pro",
     type: "website"
   }

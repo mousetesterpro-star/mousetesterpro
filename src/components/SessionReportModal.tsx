@@ -106,13 +106,13 @@ export default function SessionReportModal({ isOpen, onClose, session, proBenchm
     doc.line(40, 780, 555, 780);
     doc.setFontSize(10);
     doc.setTextColor('#888');
-    doc.text('Mouse Tester Pro — https://mouse-tester-pro.vercel.app', 40, 795);
+    doc.text('Mouse Tester Pro — https://www.mousetesterpro.com', 40, 795);
     doc.save('session-report.pdf');
   };
 
   const handleShareLink = () => {
     if (!session) return;
-    const url = `https://mouse-tester-pro.vercel.app/?latency=${session.latency}&polling=${session.polling}&jitter=${session.jitter}`;
+    const url = `https://www.mousetesterpro.com/?latency=${session.latency}&polling=${session.polling}&jitter=${session.jitter}`;
     navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);

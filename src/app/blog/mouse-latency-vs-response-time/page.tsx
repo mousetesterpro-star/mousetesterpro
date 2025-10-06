@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mouse Latency vs Response Time: Key Differences | Gaming Performance",
     description: "Explore the differences between mouse latency and response time, and why both metrics are crucial for optimal gaming performance and competitive advantage.",
-    url: "https://mouse-tester-pro.vercel.app/blog/mouse-latency-vs-response-time",
+    url: "https://www.mousetesterpro.com/blog/mouse-latency-vs-response-time",
     type: "article",
     publishedTime: "2025-01-05T00:00:00.000Z",
     authors: ["Mouse Tester Pro"],
