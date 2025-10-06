@@ -169,10 +169,14 @@ export default function PerformanceComparison() {
   }
 
   return (
-    <div>
+    <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+      <div className="text-center mb-6">
+        <h3 className="text-xl font-bold text-white mb-2">Performance Comparison</h3>
+        <p className="text-gray-400 text-sm">Compare your mouse performance against industry benchmarks</p>
+      </div>
+      
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <h2 className="text-2xl font-bold text-white">Performance Comparison</h2>
           <UserGuide 
             title="Performance Comparison"
             content="Compare your mouse performance against industry benchmarks. See how you stack up against professional gamers, casual gamers, and office users."
@@ -181,13 +185,13 @@ export default function PerformanceComparison() {
         <div className="flex gap-2">
           <button
             onClick={() => setShowDetailedAnalysis(!showDetailedAnalysis)}
-            className="px-4 py-2 bg-[#23272e] text-white rounded-lg font-medium hover:bg-gray-700"
+            className="px-4 py-2 bg-gray-700 text-white rounded-lg font-medium hover:bg-gray-600"
           >
             {showDetailedAnalysis ? 'Hide' : 'Show'} Detailed Analysis
           </button>
           <button
             onClick={() => setShowRecommendations(!showRecommendations)}
-            className="px-4 py-2 bg-[#23272e] text-white rounded-lg font-medium hover:bg-gray-700"
+            className="px-4 py-2 bg-gray-700 text-white rounded-lg font-medium hover:bg-gray-600"
           >
             {showRecommendations ? 'Hide' : 'Show'} Recommendations
           </button>
@@ -203,7 +207,7 @@ export default function PerformanceComparison() {
             const benchmark = BENCHMARKS.find(b => b.name === e.target.value);
             if (benchmark) setSelectedBenchmark(benchmark);
           }}
-          className="bg-[#23272e] text-white rounded-lg px-4 py-2 w-full border border-[#3A3A3A]"
+          className="bg-gray-700 text-white rounded-lg px-4 py-2 w-full border border-gray-600"
         >
           {BENCHMARKS.map((benchmark) => (
             <option key={benchmark.name} value={benchmark.name}>
@@ -216,7 +220,7 @@ export default function PerformanceComparison() {
       {comparisonResult && (
         <>
           {/* Enhanced Overall Score */}
-          <div className="bg-[#23272e] rounded-lg p-6 mb-6 border border-[#3A3A3A]">
+          <div className="bg-gray-800 rounded-lg p-6 mb-6">
             <div className="text-center">
               <div className={`text-5xl font-bold ${getScoreColor(comparisonResult.overallScore)}`}>
                 {Math.round(comparisonResult.overallScore)}%
@@ -235,7 +239,7 @@ export default function PerformanceComparison() {
 
           {/* Enhanced Score Breakdown */}
                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-            <div className="bg-[#23272e] rounded-lg p-4 border border-[#3A3A3A]">
+            <div className="bg-gray-800 rounded-lg p-4">
               <div className="text-center">
                 <div className={`text-3xl font-bold ${getScoreColor(comparisonResult.latencyScore)}`}>
                   {Math.round(comparisonResult.latencyScore)}%
@@ -247,7 +251,7 @@ export default function PerformanceComparison() {
               </div>
             </div>
             
-            <div className="bg-[#23272e] rounded-lg p-4 border border-[#3A3A3A]">
+            <div className="bg-gray-800 rounded-lg p-4">
               <div className="text-center">
                 <div className={`text-3xl font-bold ${getScoreColor(comparisonResult.pollingScore)}`}>
                   {Math.round(comparisonResult.pollingScore)}%
@@ -259,7 +263,7 @@ export default function PerformanceComparison() {
               </div>
             </div>
             
-            <div className="bg-[#23272e] rounded-lg p-4 border border-[#3A3A3A]">
+            <div className="bg-gray-800 rounded-lg p-4">
               <div className="text-center">
                 <div className={`text-3xl font-bold ${getScoreColor(comparisonResult.jitterScore)}`}>
                   {Math.round(comparisonResult.jitterScore)}%
@@ -274,11 +278,11 @@ export default function PerformanceComparison() {
 
           {/* Enhanced Recommendations */}
           {comparisonResult.recommendations.length > 0 && showRecommendations && (
-            <div className="bg-[#23272e] rounded-lg p-4 mb-6 border border-[#3A3A3A]">
+            <div className="bg-gray-800 rounded-lg p-4 mb-6">
               <h3 className="text-lg font-semibold text-white mb-3">Improvement Recommendations</h3>
               <div className="space-y-3">
                 {comparisonResult.recommendations.map((recommendation, index) => (
-                  <div key={index} className="text-gray-300 text-sm flex items-start gap-3 p-2 bg-[#1A1A1A] rounded">
+                  <div key={index} className="text-gray-300 text-sm flex items-start gap-3 p-2 bg-gray-700 rounded">
                     <span className="text-lg">{recommendation.split(' ')[0]}</span>
                     <span>{recommendation.split(' ').slice(1).join(' ')}</span>
                   </div>
@@ -289,7 +293,7 @@ export default function PerformanceComparison() {
 
           {/* Enhanced Detailed Analysis */}
           {showDetailedAnalysis && (
-            <div className="bg-[#23272e] rounded-lg p-4 mb-6 border border-[#3A3A3A]">
+            <div className="bg-gray-800 rounded-lg p-4 mb-6">
               <h3 className="text-lg font-semibold text-white mb-3">Detailed Analysis</h3>
               
               <div className="space-y-4">

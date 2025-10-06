@@ -74,32 +74,36 @@ const Heatmap = () => {
   }
 
   return (
-    <div className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-6 flex flex-col items-center mb-8">
-        <h2 className="text-xl font-bold text-white mb-4">Mouse Heatmap</h2>
-        <p className="text-gray-400 text-sm mb-4">
+    <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6">
+      <div className="text-center mb-6">
+        <h3 className="text-xl font-bold text-white mb-2">Mouse Heatmap</h3>
+        <p className="text-gray-400 text-sm">
           {isHeatmapActive ? "Move and click your mouse in the area below to generate the heatmap." : "Click 'Start Heatmap' to begin."}
         </p>
-        <div 
-          ref={heatmapContainerRef}
-          className="relative w-full h-80 bg-black/20 rounded-lg border-2 border-dashed border-gray-600 cursor-crosshair"
-          style={{ pointerEvents: isHeatmapActive ? 'auto' : 'none', opacity: isHeatmapActive ? 1 : 0.5 }}
-        />
-        <div className="flex gap-4 mt-4">
-            <button
-                onClick={startHeatmap}
-                disabled={isHeatmapActive}
-                className="bg-green-500 text-white font-bold px-6 py-2 rounded-lg text-lg shadow hover:bg-green-600 transition disabled:opacity-50"
-            >
-                Start Heatmap
-            </button>
-            <button
-                onClick={stopHeatmap}
-                disabled={!isHeatmapActive}
-                className="bg-red-500 text-white font-bold px-6 py-2 rounded-lg text-lg shadow hover:bg-red-600 transition disabled:opacity-50"
-            >
-                Stop Heatmap
-            </button>
-        </div>
+      </div>
+      
+      <div 
+        ref={heatmapContainerRef}
+        className="relative w-full h-80 bg-gray-900 rounded-lg border-2 border-dashed border-gray-600 cursor-crosshair"
+        style={{ pointerEvents: isHeatmapActive ? 'auto' : 'none', opacity: isHeatmapActive ? 1 : 0.5 }}
+      />
+      
+      <div className="flex justify-center gap-4 mt-6">
+        <button
+          onClick={startHeatmap}
+          disabled={isHeatmapActive}
+          className="px-6 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 text-white rounded-lg font-medium transition-colors"
+        >
+          Start Heatmap
+        </button>
+        <button
+          onClick={stopHeatmap}
+          disabled={!isHeatmapActive}
+          className="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-gray-600 text-white rounded-lg font-medium transition-colors"
+        >
+          Stop Heatmap
+        </button>
+      </div>
     </div>
   );
 };

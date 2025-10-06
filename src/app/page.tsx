@@ -361,85 +361,64 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Movement Heatmap Analysis */}
-            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+            {/* Advanced Tools Grid */}
+            <div className="space-y-8">
+              {/* Movement Heatmap Analysis */}
               <Heatmap />
-            </div>
 
-            {/* Advanced Performance Analysis */}
-            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              {/* Advanced Performance Analysis */}
               <AdvancedHeatmap />
-            </div>
 
-            {/* Session Replay & Analysis */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              {/* Session Replay & Analysis */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
                 <SessionReplay />
-              </div>
-            </Suspense>
+              </Suspense>
 
-            {/* Performance Comparison */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              {/* Performance Comparison */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
                 <PerformanceComparison />
-              </div>
-            </Suspense>
+              </Suspense>
 
-            {/* FPS Gaming Analysis */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              {/* FPS Gaming Analysis */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
                 <FpsReactionTest />
-              </div>
-            </Suspense>
+              </Suspense>
 
-            {/* DPI Calibration */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              {/* DPI Calibration */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
                 <DpiCalibrationTest />
-              </div>
-            </Suspense>
+              </Suspense>
 
-            {/* Click Pattern Analysis */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              {/* Click Pattern Analysis */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
                 <ClickPatternTest />
-              </div>
-            </Suspense>
+              </Suspense>
 
-            {/* Input Path Tracing */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              {/* Input Path Tracing */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
                 <InputPathTracer />
-              </div>
-            </Suspense>
+              </Suspense>
 
-            {/* Cross-Device Analysis */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              {/* Cross-Device Analysis */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
                 <CrossDeviceLatencyTest />
-              </div>
-            </Suspense>
+              </Suspense>
 
-            {/* Input Bottleneck Scanner */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              {/* Input Bottleneck Scanner */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
                 <InputBottleneckScanner />
-              </div>
-            </Suspense>
+              </Suspense>
 
-            {/* Cloud Diagnostic */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              {/* Cloud Diagnostic */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
                 <CloudInputDiagnostic />
-              </div>
-            </Suspense>
+              </Suspense>
 
-            {/* Mobile Performance */}
-            <Suspense fallback={<AdvancedFeatureLoader />}>
-              <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              {/* Mobile Performance */}
+              <Suspense fallback={<AdvancedFeatureLoader />}>
                 <MobileTapPerformance />
-              </div>
-            </Suspense>
+              </Suspense>
+            </div>
 
             {/* AdSense Content Ad */}
             <div className="mb-8">
