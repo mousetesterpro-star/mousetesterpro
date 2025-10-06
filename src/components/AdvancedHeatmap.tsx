@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 export default function AdvancedHeatmap() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLDivElement>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [clicks, setClicks] = useState<{x: number, y: number}[]>([]);
   const [movements, setMovements] = useState<{x: number, y: number}[]>([]);

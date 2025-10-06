@@ -28,6 +28,7 @@ const Heatmap = lazy(() => import('@/components/Heatmap')); // Lazy load Heatmap
 const AdvancedHeatmap = lazy(() => import('@/components/AdvancedHeatmap'));
 const SessionReplay = lazy(() => import('@/components/SessionReplay'));
 const PerformanceComparison = lazy(() => import('@/components/PerformanceComparison'));
+const VisualMouseGuide = lazy(() => import('@/components/VisualMouseGuide'));
 
 // Loading component for lazy-loaded features
 const AdvancedFeatureLoader = () => (
@@ -120,6 +121,13 @@ export default function Home() {
                 <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
                   <BasicMouseTest />
                 </div>
+
+                {/* Visual Mouse Guide - Interactive left/right/scroll demo */}
+                <Suspense fallback={<AdvancedFeatureLoader />}>
+                  <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+                    <VisualMouseGuide />
+                  </div>
+                </Suspense>
 
             {/* Results Display - Shows after test */}
             {allMetricsSet && (

@@ -43,11 +43,11 @@ export default function InputPathTracer() {
         <p className="text-gray-400 text-sm">See how your mouse click travels through the system</p>
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-center gap-4">
+      <div className="flex justify-center">
         {!testActive && !testComplete && (
           <button
             onClick={startTest}
-            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors w-full sm:w-auto"
+            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
           >
             Start Test
           </button>
@@ -56,7 +56,7 @@ export default function InputPathTracer() {
         {testComplete && (
           <button
             onClick={resetTest}
-            className="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-colors w-full sm:w-auto"
+            className="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-colors"
           >
             Test Again
           </button>
@@ -64,13 +64,13 @@ export default function InputPathTracer() {
       </div>
 
       {testActive && (
-        <div className="text-center space-y-4">
-          <div className="bg-blue-600 text-white px-4 py-2 rounded-lg inline-block">
+        <div className="flex items-center justify-center gap-4">
+          <div className="bg-blue-600 text-white px-4 py-2 rounded-lg">
             Click the button below to trace the input path
           </div>
           <button
             onClick={handleClick}
-            className="px-6 sm:px-8 py-3 sm:py-4 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium text-base sm:text-lg transition-colors w-full sm:w-auto"
+            className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
           >
             Click Me
           </button>
@@ -79,22 +79,18 @@ export default function InputPathTracer() {
 
       {testComplete && (
         <div className="space-y-3">
-          <h4 className="text-white font-medium text-center sm:text-left">Input Path Timeline:</h4>
-          <div className="space-y-3">
-            {results.map((result, index) => (
-              <div key={index} className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 bg-gray-800 rounded-lg p-3 sm:p-4">
-                <div className="flex items-center space-x-3 sm:space-x-4">
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                    {index + 1}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-white font-medium text-sm sm:text-base break-words">{result.step}</div>
-                    <div className="text-gray-400 text-xs sm:text-sm">{result.time}ms</div>
-                  </div>
-                </div>
+          <h4 className="text-white font-medium">Input Path Timeline:</h4>
+          {results.map((result, index) => (
+            <div key={index} className="flex items-center space-x-4 bg-gray-800 rounded-lg p-4">
+              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                {index + 1}
               </div>
-            ))}
-          </div>
+              <div className="flex-1">
+                <div className="text-white font-medium">{result.step}</div>
+                <div className="text-gray-400 text-sm">{result.time}ms</div>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
