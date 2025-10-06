@@ -24,7 +24,7 @@ const HistoryItem = ({ result }: HistoryItemProps) => {
   };
 
   return (
-    <div className="bg-[#181c24] border border-[#23272e] rounded-xl p-4 flex justify-between items-center transition-all duration-200 hover:shadow-lg hover:border-[#60A5FA]">
+    <div className="p-4 border-b border-[#23272e] last:border-b-0 flex justify-between items-center transition-all duration-200 hover:bg-[#23272e]/30">
       <div className="flex-1">
         <div className="text-sm text-gray-400 mb-1">
           {new Date(result.created_at).toLocaleDateString()} at {new Date(result.created_at).toLocaleTimeString()}

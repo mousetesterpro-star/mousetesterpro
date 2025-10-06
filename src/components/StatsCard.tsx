@@ -111,22 +111,22 @@ export default function StatsCard() {
 
   return (
     <section className="bg-[#181c24] border border-[#23272e] rounded-2xl shadow-lg p-4 md:p-6 mb-2">
-      <h2 className="text-2xl font-heading text-white mb-2">Your Stats</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
-        <div className="bg-[#181c24] border border-[#23272e] rounded-xl p-4 flex flex-col items-center w-full min-w-0 overflow-x-auto">
-          <div className="text-sm text-gray-400 mb-1 flex items-center">Best Latency</div>
-          <div className="text-2xl md:text-3xl font-bold text-[#60A5FA] font-mono break-words truncate w-full text-center">{formatStat(best.latency)} ms</div>
-          <div className="text-xs text-gray-500 mt-1 font-mono">Polling: {formatStat(best.polling)} Hz<br/>Jitter: {formatStat(best.jitter)} ms</div>
+      <h2 className="text-2xl font-heading text-white mb-4">Your Stats</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+        <div className="flex flex-col items-center p-4">
+          <div className="text-sm text-gray-400 mb-2">Best Latency</div>
+          <div className="text-2xl md:text-3xl font-bold text-[#60A5FA] font-mono mb-2">{formatStat(best.latency)} ms</div>
+          <div className="text-xs text-gray-500 font-mono text-center">Polling: {formatStat(best.polling)} Hz<br/>Jitter: {formatStat(best.jitter)} ms</div>
         </div>
-        <div className="bg-[#181c24] border border-[#23272e] rounded-xl p-4 flex flex-col items-center w-full min-w-0 overflow-x-auto">
-          <div className="text-sm text-gray-400 mb-1 flex items-center">Average</div>
-          <div className="text-2xl md:text-3xl font-bold text-[#60A5FA] font-mono break-words truncate w-full text-center">{avgLatency} ms</div>
-          <div className="text-xs text-gray-500 mt-1 font-mono">Polling: {avgPolling} Hz<br/>Jitter: {avgJitter} ms</div>
+        <div className="flex flex-col items-center p-4">
+          <div className="text-sm text-gray-400 mb-2">Average</div>
+          <div className="text-2xl md:text-3xl font-bold text-[#60A5FA] font-mono mb-2">{avgLatency} ms</div>
+          <div className="text-xs text-gray-500 font-mono text-center">Polling: {avgPolling} Hz<br/>Jitter: {avgJitter} ms</div>
         </div>
-        <div className="bg-[#181c24] border border-[#23272e] rounded-xl p-4 flex flex-col items-center w-full min-w-0 overflow-x-auto">
-          <div className="text-sm text-gray-400 mb-1 flex items-center">Most Recent</div>
-          <div className="text-2xl md:text-3xl font-bold text-[#60A5FA] font-mono break-words truncate w-full text-center">{formatStat(recent.latency)} ms</div>
-          <div className="text-xs text-gray-500 mt-1 font-mono">Polling: {formatStat(recent.polling)} Hz<br/>Jitter: {formatStat(recent.jitter)} ms</div>
+        <div className="flex flex-col items-center p-4">
+          <div className="text-sm text-gray-400 mb-2">Most Recent</div>
+          <div className="text-2xl md:text-3xl font-bold text-[#60A5FA] font-mono mb-2">{formatStat(recent.latency)} ms</div>
+          <div className="text-xs text-gray-500 font-mono text-center">Polling: {formatStat(recent.polling)} Hz<br/>Jitter: {formatStat(recent.jitter)} ms</div>
         </div>
       </div>
     </section>
