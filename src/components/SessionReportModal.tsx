@@ -195,51 +195,94 @@ export default function SessionReportModal({ isOpen, onClose, session, proBenchm
     });
     y += 20;
     
-    // Performance comparison
+    // Performance comparison with improved layout
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(14);
     doc.text('Performance Comparison', leftMargin, y);
     y += 25;
     
-    // Comparison table with better spacing
-    doc.setFillColor(248, 249, 250);
-    doc.rect(leftMargin, y - 10, contentWidth, 60, 'F');
+    // Create a more structured comparison table
+    const tableTop = y - 10;
+    const tableHeight = 80;
+    const rowHeight = 20;
     
+    // Table background
+    doc.setFillColor(248, 249, 250);
+    doc.rect(leftMargin, tableTop, contentWidth, tableHeight, 'F');
+    
+    // Table border
+    doc.setDrawColor(200, 200, 200);
+    doc.setLineWidth(0.5);
+    doc.rect(leftMargin, tableTop, contentWidth, tableHeight);
+    
+    // Header row background
+    doc.setFillColor(230, 230, 230);
+    doc.rect(leftMargin, tableTop, contentWidth, rowHeight, 'F');
+    
+    // Column dividers
+    const col1 = leftMargin + 120;
+    const col2 = leftMargin + 220;
+    const col3 = leftMargin + 320;
+    const col4 = leftMargin + 420;
+    
+    doc.line(col1, tableTop, col1, tableTop + tableHeight);
+    doc.line(col2, tableTop, col2, tableTop + tableHeight);
+    doc.line(col3, tableTop, col3, tableTop + tableHeight);
+    doc.line(col4, tableTop, col4, tableTop + tableHeight);
+    
+    // Header text
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(10);
-    doc.text('Benchmark', leftMargin + 15, y + 10);
-    doc.text('Latency', leftMargin + 120, y + 10);
-    doc.text('Polling', leftMargin + 220, y + 10);
-    doc.text('Jitter', leftMargin + 320, y + 10);
+    doc.setTextColor(0, 0, 0);
+    doc.text('Benchmark', leftMargin + 10, tableTop + 14);
+    doc.text('Latency', col1 + 10, tableTop + 14);
+    doc.text('Polling Rate', col2 + 10, tableTop + 14);
+    doc.text('Jitter', col3 + 10, tableTop + 14);
+    doc.text('Overall', col4 + 10, tableTop + 14);
     
-    y += 20;
+    // Data rows
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
     
-    // Your results
+    // Your results row
+    const yourRowY = tableTop + rowHeight + 14;
     doc.setTextColor(0, 0, 0);
-    doc.text('Your Results', leftMargin + 15, y);
-    doc.text(`${session.latency.toFixed(1)}ms`, leftMargin + 120, y);
-    doc.text(`${session.polling}Hz`, leftMargin + 220, y);
-    doc.text(`${session.jitter.toFixed(1)}ms`, leftMargin + 320, y);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Your Results', leftMargin + 10, yourRowY);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`${session.latency.toFixed(1)} ms`, col1 + 10, yourRowY);
+    doc.text(`${session.polling} Hz`, col2 + 10, yourRowY);
+    doc.text(`${session.jitter.toFixed(1)} ms`, col3 + 10, yourRowY);
     
-    y += 15;
+    // Calculate overall rating for your results
+    const yourOverall = session.latency < 10 && session.polling > 900 && session.jitter < 0.5 ? 'Excellent' :
+                       session.latency < 15 && session.polling > 500 ? 'Good' : 'Needs Work';
+    const yourColor = yourOverall === 'Excellent' ? [0, 150, 0] : yourOverall === 'Good' ? [255, 165, 0] : [220, 20, 60];
+    doc.setTextColor(yourColor[0], yourColor[1], yourColor[2]);
+    doc.text(yourOverall, col4 + 10, yourRowY);
     
-    // Pro benchmark
+    // Professional benchmark row
+    const proRowY = tableTop + (rowHeight * 2) + 14;
     doc.setTextColor(100, 100, 100);
-    doc.text('Professional', leftMargin + 15, y);
-    doc.text(`${proBenchmarks.latency}ms`, leftMargin + 120, y);
-    doc.text(`${proBenchmarks.polling}Hz`, leftMargin + 220, y);
-    doc.text(`${proBenchmarks.jitter}ms`, leftMargin + 320, y);
+    doc.text('Professional', leftMargin + 10, proRowY);
+    doc.text(`${proBenchmarks.latency} ms`, col1 + 10, proRowY);
+    doc.text(`${proBenchmarks.polling} Hz`, col2 + 10, proRowY);
+    doc.text(`${proBenchmarks.jitter} ms`, col3 + 10, proRowY);
+    doc.setTextColor(0, 150, 0);
+    doc.text('Excellent', col4 + 10, proRowY);
     
-    y += 15;
+    // Global average row
+    const avgRowY = tableTop + (rowHeight * 3) + 14;
+    doc.setTextColor(100, 100, 100);
+    doc.text('Global Average', leftMargin + 10, avgRowY);
+    doc.text(`${globalAvg.latency} ms`, col1 + 10, avgRowY);
+    doc.text(`${globalAvg.polling} Hz`, col2 + 10, avgRowY);
+    doc.text(`${globalAvg.jitter} ms`, col3 + 10, avgRowY);
+    doc.setTextColor(255, 165, 0);
+    doc.text('Good', col4 + 10, avgRowY);
     
-    // Global average
-    doc.text('Global Average', leftMargin + 15, y);
-    doc.text(`${globalAvg.latency}ms`, leftMargin + 120, y);
-    doc.text(`${globalAvg.polling}Hz`, leftMargin + 220, y);
-    doc.text(`${globalAvg.jitter}ms`, leftMargin + 320, y);
+    y = tableTop + tableHeight + 20;
     
     // Professional footer
     y = 750;
