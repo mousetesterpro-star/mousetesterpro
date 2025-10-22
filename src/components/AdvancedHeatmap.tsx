@@ -95,30 +95,30 @@ export default function AdvancedHeatmap() {
           onMouseMove={handleMouseMove}
           onClick={handleClick}
         >
-          {/* Movement trail */}
-          {movements.map((move, index) => (
+          {/* Movement trail with fade effect */}
+          {movements.slice(-100).map((move, index) => (
             <div
               key={index}
-              className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60"
+              className="absolute w-1 h-1 bg-blue-400 rounded-full"
               style={{
                 left: `${move.x}%`,
                 top: `${move.y}%`,
-                transform: 'translate(-50%, -50%)'
+                transform: 'translate(-50%, -50%)',
+                opacity: Math.max(0.1, 1 - (movements.length - index) / 100)
               }}
             />
           ))}
           
-          {/* Click points */}
+          {/* Click points with ripple effect */}
           {clicks.map((click, index) => (
-            <div
-              key={index}
-              className="absolute w-3 h-3 bg-red-500 rounded-full border-2 border-white"
-              style={{
-                left: `${click.x}%`,
-                top: `${click.y}%`,
-                transform: 'translate(-50%, -50%)'
-              }}
-            />
+            <div key={index} className="absolute" style={{
+              left: `${click.x}%`,
+              top: `${click.y}%`,
+              transform: 'translate(-50%, -50%)'
+            }}>
+              <div className="w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-ping"></div>
+              <div className="absolute inset-0 w-4 h-4 bg-red-500 rounded-full border-2 border-white"></div>
+            </div>
           ))}
           
           {/* Instructions */}
@@ -149,6 +149,30 @@ export default function AdvancedHeatmap() {
               <span className="text-white ml-2">{movements.length}</span>
             </div>
           </div>
+          
+          {clicks.length > 0 && (
+            <div className="mt-4 pt-4 border-t border-gray-700">
+              <h5 className="text-white font-medium mb-2">Click Distribution</h5>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div>
+                  <span className="text-gray-400">Left Side:</span>
+                  <span className="text-white ml-2">{clicks.filter(c => c.x < 50).length}</span>
+                </div>
+                <div>
+                  <span className="text-gray-400">Right Side:</span>
+                  <span className="text-white ml-2">{clicks.filter(c => c.x >= 50).length}</span>
+                </div>
+                <div>
+                  <span className="text-gray-400">Top Half:</span>
+                  <span className="text-white ml-2">{clicks.filter(c => c.y < 50).length}</span>
+                </div>
+                <div>
+                  <span className="text-gray-400">Bottom Half:</span>
+                  <span className="text-white ml-2">{clicks.filter(c => c.y >= 50).length}</span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

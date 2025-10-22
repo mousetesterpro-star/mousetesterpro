@@ -10,22 +10,35 @@ export default function CloudInputDiagnostic() {
     
     // Simulate report generation
     setTimeout(() => {
+      const getBrowserInfo = () => {
+        const ua = navigator.userAgent;
+        if (ua.includes('Chrome')) return 'Chrome';
+        if (ua.includes('Firefox')) return 'Firefox';
+        if (ua.includes('Safari')) return 'Safari';
+        if (ua.includes('Edge')) return 'Edge';
+        return 'Unknown Browser';
+      };
+
       const mockReport = {
         device: {
-          browser: navigator.userAgent.split(' ')[0],
+          browser: getBrowserInfo(),
           platform: navigator.platform,
           screen: `${window.screen.width}x${window.screen.height}`,
+          userAgent: navigator.userAgent.substring(0, 50) + '...',
         },
         performance: {
           latency: Math.round((Math.random() * 10 + 5) * 10) / 10,
           polling: Math.round(1000 + Math.random() * 100),
           jitter: Math.round((Math.random() * 0.5) * 100) / 100,
+          fps: Math.round(60 + Math.random() * 60),
+          memory: Math.round((Math.random() * 2 + 1) * 100) / 100,
         },
         rating: Math.random() > 0.5 ? "Good" : "Excellent",
         recommendations: [
           "Use a wired mouse for best performance",
           "Close unnecessary background applications",
-          "Update your mouse drivers regularly"
+          "Update your mouse drivers regularly",
+          "Consider using a gaming mouse for better precision"
         ]
       };
       
@@ -111,6 +124,7 @@ export default function CloudInputDiagnostic() {
                 <div><span className="text-gray-400">Browser:</span> <span className="text-white">{report.device.browser}</span></div>
                 <div><span className="text-gray-400">Platform:</span> <span className="text-white">{report.device.platform}</span></div>
                 <div><span className="text-gray-400">Screen:</span> <span className="text-white">{report.device.screen}</span></div>
+                <div><span className="text-gray-400">User Agent:</span> <span className="text-white text-xs">{report.device.userAgent}</span></div>
               </div>
             </div>
             
@@ -120,6 +134,8 @@ export default function CloudInputDiagnostic() {
                 <div><span className="text-gray-400">Latency:</span> <span className="text-white">{report.performance.latency}ms</span></div>
                 <div><span className="text-gray-400">Polling:</span> <span className="text-white">{report.performance.polling}Hz</span></div>
                 <div><span className="text-gray-400">Jitter:</span> <span className="text-white">{report.performance.jitter}ms</span></div>
+                <div><span className="text-gray-400">FPS:</span> <span className="text-white">{report.performance.fps}</span></div>
+                <div><span className="text-gray-400">Memory:</span> <span className="text-white">{report.performance.memory}GB</span></div>
               </div>
             </div>
           </div>

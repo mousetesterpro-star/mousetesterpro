@@ -1,19 +1,26 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import BasicMouseTest from './BasicMouseTest';
+import ClickLatencyCard from './ClickLatencyCard';
+import PollingRateCard from './PollingRateCard';
+import JitterAnalysisCard from './JitterAnalysisCard';
+import PerformanceComparison from './PerformanceComparison';
+
+interface TestConfig {
+  id: string;
+  name: string;
+  description: string;
+  component: React.ComponentType;
+  priority: number;
+}
 
 interface TestCategory {
   id: string;
   name: string;
   description: string;
   keywords: string[];
-  tests: {
-    id: string;
-    name: string;
-    description: string;
-    component: string;
-    priority: number;
-  }[];
+  tests: TestConfig[];
 }
 
 const testCategories: TestCategory[] = [
@@ -27,14 +34,14 @@ const testCategories: TestCategory[] = [
         id: 'basic-latency',
         name: 'Basic Click Latency Test',
         description: 'Quick test to measure mouse click response time',
-        component: 'BasicMouseTest',
+        component: BasicMouseTest,
         priority: 1
       },
       {
         id: 'advanced-latency',
         name: 'Advanced Latency Analysis',
         description: 'Comprehensive latency measurement with detailed analysis',
-        component: 'ClickLatencyCard',
+        component: ClickLatencyCard,
         priority: 2
       }
     ]
@@ -49,14 +56,14 @@ const testCategories: TestCategory[] = [
         id: 'polling-rate',
         name: 'Polling Rate Measurement',
         description: 'Measure your mouse polling rate in Hz',
-        component: 'PollingRateCard',
+        component: PollingRateCard,
         priority: 1
       },
       {
         id: 'rate-checker',
         name: 'Rate Checker Tool',
         description: 'Advanced polling rate analysis',
-        component: 'PollingRateCard',
+        component: PollingRateCard,
         priority: 2
       }
     ]
@@ -71,14 +78,14 @@ const testCategories: TestCategory[] = [
         id: 'jitter-analysis',
         name: 'Jitter Analysis',
         description: 'Measure mouse movement consistency and jitter',
-        component: 'JitterAnalysisCard',
+        component: JitterAnalysisCard,
         priority: 1
       },
       {
         id: 'stability-test',
         name: 'Stability Test',
         description: 'Test mouse tracking stability',
-        component: 'JitterAnalysisCard',
+        component: JitterAnalysisCard,
         priority: 2
       }
     ]
@@ -93,14 +100,14 @@ const testCategories: TestCategory[] = [
         id: 'gaming-suite',
         name: 'Gaming Performance Suite',
         description: 'Complete gaming mouse analysis',
-        component: 'PerformanceComparison',
+        component: PerformanceComparison,
         priority: 1
       },
       {
         id: 'competitive-test',
         name: 'Competitive Gaming Test',
         description: 'Test optimized for competitive gaming',
-        component: 'PerformanceComparison',
+        component: PerformanceComparison,
         priority: 2
       }
     ]
@@ -115,14 +122,14 @@ const testCategories: TestCategory[] = [
         id: 'wireless-latency',
         name: 'Wireless Latency Test',
         description: 'Test wireless mouse input delay',
-        component: 'BasicMouseTest',
+        component: BasicMouseTest,
         priority: 1
       },
       {
         id: 'battery-impact',
         name: 'Battery Impact Analysis',
         description: 'Test how battery level affects performance',
-        component: 'BasicMouseTest',
+        component: BasicMouseTest,
         priority: 2
       }
     ]
@@ -133,6 +140,7 @@ export default function DynamicTestSelector() {
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<string>('latency');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [selectedTest, setSelectedTest] = useState<TestConfig | null>(null);
 
   useEffect(() => {
     // Get search query from URL parameters or detect from page
@@ -165,6 +173,34 @@ export default function DynamicTestSelector() {
   };
 
   const selectedCategoryData = testCategories.find(cat => cat.id === selectedCategory);
+
+  const handleTestSelect = (test: TestConfig) => {
+    setSelectedTest(test);
+  };
+
+  const handleBackToSelection = () => {
+    setSelectedTest(null);
+  };
+
+  // If a test is selected, render the test component
+  if (selectedTest) {
+    const TestComponent = selectedTest.component;
+    return (
+      <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+        <div className="mb-6">
+          <button
+            onClick={handleBackToSelection}
+            className="mb-4 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition"
+          >
+            ← Back to Test Selection
+          </button>
+          <h2 className="text-2xl font-bold text-white mb-2">{selectedTest.name}</h2>
+          <p className="text-gray-300">{selectedTest.description}</p>
+        </div>
+        <TestComponent />
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
@@ -222,7 +258,10 @@ export default function DynamicTestSelector() {
                 <p className="text-gray-400 text-sm mb-3">
                   {test.description}
                 </p>
-                <button className="bg-[#60A5FA] text-black font-medium px-4 py-2 rounded-lg hover:bg-[#4090e6] transition">
+                <button 
+                  onClick={() => handleTestSelect(test)}
+                  className="bg-[#60A5FA] text-black font-medium px-4 py-2 rounded-lg hover:bg-[#4090e6] transition"
+                >
                   Start Test
                 </button>
               </div>

@@ -33,12 +33,19 @@ export default function SessionReplay() {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     
-    setEvents(prev => [...prev.slice(-20), {
-      type: 'move',
-      x,
-      y,
-      time: Date.now()
-    }]);
+    // Throttle movement events to avoid too many updates
+    setEvents(prev => {
+      const now = Date.now();
+      const lastEvent = prev[prev.length - 1];
+      if (lastEvent && now - lastEvent.time < 16) return prev; // 60fps max
+      
+      return [...prev.slice(-50), {
+        type: 'move',
+        x,
+        y,
+        time: now
+      }];
+    });
   };
 
   const handleClick = (e: React.MouseEvent) => {
@@ -67,6 +74,7 @@ export default function SessionReplay() {
     const playNextEvent = (index: number) => {
       if (index >= events.length) {
         setIsPlaying(false);
+        setCurrentEvent(0);
         return;
       }
       
@@ -74,12 +82,14 @@ export default function SessionReplay() {
       
       if (index < events.length - 1) {
         const delay = events[index + 1].time - events[index].time;
+        const playbackDelay = Math.min(Math.max(delay, 16), 100); // Min 16ms (60fps), max 100ms
         playbackRef.current = setTimeout(() => {
           playNextEvent(index + 1);
-        }, Math.min(delay, 100)); // Cap at 100ms for smooth playback
+        }, playbackDelay);
       } else {
         setTimeout(() => {
           setIsPlaying(false);
+          setCurrentEvent(0);
         }, 500);
       }
     };
@@ -89,6 +99,7 @@ export default function SessionReplay() {
 
   const stopPlayback = () => {
     setIsPlaying(false);
+    setCurrentEvent(0);
     if (playbackRef.current) {
       clearTimeout(playbackRef.current);
     }
@@ -100,6 +111,9 @@ export default function SessionReplay() {
     setIsRecording(false);
     setIsPlaying(false);
     setCurrentEvent(0);
+    if (playbackRef.current) {
+      clearTimeout(playbackRef.current);
+    }
   };
 
   return (
@@ -137,6 +151,14 @@ export default function SessionReplay() {
             >
               {isPlaying ? 'Playing...' : 'Play Replay'}
             </button>
+            {isPlaying && (
+              <button
+                onClick={stopPlayback}
+                className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
+              >
+                Stop Playback
+              </button>
+            )}
             <button
               onClick={resetTest}
               className="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-colors"
@@ -154,13 +176,13 @@ export default function SessionReplay() {
           onMouseMove={handleMouseMove}
           onClick={handleClick}
         >
-          {/* Movement trail */}
-          {events.slice(0, currentEvent + 1).map((event, index) => (
+          {/* Movement trail - show all recorded events */}
+          {events.map((event, index) => (
             <div
               key={index}
               className={`absolute w-1 h-1 rounded-full ${
                 event.type === 'click' ? 'bg-red-500' : 'bg-blue-400'
-              } opacity-60`}
+              } ${index <= currentEvent ? 'opacity-80' : 'opacity-20'}`}
               style={{
                 left: `${event.x}%`,
                 top: `${event.y}%`,
@@ -180,6 +202,7 @@ export default function SessionReplay() {
               }}
             />
           )}
+          
           
           {/* Instructions */}
           {!isRecording && !testComplete && (
@@ -221,10 +244,13 @@ export default function SessionReplay() {
             <div>
               <span className="text-gray-400">Duration:</span>
               <span className="text-white ml-2">
-                {events.length > 0 ? Math.round((events[events.length - 1].time - events[0].time) / 1000) : 0}s
+                {events.length > 1 ? Math.round((events[events.length - 1].time - events[0].time) / 1000) : 0}s
               </span>
             </div>
           </div>
+          {events.length === 0 && (
+            <p className="text-gray-400 text-sm mt-2">No events recorded. Try moving your mouse and clicking during recording.</p>
+          )}
         </div>
       )}
     </div>

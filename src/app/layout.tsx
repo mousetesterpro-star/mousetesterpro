@@ -21,8 +21,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Desktop Mouse Latency Test [2025] | Free Gaming Mouse Tester",
-  description: "Test mouse latency on desktop instantly. Free gaming mouse tester with CPS test, polling rate & input lag analysis. Professional results in seconds.",
+  title: "Mouse Latency Test - Check Input Delay Free",
+  description: "Test mouse latency instantly - no download needed! Get accurate click delay results in seconds. Perfect for gaming performance optimization.",
   keywords: [
     "mouse test latency",
     "mouse latency test",

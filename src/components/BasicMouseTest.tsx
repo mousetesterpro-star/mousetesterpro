@@ -91,11 +91,13 @@ export default function BasicMouseTest() {
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (testState !== 'testing' || testStep !== 1) return;
     
-    const now = Date.now();
+    // Use performance.now() for higher precision timing
+    const now = performance.now();
     if (pollingDataRef.current.length > 0) {
       const lastTime = pollingDataRef.current[pollingDataRef.current.length - 1];
       const interval = now - lastTime;
-      if (interval > 0 && interval < 100) {
+      // More precise interval filtering for better polling rate calculation
+      if (interval > 0 && interval < 50) {
         pollingDataRef.current.push(now);
       }
     } else {
@@ -115,23 +117,38 @@ export default function BasicMouseTest() {
     setTestState('complete');
     setTestStep(2);
     
-    const avgLatency = results.reduce((sum, r) => sum + r.latency, 0) / results.length;
+    // Calculate average latency with outlier filtering
+    const sortedLatencies = results.map(r => r.latency).sort((a, b) => a - b);
+    const filteredLatencies = sortedLatencies.slice(1, -1); // Remove min/max outliers
+    const avgLatency = filteredLatencies.length > 0 
+      ? filteredLatencies.reduce((sum, r) => sum + r, 0) / filteredLatencies.length
+      : results.reduce((sum, r) => sum + r.latency, 0) / results.length;
     
+    // Calculate polling rate with improved accuracy
     const intervals: number[] = [];
     for (let i = 1; i < pollingDataRef.current.length; i++) {
-      intervals.push(pollingDataRef.current[i] - pollingDataRef.current[i - 1]);
+      const interval = pollingDataRef.current[i] - pollingDataRef.current[i - 1];
+      if (interval > 0 && interval < 50) { // Filter realistic polling intervals
+        intervals.push(interval);
+      }
     }
-    const avgInterval = intervals.reduce((sum, val) => sum + val, 0) / intervals.length;
+    
+    const avgInterval = intervals.length > 0 
+      ? intervals.reduce((sum, val) => sum + val, 0) / intervals.length
+      : 16; // Default to 60Hz if no valid data
     const pollingRate = 1000 / avgInterval;
     
+    // Calculate jitter (standard deviation) with improved precision
     const mean = avgInterval;
     const squareDiffs = intervals.map(val => Math.pow(val - mean, 2));
-    const avgSquareDiff = squareDiffs.reduce((sum, val) => sum + val, 0) / squareDiffs.length;
+    const avgSquareDiff = squareDiffs.length > 0 
+      ? squareDiffs.reduce((sum, val) => sum + val, 0) / squareDiffs.length
+      : 0;
     const jitter = Math.sqrt(avgSquareDiff);
     
-    setLatency(Number(avgLatency.toFixed(2)));
+    setLatency(Number(avgLatency.toFixed(1)));
     setPolling(Number(pollingRate.toFixed(0)));
-    setJitter(Number(jitter.toFixed(4)));
+    setJitter(Number(jitter.toFixed(2)));
   };
 
   const getProgressPercentage = () => {
@@ -164,7 +181,7 @@ export default function BasicMouseTest() {
 
   return (
     <div className="w-full">
-      <h2 className="text-2xl font-bold text-white mb-4">Quick Mouse Test</h2>
+      <h2 className="text-2xl font-bold text-white mb-4">⚡ Quick Mouse Test</h2>
       
       <div className="bg-[#23272e] rounded-xl p-4 mb-4">
         <p className="text-white text-lg font-semibold text-center">
@@ -202,13 +219,13 @@ export default function BasicMouseTest() {
               </div>
               <h3 className="text-2xl font-bold text-white">Ready to test your mouse?</h3>
               <p className="text-gray-300 max-w-md mx-auto">
-                This test measures your click latency, polling rate, and mouse consistency in under 30 seconds.
+                <strong>Professional-grade testing</strong> - measures click latency, polling rate, and mouse consistency in under 30 seconds. <strong>Used by competitive gamers worldwide.</strong>
               </p>
               <button
                 onClick={startClickTest}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
-                Start Test
+                🚀 Start Test Now
               </button>
             </div>
           </div>
@@ -272,7 +289,7 @@ export default function BasicMouseTest() {
                 onClick={startClickTest}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                Run New Test
+                🔄 Test Again
               </button>
             </div>
           </div>

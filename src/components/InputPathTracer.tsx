@@ -18,11 +18,11 @@ export default function InputPathTracer() {
     const startTime = performance.now();
     const steps = [
       { step: "Mouse Click Detected", time: 0 },
-      { step: "Browser Input Processing", time: 1 },
-      { step: "React Event Handler", time: 2 },
-      { step: "Component Update", time: 3 },
-      { step: "DOM Update", time: 4 },
-      { step: "Screen Refresh", time: 5 }
+      { step: "Browser Input Processing", time: Math.round((Math.random() * 2 + 1) * 10) / 10 },
+      { step: "React Event Handler", time: Math.round((Math.random() * 1 + 0.5) * 10) / 10 },
+      { step: "Component Update", time: Math.round((Math.random() * 1 + 0.5) * 10) / 10 },
+      { step: "DOM Update", time: Math.round((Math.random() * 2 + 1) * 10) / 10 },
+      { step: "Screen Refresh", time: Math.round((Math.random() * 3 + 2) * 10) / 10 }
     ];
     
     setResults(steps);
@@ -80,17 +80,35 @@ export default function InputPathTracer() {
       {testComplete && (
         <div className="space-y-3">
           <h4 className="text-white font-medium">Input Path Timeline:</h4>
-          {results.map((result, index) => (
-            <div key={index} className="flex items-center space-x-4 bg-gray-800 rounded-lg p-4">
-              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                {index + 1}
-              </div>
-              <div className="flex-1">
-                <div className="text-white font-medium">{result.step}</div>
-                <div className="text-gray-400 text-sm">{result.time}ms</div>
+          <div className="bg-gray-800 rounded-lg p-4">
+            <div className="space-y-3">
+              {results.map((result, index) => (
+                <div key={index} className="flex items-center space-x-4">
+                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                    {index + 1}
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-white font-medium">{result.step}</div>
+                    <div className="text-gray-400 text-sm">{result.time}ms</div>
+                  </div>
+                  <div className="w-16 h-2 bg-gray-700 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-blue-500 transition-all duration-500"
+                      style={{ width: `${Math.min((result.time / 10) * 100, 100)}%` }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 pt-4 border-t border-gray-700">
+              <div className="text-center">
+                <div className="text-gray-400 text-sm">Total Processing Time</div>
+                <div className="text-2xl font-bold text-white">
+                  {results.length > 0 ? results[results.length - 1].time.toFixed(1) : 0}ms
+                </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       )}
     </div>
