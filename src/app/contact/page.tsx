@@ -29,7 +29,13 @@ export default function ContactPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: sanitizeInput(value) });
+    // For message field, don't sanitize during typing to allow spaces
+    // Only sanitize name and email fields during typing
+    if (name === 'message') {
+      setForm({ ...form, [name]: value });
+    } else {
+      setForm({ ...form, [name]: sanitizeInput(value) });
+    }
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors({ ...errors, [name]: '' });
