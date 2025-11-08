@@ -5,7 +5,7 @@
 ### Ad Placements
 1. **Content Ads** - Between main sections (3 placements)
 2. **Footer Ad** - At the bottom of the page
-3. **Publisher ID**: `ca-pub-1310810766620297`
+3. **Publisher ID**: `ca-pub-7765938871336081`
 
 ### Ad Slots to Create in AdSense Console
 

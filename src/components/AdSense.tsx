@@ -53,7 +53,7 @@ export default function AdSense({ adSlot, adFormat = 'auto', className = '', sty
       <ins
         className="adsbygoogle"
         style={getAdStyle()}
-        data-ad-client="ca-pub-1310810766620297"
+        data-ad-client="ca-pub-7765938871336081"
         data-ad-slot={adSlot}
         data-ad-format={adFormat}
         data-full-width-responsive="true"
