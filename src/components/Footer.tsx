@@ -33,33 +33,9 @@ const termsContent = (
   </div>
 );
 
-const SupportContent = () => {
-  return (
-    <div className="space-y-4 text-gray-200 text-sm max-h-[80vh] sm:max-h-[60vh] overflow-y-auto px-2 sm:px-0">
-      <h2 className="text-xl sm:text-2xl font-bold mb-2 text-white text-center sm:text-left">Support Us</h2>
-      <p className="text-center sm:text-left">If you find this tool helpful, consider supporting us:</p>
-      
-      {/* Buy Me Coffee Section */}
-      <div className="bg-white rounded-lg p-3 sm:p-4 flex flex-col sm:flex-row items-center gap-3 mb-4">
-        <div className="text-2xl sm:text-3xl">☕</div>
-        <div className="text-center sm:text-left">
-          <div className="font-semibold text-gray-800 text-sm sm:text-base">Buy Me Coffee</div>
-          <a 
-            href="https://www.buymeacoffee.com/bobthetechbuilder" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline text-xs sm:text-sm"
-          >
-            Click here to support
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 export default function Footer() {
-  const [modal, setModal] = useState<null | "privacy" | "terms" | "support">(null);
+  const [modal, setModal] = useState<null | "privacy" | "terms">(null);
 
   return (
     <>
@@ -79,22 +55,12 @@ export default function Footer() {
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4">
             <div className="bg-[#181c24] rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 w-full max-w-sm sm:max-w-md md:max-w-lg relative border border-[#23272e] max-h-[90vh] overflow-hidden">
               <button onClick={() => setModal(null)} className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-400 hover:text-[#60A5FA] text-xl sm:text-2xl font-bold focus:outline-none z-10">×</button>
-              {modal === "privacy" ? privacyContent : modal === "terms" ? termsContent : <SupportContent />}
+              {modal === "privacy" ? privacyContent : termsContent}
             </div>
           </div>
         )}
       </footer>
 
-      {/* Simple floating support button */}
-      <button
-        onClick={() => setModal("support")}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
-        title="Support Us"
-      >
-        <div className="text-red-500 text-xl group-hover:scale-110 transition-transform duration-300">
-          ☕
-        </div>
-      </button>
     </>
   );
 }

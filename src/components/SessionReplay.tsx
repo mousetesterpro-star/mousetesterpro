@@ -1,18 +1,21 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 export default function SessionReplay() {
   const [isRecording, setIsRecording] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [events, setEvents] = useState<{type: string, x: number, y: number, time: number}[]>([]);
+  const [events, setEvents] = useState<{type: string, x: number, y: number, time: number, relativeTime: number}[]>([]);
   const [currentEvent, setCurrentEvent] = useState(0);
   const [testComplete, setTestComplete] = useState(false);
+  const [recordingStartTime, setRecordingStartTime] = useState(0);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const playbackRef = useRef<NodeJS.Timeout | null>(null);
 
   const startRecording = () => {
+    const startTime = Date.now();
+    setRecordingStartTime(startTime);
     setIsRecording(true);
     setEvents([]);
     setTestComplete(false);
@@ -36,14 +39,18 @@ export default function SessionReplay() {
     // Throttle movement events to avoid too many updates
     setEvents(prev => {
       const now = Date.now();
+      const relativeTime = now - recordingStartTime;
       const lastEvent = prev[prev.length - 1];
-      if (lastEvent && now - lastEvent.time < 16) return prev; // 60fps max
       
-      return [...prev.slice(-50), {
+      // Limit to 60fps and keep last 100 events
+      if (lastEvent && (now - lastEvent.time) < 16) return prev;
+      
+      return [...prev.slice(-100), {
         type: 'move',
         x,
         y,
-        time: now
+        time: now,
+        relativeTime
       }];
     });
   };
@@ -56,12 +63,15 @@ export default function SessionReplay() {
     
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
+    const now = Date.now();
+    const relativeTime = now - recordingStartTime;
     
     setEvents(prev => [...prev, {
       type: 'click',
       x,
       y,
-      time: Date.now()
+      time: now,
+      relativeTime
     }]);
   };
 
@@ -70,6 +80,11 @@ export default function SessionReplay() {
     
     setIsPlaying(true);
     setCurrentEvent(0);
+    
+    // Clear any existing timeout
+    if (playbackRef.current) {
+      clearTimeout(playbackRef.current);
+    }
     
     const playNextEvent = (index: number) => {
       if (index >= events.length) {
@@ -81,19 +96,24 @@ export default function SessionReplay() {
       setCurrentEvent(index);
       
       if (index < events.length - 1) {
-        const delay = events[index + 1].time - events[index].time;
-        const playbackDelay = Math.min(Math.max(delay, 16), 100); // Min 16ms (60fps), max 100ms
+        // Calculate delay based on relative time difference
+        const delay = events[index + 1].relativeTime - events[index].relativeTime;
+        // Clamp delay between 10ms and 200ms for smooth playback
+        const playbackDelay = Math.min(Math.max(delay, 10), 200);
+        
         playbackRef.current = setTimeout(() => {
           playNextEvent(index + 1);
         }, playbackDelay);
       } else {
-        setTimeout(() => {
+        // Last event, wait a bit then stop
+        playbackRef.current = setTimeout(() => {
           setIsPlaying(false);
           setCurrentEvent(0);
-        }, 500);
+        }, 300);
       }
     };
     
+    // Start playback immediately
     playNextEvent(0);
   };
 
@@ -102,6 +122,7 @@ export default function SessionReplay() {
     setCurrentEvent(0);
     if (playbackRef.current) {
       clearTimeout(playbackRef.current);
+      playbackRef.current = null;
     }
   };
 
@@ -111,10 +132,21 @@ export default function SessionReplay() {
     setIsRecording(false);
     setIsPlaying(false);
     setCurrentEvent(0);
+    setRecordingStartTime(0);
     if (playbackRef.current) {
       clearTimeout(playbackRef.current);
+      playbackRef.current = null;
     }
   };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (playbackRef.current) {
+        clearTimeout(playbackRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -180,13 +212,20 @@ export default function SessionReplay() {
           {events.map((event, index) => (
             <div
               key={index}
-              className={`absolute w-1 h-1 rounded-full ${
-                event.type === 'click' ? 'bg-red-500' : 'bg-blue-400'
-              } ${index <= currentEvent ? 'opacity-80' : 'opacity-20'}`}
+              className={`absolute rounded-full transition-opacity ${
+                event.type === 'click' 
+                  ? 'bg-red-500 w-3 h-3' 
+                  : 'bg-blue-400 w-1 h-1'
+              } ${
+                isPlaying 
+                  ? (index <= currentEvent ? 'opacity-100' : 'opacity-20')
+                  : 'opacity-60'
+              }`}
               style={{
                 left: `${event.x}%`,
                 top: `${event.y}%`,
-                transform: 'translate(-50%, -50%)'
+                transform: 'translate(-50%, -50%)',
+                zIndex: event.type === 'click' ? 10 : 1
               }}
             />
           ))}
@@ -194,11 +233,28 @@ export default function SessionReplay() {
           {/* Current cursor position during playback */}
           {isPlaying && events[currentEvent] && (
             <div
-              className="absolute w-4 h-4 bg-yellow-400 rounded-full border-2 border-white animate-pulse"
+              className="absolute w-6 h-6 bg-yellow-400 rounded-full border-2 border-white shadow-lg"
               style={{
                 left: `${events[currentEvent].x}%`,
                 top: `${events[currentEvent].y}%`,
-                transform: 'translate(-50%, -50%)'
+                transform: 'translate(-50%, -50%)',
+                zIndex: 20,
+                transition: 'left 0.05s linear, top 0.05s linear'
+              }}
+            >
+              <div className="absolute inset-0 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
+            </div>
+          )}
+          
+          {/* Click indicator during playback */}
+          {isPlaying && events[currentEvent] && events[currentEvent].type === 'click' && (
+            <div
+              className="absolute w-8 h-8 border-4 border-red-500 rounded-full animate-ping"
+              style={{
+                left: `${events[currentEvent].x}%`,
+                top: `${events[currentEvent].y}%`,
+                transform: 'translate(-50%, -50%)',
+                zIndex: 15
               }}
             />
           )}
