@@ -63,6 +63,24 @@ export default function VisualMouseGuide() {
     <div className="w-full">
       <h2 className="text-2xl font-bold text-white mb-4">🖱️ Mouse Guide</h2>
       
+      {/* Important Notice */}
+      <div className="bg-blue-900/30 border border-blue-500/50 rounded-lg p-3 mb-4">
+        <div className="flex items-start gap-2">
+          <div className="text-blue-400 text-xl mt-0.5">ℹ️</div>
+          <div className="flex-1">
+            <p className="text-blue-200 text-sm font-medium mb-1">Important: Test Area Only</p>
+            <p className="text-blue-300/90 text-xs">
+              This test only tracks clicks and scrolls <strong>inside the blue test area below</strong>. 
+              Your mouse is working perfectly! 
+              <br />
+              <strong>Inside test area:</strong> See visual feedback on the mouse icon
+              <br />
+              <strong>Outside test area:</strong> Normal page scrolling works as usual
+            </p>
+          </div>
+        </div>
+      </div>
+      
       <div
         ref={containerRef}
         className="relative w-full aspect-video bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-2xl border-2 border-[#0f3460] overflow-hidden mb-4 cursor-pointer"
@@ -105,9 +123,14 @@ export default function VisualMouseGuide() {
             </div>
           </div>
           
-          <h3 className="text-xl font-bold text-white">Try clicking and scrolling</h3>
-          <p className="text-gray-300 max-w-md">
-            Click left/right or scroll in this area to see your mouse activity
+          <h3 className="text-xl font-bold text-white">Move cursor here and interact</h3>
+          <p className="text-gray-300 max-w-md text-sm">
+            <strong>Click or scroll inside this blue area</strong> to see the mouse icon respond. 
+            The counters below will track your activity.
+            <br />
+            <span className="text-gray-400 text-xs mt-2 block">
+              Move cursor outside → Normal page scrolling works
+            </span>
           </p>
         </div>
       </div>
