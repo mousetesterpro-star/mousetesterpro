@@ -92,7 +92,7 @@ export const metadata: Metadata = {
     creator: "@MouseTesterPro"
   },
   other: {
-    'google-site-verification': 'VuktZVfop_TtmjmC2sfWPPIxZtK5ovyB8wKHpY4OFfY',
+    'google-site-verification': 'Mk-_ipPpCWLnAYDW9V_Rp6P8BIwGURE8Vvceebi47Uw',
     'google-adsense-account': 'ca-pub-7765938871336081',
     'robots': 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
     'referrer': 'origin-when-cross-origin',
