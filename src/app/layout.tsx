@@ -68,11 +68,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Desktop Mouse Latency Test [2025] | Free Gaming Mouse Tester",
     description: "Test mouse latency on desktop instantly. Free gaming mouse tester with CPS test, polling rate & input lag analysis. Professional results in seconds.",
-    url: "https://www.mousetesterpro.com",
+    url: "https://mousetesterpro.com",
     siteName: "Mouse Tester Pro",
     images: [
       {
-        url: "https://www.mousetesterpro.com/og-image.png",
+        url: "https://mousetesterpro.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "Professional mouse latency tester dashboard with real-time performance metrics, polling rate graphs, and gaming-focused interface"
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     title: "Desktop Mouse Latency Test [2025] | Free Gaming Mouse Tester",
     description: "Test mouse latency on desktop instantly. Free gaming mouse tester with CPS test, polling rate & input lag analysis. Professional results in seconds.",
     images: [
-      "https://www.mousetesterpro.com/og-image.png"
+      "https://mousetesterpro.com/og-image.png"
     ],
     site: "@MouseTesterPro",
     creator: "@MouseTesterPro"
@@ -120,7 +120,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
         <link rel="dns-prefetch" href="https://tpc.googlesyndication.com" />
         <meta name="google-adsense-account" content="ca-pub-7765938871336081" />
-        <link rel="canonical" href="https://www.mousetesterpro.com" />
+        <link rel="canonical" href="https://mousetesterpro.com" />
         <script 
           type="application/ld+json" 
           dangerouslySetInnerHTML={{ 
@@ -128,7 +128,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
               name: 'Mouse Tester Pro',
-              url: 'https://www.mousetesterpro.com',
+              url: 'https://mousetesterpro.com',
               description: 'Test your mouse latency, click speed & polling rate FREE online. Professional gaming mouse performance tester for gamers worldwide.',
               applicationCategory: 'Productivity',
               operatingSystem: 'Web Browser',
@@ -140,7 +140,7 @@ export default function RootLayout({
               },
               potentialAction: {
                 '@type': 'UseAction',
-                target: 'https://www.mousetesterpro.com',
+                target: 'https://mousetesterpro.com',
                 name: 'Test Mouse Latency'
               },
               hasPart: [
