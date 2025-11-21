@@ -21,7 +21,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mouse Latency Test - Check Input Delay Free",
+  title: "Mouse Latency Test - Check Input Delay For Free",
   description: "Test mouse latency instantly - no download needed! Get accurate click delay results in seconds. Perfect for gaming performance optimization.",
   keywords: [
     "mouse test latency",
