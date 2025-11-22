@@ -122,51 +122,87 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://tpc.googlesyndication.com" />
         <meta name="google-adsense-account" content="ca-pub-7765938871336081" />
         {/*<link rel="canonical" href="https://mousetesterpro.com" />*/}
-        <script 
-          type="application/ld+json" 
-          dangerouslySetInnerHTML={{ 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'WebSite',
+              '@type': ['WebSite', 'SoftwareApplication'],
               name: 'Mouse Tester Pro',
+              alternateName: 'MouseTesterPro',
               url: 'https://mousetesterpro.com',
               description: 'Test your mouse latency, click speed & polling rate FREE online. Professional gaming mouse performance tester for gamers worldwide.',
-              applicationCategory: 'Productivity',
-              operatingSystem: 'Web Browser',
+              applicationCategory: 'UtilitiesApplication',
+              operatingSystem: 'Any',
+              browserRequirements: 'Requires JavaScript. Requires HTML5.',
+              inLanguage: 'en-US',
+              isAccessibleForFree: true,
+              author: {
+                '@type': 'Organization',
+                name: 'Mouse Tester Pro'
+              },
+              publisher: {
+                '@type': 'Organization',
+                name: 'Mouse Tester Pro',
+                logo: {
+                  '@type': 'ImageObject',
+                  url: 'https://mousetesterpro.com/logo.png'
+                }
+              },
+              screenshot: {
+                '@type': 'ImageObject',
+                url: 'https://mousetesterpro.com/og-image.png',
+                description: 'Mouse Tester Pro interface showing latency test results'
+              },
               offers: {
                 '@type': 'Offer',
                 price: '0',
                 priceCurrency: 'USD',
                 availability: 'https://schema.org/InStock'
               },
+              featureList: 'Mouse Latency Test, Polling Rate Test, Jitter Analysis, Click Speed Test, Response Time Measurement, Performance Leaderboard',
+              keywords: 'mouse latency test, polling rate, input lag, gaming mouse test, CPS test, jitter test',
               potentialAction: {
                 '@type': 'UseAction',
-                target: 'https://mousetesterpro.com',
+                target: {
+                  '@type': 'EntryPoint',
+                  urlTemplate: 'https://mousetesterpro.com',
+                  actionPlatform: [
+                    'http://schema.org/DesktopWebPlatform',
+                    'http://schema.org/MobileWebPlatform'
+                  ]
+                },
                 name: 'Test Mouse Latency'
               },
               hasPart: [
                 {
                   '@type': 'SoftwareApplication',
                   name: 'Click Latency Test',
-                  description: 'Measure mouse response time and click accuracy'
+                  description: 'Measure mouse response time and click accuracy',
+                  applicationCategory: 'UtilitiesApplication',
+                  operatingSystem: 'Any'
                 },
                 {
                   '@type': 'SoftwareApplication',
                   name: 'Polling Rate Test',
-                  description: 'Test mouse polling rate and jitter analysis'
+                  description: 'Test mouse polling rate and jitter analysis',
+                  applicationCategory: 'UtilitiesApplication',
+                  operatingSystem: 'Any'
                 },
                 {
                   '@type': 'SoftwareApplication',
                   name: 'Mobile Tap Test',
-                  description: 'Test touch screen response time and accuracy'
+                  description: 'Test touch screen response time and accuracy',
+                  applicationCategory: 'UtilitiesApplication',
+                  operatingSystem: 'Any'
                 }
               ],
               sameAs: [
                 'https://github.com/shashi123454/MouseTesterPro',
                 'https://twitter.com/MouseTesterPro'
               ]
-            }) 
-          }} 
+            })
+          }}
         />
         <script
           type="application/ld+json"
