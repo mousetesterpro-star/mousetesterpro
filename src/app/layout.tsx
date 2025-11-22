@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 // Google Fonts imports for Orbitron and IBM Plex Mono
 import { Orbitron, IBM_Plex_Mono } from "next/font/google";
 import Script from 'next/script';
+import DynamicCanonical from "@/components/DynamicCanonical";
 
 const orbitron = Orbitron({ 
   subsets: ["latin"], 
@@ -120,7 +121,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
         <link rel="dns-prefetch" href="https://tpc.googlesyndication.com" />
         <meta name="google-adsense-account" content="ca-pub-7765938871336081" />
-        <link rel="canonical" href="https://mousetesterpro.com" />
+        {/*<link rel="canonical" href="https://mousetesterpro.com" />*/}
         <script 
           type="application/ld+json" 
           dangerouslySetInnerHTML={{ 
@@ -391,6 +392,7 @@ export default function RootLayout({
         `}
       </Script>
       <body className={`${orbitron.className} ${ibmPlexMono.className} bg-[#0D0D0D] min-h-screen flex flex-col`}>
+        <DynamicCanonical />
         <TestSessionProvider>
           <div className="flex flex-col min-h-screen">
             <Navbar />
