@@ -168,9 +168,9 @@ export default function RootLayout({
             }) 
           }} 
         />
-        <script 
-          type="application/ld+json" 
-          dangerouslySetInnerHTML={{ 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'FAQPage',
@@ -214,10 +214,42 @@ export default function RootLayout({
                     '@type': 'Answer',
                     text: 'A good mouse latency for gaming is typically under 8ms. Professional gamers and competitive players aim for the lowest possible latency to gain an advantage in fast-paced games. Our mouse latency test online helps you measure your current performance and determine if your mouse meets gaming standards.'
                   }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How to test mouse latency on desktop?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Use our free desktop mouse latency test. Click start, perform the test, and get instant results showing your mouse response time, polling rate, and jitter analysis.'
+                  }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What is a good mouse latency for desktop gaming?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'For desktop gaming, aim for mouse latency under 8ms. Professional gamers achieve 3-5ms, while casual gaming is acceptable up to 12ms on desktop.'
+                  }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How to test CPS (clicks per second) on desktop?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Our desktop mouse tester includes a CPS test feature. Simply click rapidly in the designated area and get instant results showing your clicks per second performance.'
+                  }
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What is mouse polling rate and why does it matter for desktop gaming?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Mouse polling rate is how often your mouse reports its position to the computer. Higher polling rates (1000Hz) provide smoother cursor movement and better responsiveness for desktop gaming.'
+                  }
                 }
               ]
-            }) 
-          }} 
+            })
+          }}
         />
         <script 
           type="application/ld+json" 
@@ -305,49 +337,6 @@ export default function RootLayout({
                   name: 'Compare Results',
                   text: 'Compare your results with professional standards and other gamers worldwide.',
                   url: 'https://mousetesterpro.com'
-                }
-              ]
-            }) 
-          }} 
-        />
-        <script 
-          type="application/ld+json" 
-          dangerouslySetInnerHTML={{ 
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'FAQPage',
-              mainEntity: [
-                {
-                  '@type': 'Question',
-                  name: 'How to test mouse latency on desktop?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Use our free desktop mouse latency test. Click start, perform the test, and get instant results showing your mouse response time, polling rate, and jitter analysis.'
-                  }
-                },
-                {
-                  '@type': 'Question', 
-                  name: 'What is a good mouse latency for desktop gaming?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'For desktop gaming, aim for mouse latency under 8ms. Professional gamers achieve 3-5ms, while casual gaming is acceptable up to 12ms on desktop.'
-                  }
-                },
-                {
-                  '@type': 'Question',
-                  name: 'How to test CPS (clicks per second) on desktop?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Our desktop mouse tester includes a CPS test feature. Simply click rapidly in the designated area and get instant results showing your clicks per second performance.'
-                  }
-                },
-                {
-                  '@type': 'Question',
-                  name: 'What is mouse polling rate and why does it matter for desktop gaming?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Mouse polling rate is how often your mouse reports its position to the computer. Higher polling rates (1000Hz) provide smoother cursor movement and better responsiveness for desktop gaming.'
-                  }
                 }
               ]
             }) 
