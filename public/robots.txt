@@ -1,12 +1,12 @@
 User-agent: *
 Allow: /
 
-# Disallow admin and private areas
-Disallow: /api/
+# Prevent crawling of internal system folders
 Disallow: /_next/
+Disallow: /api/
 Disallow: /admin/
 
-# Allow important pages
+# Allow important public sections
 Allow: /blog/
 Allow: /about/
 Allow: /contact/
@@ -14,8 +14,21 @@ Allow: /guides/
 Allow: /leaderboard/
 Allow: /accessibility/
 
+# Explicitly allow major AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
 # Sitemap
 Sitemap: https://mousetesterpro.com/sitemap.xml
 
-# Crawl delay (optional)
-Crawl-delay: 1 
+# Optional: avoid overload
+Crawl-delay: 1
