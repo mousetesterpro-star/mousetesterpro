@@ -2,7 +2,6 @@ User-agent: *
 Allow: /
 
 # Prevent crawling of internal system folders
-Disallow: /_next/
 Disallow: /api/
 Disallow: /admin/
 
