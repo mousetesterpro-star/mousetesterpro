@@ -316,7 +316,7 @@ export default function SessionReportModal({ isOpen, onClose, session, proBenchm
     doc.setFontSize(8);
     doc.setTextColor(120, 120, 120);
     doc.text('Mouse Tester Pro - Professional Mouse Performance Analysis', leftMargin, y);
-    doc.text('https://www.mousetesterpro.com', rightMargin - doc.getTextWidth('https://www.mousetesterpro.com'), y);
+    doc.text('https://mousetesterpro.com', rightMargin - doc.getTextWidth('https://mousetesterpro.com'), y);
     
     // Save the PDF
     doc.save(`mouse-performance-report-${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}.pdf`);
@@ -324,7 +324,7 @@ export default function SessionReportModal({ isOpen, onClose, session, proBenchm
 
   const handleShareLink = () => {
     if (!session) return;
-    const url = `https://www.mousetesterpro.com/?latency=${session.latency}&polling=${session.polling}&jitter=${session.jitter}`;
+    const url = `https://mousetesterpro.com/?latency=${session.latency}&polling=${session.polling}&jitter=${session.jitter}`;
     navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);

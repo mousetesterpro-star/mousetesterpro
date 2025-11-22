@@ -23,12 +23,12 @@ If you prefer URL prefix properties, add these individually:
 ### Primary URLs to Add:
 
 1. **Main Site (with www)**
-   - URL: `https://www.mousetesterpro.com`
+   - URL: `https://mousetesterpro.com`
    - This is your primary canonical URL (as set in your code)
 
-2. **Main Site (without www)** - Optional
-   - URL: `https://mousetesterpro.com`
-   - Only if you want to track non-www separately
+2. **Main Site (with www)** - Optional
+   - URL: `https://www.mousetesterpro.com`
+   - Only if you want to track www separately
 
 ---
 
@@ -37,21 +37,21 @@ If you prefer URL prefix properties, add these individually:
 Based on your sitemap.xml, here are all the pages on your site:
 
 ### Main Pages:
-- `https://www.mousetesterpro.com/` (Home)
-- `https://www.mousetesterpro.com/leaderboard`
-- `https://www.mousetesterpro.com/about`
-- `https://www.mousetesterpro.com/blog`
-- `https://www.mousetesterpro.com/contact`
-- `https://www.mousetesterpro.com/guides`
-- `https://www.mousetesterpro.com/accessibility`
+- `https://mousetesterpro.com/` (Home)
+- `https://mousetesterpro.com/leaderboard`
+- `https://mousetesterpro.com/about`
+- `https://mousetesterpro.com/blog`
+- `https://mousetesterpro.com/contact`
+- `https://mousetesterpro.com/guides`
+- `https://mousetesterpro.com/accessibility`
 
 ### Blog Posts:
-- `https://www.mousetesterpro.com/blog/top-5-ways-reduce-mouse-latency`
-- `https://www.mousetesterpro.com/blog/why-input-lag-matters-gamers`
-- `https://www.mousetesterpro.com/blog/mouse-latency-vs-response-time`
-- `https://www.mousetesterpro.com/blog/how-to-test-mouse-latency`
-- `https://www.mousetesterpro.com/blog/mouse-jitter-vs-polling-rate`
-- `https://www.mousetesterpro.com/blog/mouse-test-latency`
+- `https://mousetesterpro.com/blog/top-5-ways-reduce-mouse-latency`
+- `https://mousetesterpro.com/blog/why-input-lag-matters-gamers`
+- `https://mousetesterpro.com/blog/mouse-latency-vs-response-time`
+- `https://mousetesterpro.com/blog/how-to-test-mouse-latency`
+- `https://mousetesterpro.com/blog/mouse-jitter-vs-polling-rate`
+- `https://mousetesterpro.com/blog/mouse-test-latency`
 
 ---
 
@@ -65,7 +65,7 @@ Based on your sitemap.xml, here are all the pages on your site:
 - Follow DNS verification steps
 
 **OR** Use **URL Prefix Property**
-- Enter: `https://www.mousetesterpro.com`
+- Enter: `https://mousetesterpro.com`
 - Click "CONTINUE"
 - Choose verification method (HTML file, meta tag, or Google Analytics)
 
@@ -97,15 +97,15 @@ You can use any of these methods:
 ### Step 3: Submit Sitemap
 
 After verification, submit your sitemap:
-- URL: `https://www.mousetesterpro.com/sitemap.xml`
+- URL: `https://mousetesterpro.com/sitemap.xml`
 
 ---
 
 ## Important Notes
 
-1. **Canonical URL:** Your site uses `https://www.mousetesterpro.com` as the canonical URL
-2. **Sitemap:** Already configured at `https://www.mousetesterpro.com/sitemap.xml`
-3. **Robots.txt:** Already configured at `https://www.mousetesterpro.com/robots.txt`
+1. **Canonical URL:** Your site uses `https://mousetesterpro.com` as the canonical URL
+2. **Sitemap:** Already configured at `https://mousetesterpro.com/sitemap.xml`
+3. **Robots.txt:** Already configured at `https://mousetesterpro.com/robots.txt`
 4. **Google Site Verification:** Already in your code: `VuktZVfop_TtmjmC2sfWPPIxZtK5ovyB8wKHpY4OFfY`
 
 ---
@@ -114,7 +114,7 @@ After verification, submit your sitemap:
 
 - [ ] Choose Domain Property or URL Prefix Property
 - [ ] Complete verification (DNS or meta tag/file)
-- [ ] Submit sitemap: `https://www.mousetesterpro.com/sitemap.xml`
+- [ ] Submit sitemap: `https://mousetesterpro.com/sitemap.xml`
 - [ ] Wait for Google to crawl your site (can take a few days)
 - [ ] Monitor Search Console for indexing status
 

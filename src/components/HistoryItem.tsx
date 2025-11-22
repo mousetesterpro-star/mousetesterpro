@@ -17,7 +17,7 @@ const HistoryItem = ({ result }: HistoryItemProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    const url = `https://www.mousetesterpro.com/?latency=${result.latency}&polling=${result.polling}&jitter=${result.jitter}`;
+    const url = `https://mousetesterpro.com/?latency=${result.latency}&polling=${result.polling}&jitter=${result.jitter}`;
     navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);

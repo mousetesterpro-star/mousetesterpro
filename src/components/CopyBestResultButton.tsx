@@ -14,7 +14,7 @@ const CopyBestResultButton = ({ bestResult }: CopyBestResultButtonProps) => {
 
     const handleCopy = () => {
         if (!bestResult) return;
-        const url = `https://www.mousetesterpro.com/?latency=${bestResult.latency}&polling=${bestResult.polling}&jitter=${bestResult.jitter}`;
+        const url = `https://mousetesterpro.com/?latency=${bestResult.latency}&polling=${bestResult.polling}&jitter=${bestResult.jitter}`;
         navigator.clipboard.writeText(url);
         setCopied(true);
         setTimeout(() => setCopied(false), 1500);

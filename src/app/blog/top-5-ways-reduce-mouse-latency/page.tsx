@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Top 5 Ways to Reduce Mouse Latency | Gaming Performance Guide",
     description: "Learn the most effective methods to reduce mouse latency and improve your gaming performance. From hardware upgrades to software optimizations for competitive gaming.",
-    url: "https://www.mousetesterpro.com/blog/top-5-ways-reduce-mouse-latency",
+    url: "https://mousetesterpro.com/blog/top-5-ways-reduce-mouse-latency",
     type: "article",
     publishedTime: "2025-01-15T00:00:00.000Z",
     authors: ["Mouse Tester Pro"],

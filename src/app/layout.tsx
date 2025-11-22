@@ -226,7 +226,7 @@ export default function RootLayout({
               '@type': 'WebPage',
               name: 'Mouse Latency Test | Accurate Online Tool',
               description: 'Test mouse latency, input lag, and click delay instantly online. Accurate, free, and easy-to-use tool for gamers & tech users.',
-              url: 'https://www.mousetesterpro.com',
+              url: 'https://mousetesterpro.com',
               mainEntity: {
                 '@type': 'SoftwareApplication',
                 name: 'Mouse Latency Test',
@@ -246,13 +246,13 @@ export default function RootLayout({
                     '@type': 'ListItem',
                     position: 1,
                     name: 'Home',
-                    item: 'https://www.mousetesterpro.com'
+                    item: 'https://mousetesterpro.com'
                   },
                   {
                     '@type': 'ListItem',
                     position: 2,
                     name: 'Mouse Latency Test',
-                    item: 'https://www.mousetesterpro.com'
+                    item: 'https://mousetesterpro.com'
                   }
                 ]
               }
@@ -267,7 +267,7 @@ export default function RootLayout({
               '@type': 'HowTo',
               name: 'How to Test Mouse Latency for Gaming',
               description: 'Complete guide on testing mouse latency, polling rate, and jitter for competitive gaming performance.',
-              image: 'https://www.mousetesterpro.com/og-image.png',
+              image: 'https://mousetesterpro.com/og-image.png',
               totalTime: 'PT5M',
               estimatedCost: {
                 '@type': 'MonetaryAmount',
@@ -279,31 +279,31 @@ export default function RootLayout({
                   '@type': 'HowToStep',
                   name: 'Open the Mouse Latency Tester',
                   text: 'Visit our free online mouse latency tester tool.',
-                  url: 'https://www.mousetesterpro.com'
+                  url: 'https://mousetesterpro.com'
                 },
                 {
                   '@type': 'HowToStep',
                   name: 'Run the Click Latency Test',
                   text: 'Click the start button and perform the click latency test to measure response time.',
-                  url: 'https://www.mousetesterpro.com'
+                  url: 'https://mousetesterpro.com'
                 },
                 {
                   '@type': 'HowToStep',
                   name: 'Test Polling Rate',
                   text: 'Use the polling rate test to measure how often your mouse reports position.',
-                  url: 'https://www.mousetesterpro.com'
+                  url: 'https://mousetesterpro.com'
                 },
                 {
                   '@type': 'HowToStep',
                   name: 'Analyze Jitter Results',
                   text: 'Review the jitter analysis to understand consistency of your mouse performance.',
-                  url: 'https://www.mousetesterpro.com'
+                  url: 'https://mousetesterpro.com'
                 },
                 {
                   '@type': 'HowToStep',
                   name: 'Compare Results',
                   text: 'Compare your results with professional standards and other gamers worldwide.',
-                  url: 'https://www.mousetesterpro.com'
+                  url: 'https://mousetesterpro.com'
                 }
               ]
             }) 
