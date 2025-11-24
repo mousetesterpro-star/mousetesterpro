@@ -15,6 +15,14 @@ export const metadata: Metadata = {
 
 const blogPosts = [
   {
+    id: "mouse-test-latency",
+    title: "Mouse Test Latency - Free Online Tool 2025 | Instant Results",
+    description: "Free mouse test latency tool with instant results. Test your gaming mouse performance online with accurate measurements. Professional-grade testing for competitive gaming.",
+    date: "2025-01-15",
+    readTime: "5 min read",
+    category: "Gaming"
+  },
+  {
     id: "top-5-ways-reduce-mouse-latency",
     title: "Top 5 Ways to Reduce Mouse Latency",
     description: "Learn the most effective methods to reduce mouse latency and improve your gaming performance. From hardware upgrades to software optimizations.",
@@ -37,6 +45,22 @@ const blogPosts = [
     date: "2025-01-05",
     readTime: "6 min read",
     category: "Education"
+  },
+  {
+    id: "how-to-test-mouse-latency",
+    title: "How to Test Mouse Latency: Complete Guide for Gamers",
+    description: "Learn how to test mouse latency accurately. Complete guide for gamers to measure click response time, improve gaming performance, and optimize mouse settings.",
+    date: "2024-08-04",
+    readTime: "5 min read",
+    category: "How To"
+  },
+  {
+    id: "mouse-jitter-vs-polling-rate",
+    title: "Mouse Jitter vs Polling Rate: What Affects Gaming Performance?",
+    description: "Understand the difference between mouse jitter and polling rate. Learn how these factors affect gaming performance and how to optimize your mouse settings.",
+    date: "2024-08-04",
+    readTime: "6 min read",
+    category: "Education"
   }
 ];
 
@@ -53,12 +77,12 @@ export default function BlogPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {blogPosts.map((post) => (
+        {blogPosts.slice(0, 3).map((post) => (
           <article key={post.id} className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 border border-[#3A3A3A] hover:border-[#60A5FA] transition-all duration-300">
             <div className="mb-4">
-              <span className="inline-block bg-blue-600 text-white text-xs px-3 py-1 rounded-full">
-                {post.category}
-              </span>
+        <span className="inline-block bg-blue-600 text-white text-xs px-3 py-1 rounded-full">
+          {post.category}
+        </span>
             </div>
             <h2 className="text-xl font-bold text-white mb-3 hover:text-[#60A5FA] transition-colors">
               <Link href={`/blog/${post.id}`}>
@@ -72,7 +96,7 @@ export default function BlogPage() {
               <span>{post.date}</span>
               <span>{post.readTime}</span>
             </div>
-            <Link 
+            <Link
               href={`/blog/${post.id}`}
               className="inline-block mt-4 text-[#60A5FA] hover:text-blue-400 font-medium text-sm transition-colors"
             >
@@ -87,13 +111,50 @@ export default function BlogPage() {
         <p className="text-gray-300 mb-8">
           Use our free mouse latency test to measure your current performance and see how it compares to professional standards.
         </p>
-        <Link 
+        <Link
           href="/"
           className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-block"
         >
           Start Mouse Latency Test
         </Link>
       </div>
+
+      {/* All Blog Posts List */}
+      <div className="mt-20">
+        <h2 className="text-3xl font-bold text-white mb-8 text-center">All Articles</h2>
+        <div className="space-y-4">
+          {blogPosts.map((post) => (
+            <Link
+              key={post.id}
+              href={`/blog/${post.id}`}
+              className="block bg-[#1A1A1A] rounded-xl p-6 border border-[#3A3A3A] hover:border-[#60A5FA] transition-all duration-300 group"
+            >
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="inline-block bg-blue-600 text-white text-xs px-3 py-1 rounded-full">
+                      {post.category}
+                    </span>
+                    <span className="text-gray-400 text-xs">{post.date}</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#60A5FA] transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-gray-300 text-sm">
+                    {post.description}
+                  </p>
+                </div>
+                <div className="flex items-center gap-4 text-sm text-gray-400 md:flex-col md:items-end">
+                  <span>{post.readTime}</span>
+                  <span className="text-[#60A5FA] group-hover:text-blue-400 font-medium">
+                    Read →
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
     </div>
   );
-} 
+}
