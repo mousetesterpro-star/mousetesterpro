@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Mouse Test Latency - Free Online Tool 2025 | Instant Results",
-  description: "Free mouse test latency tool with instant results. Test your gaming mouse performance online with accurate measurements. Professional-grade testing for competitive gaming.",
+  description: "Free mouse latency test with instant results. Test your gaming mouse performance online with accurate measurements for professional-grade and competitive play.",
   keywords: [
     "mouse test latency",
     "free mouse latency test",
