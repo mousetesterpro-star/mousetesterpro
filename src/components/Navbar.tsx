@@ -65,7 +65,7 @@ export default function Navbar() {
     <nav className="w-full bg-[#0D0D0D] border-b border-[#1A1A1A] px-4 md:px-8 py-3 flex items-center justify-between sticky top-0 z-40 backdrop-blur-sm bg-[#0D0D0D]/95">
       <div className="flex items-center gap-3">
         <a href="/" className="flex items-center gap-3">
-          <img src="/logo.png" alt="Mouse Tester Pro Logo" width={48} height={48} className="drop-shadow-[0_0_8px_#60A5FA55]" style={{objectFit: 'contain'}} />
+          <img src="/logo.webp" alt="Mouse Tester Pro Logo" width={48} height={48} className="drop-shadow-[0_0_8px_#60A5FA55]" style={{objectFit: 'contain'}} />
           <span className="font-mono font-extrabold text-xl md:text-2xl text-white tracking-tight" style={{letterSpacing: '0.04em', lineHeight: 1}}>
             MouseTester <span style={{ color: '#A0A0A0', marginLeft: 6 }}>Pro</span>
           </span>

@@ -146,7 +146,7 @@ export default function RootLayout({
                 name: 'Mouse Tester Pro',
                 logo: {
                   '@type': 'ImageObject',
-                  url: 'https://mousetesterpro.com/logo.png'
+                  url: 'https://mousetesterpro.com/logo.webp'
                 }
               },
               screenshot: {
