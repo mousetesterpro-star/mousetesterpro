@@ -40,15 +40,64 @@ export default function Footer() {
   return (
     <>
       <FooterAd />
-      <footer className="w-full bg-[#10131a] border-t border-[#23272e] py-6 px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-400 text-sm">
-        <div className="flex items-center gap-2">
-          <span className="font-bold text-white">Mouse Tester Pro</span>
-          <span className="hidden md:inline">|</span>
-          <button className="hover:text-[#60A5FA] underline ml-2" onClick={() => setModal("privacy")}>Privacy Policy</button>
-          <span className="hidden md:inline">|</span>
-          <button className="hover:text-[#60A5FA] underline ml-2" onClick={() => setModal("terms")}>Terms of Service</button>
+      <footer className="w-full bg-[#10131a] border-t border-[#23272e] py-8 px-4">
+        {/* Footer Links Grid */}
+        <div className="max-w-6xl mx-auto mb-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+            {/* Tools Column */}
+            <div>
+              <h3 className="font-semibold text-white mb-3">Tools</h3>
+              <ul className="space-y-2">
+                <li><a href="/" className="text-gray-400 hover:text-[#60A5FA] transition-colors">Mouse Latency Test</a></li>
+                <li><a href="/cps-test" className="text-gray-400 hover:text-[#60A5FA] transition-colors">CPS Test</a></li>
+                <li><a href="/keyboard-test" className="text-gray-400 hover:text-[#60A5FA] transition-colors">Keyboard Test</a></li>
+                <li><a href="/monitor-test" className="text-gray-400 hover:text-[#60A5FA] transition-colors">Monitor Test</a></li>
+              </ul>
+            </div>
+            
+            {/* Resources Column */}
+            <div>
+              <h3 className="font-semibold text-white mb-3">Resources</h3>
+              <ul className="space-y-2">
+                <li><a href="/how-it-works" className="text-gray-400 hover:text-[#60A5FA] transition-colors">How It Works</a></li>
+                <li><a href="/complete-guide" className="text-gray-400 hover:text-[#60A5FA] transition-colors">Complete Guide</a></li>
+                <li><a href="/faq" className="text-gray-400 hover:text-[#60A5FA] transition-colors">FAQ</a></li>
+                <li><a href="/guides" className="text-gray-400 hover:text-[#60A5FA] transition-colors">Guides & Tips</a></li>
+              </ul>
+            </div>
+            
+            {/* Community Column */}
+            <div>
+              <h3 className="font-semibold text-white mb-3">Community</h3>
+              <ul className="space-y-2">
+                <li><a href="/leaderboard" className="text-gray-400 hover:text-[#60A5FA] transition-colors">Leaderboard</a></li>
+                <li><a href="/blog" className="text-gray-400 hover:text-[#60A5FA] transition-colors">Blog</a></li>
+                <li><a href="/contact" className="text-gray-400 hover:text-[#60A5FA] transition-colors">Contact Us</a></li>
+              </ul>
+            </div>
+            
+            {/* Company Column */}
+            <div>
+              <h3 className="font-semibold text-white mb-3">Company</h3>
+              <ul className="space-y-2">
+                <li><a href="/about" className="text-gray-400 hover:text-[#60A5FA] transition-colors">About Us</a></li>
+                <li><a href="/accessibility" className="text-gray-400 hover:text-[#60A5FA] transition-colors">Accessibility</a></li>
+                <li><button className="text-gray-400 hover:text-[#60A5FA] transition-colors text-left" onClick={() => setModal("privacy")}>Privacy Policy</button></li>
+                <li><button className="text-gray-400 hover:text-[#60A5FA] transition-colors text-left" onClick={() => setModal("terms")}>Terms of Service</button></li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div className="text-xs text-gray-500">&copy; {new Date().getFullYear()} Mouse Tester Pro. All rights reserved.</div>
+        
+        {/* Bottom Bar */}
+        <div className="max-w-6xl mx-auto pt-6 border-t border-[#23272e] flex flex-col md:flex-row items-center justify-between gap-4 text-gray-400 text-sm">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-white">Mouse Tester Pro</span>
+            <span className="text-gray-600">—</span>
+            <span className="text-gray-500">Professional Mouse Performance Testing</span>
+          </div>
+          <div className="text-xs text-gray-500">&copy; {new Date().getFullYear()} Mouse Tester Pro. All rights reserved.</div>
+        </div>
         
         {/* Modal */}
         {modal && (

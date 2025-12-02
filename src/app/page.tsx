@@ -116,6 +116,22 @@ export default function Home() {
               Measure click delay, polling rate, and input lag for competitive gaming
             </p>
             
+            {/* Intro Section - What is Mouse Latency Testing */}
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-4">What is Mouse Latency Testing?</h2>
+              <div className="text-gray-300 space-y-4">
+                <p>
+                  Mouse latency testing measures the precise time delay between when you physically click your mouse button and when your computer registers that input. This delay, often measured in milliseconds (ms), directly impacts how responsive your computer feels during use. Our professional-grade testing tool analyzes three critical metrics: <strong className="text-[#60A5FA]">click latency</strong>, <strong className="text-[#60A5FA]">polling rate</strong>, and <strong className="text-[#60A5FA]">jitter consistency</strong>.
+                </p>
+                <p>
+                  For competitive gamers, every millisecond counts. In fast-paced titles like Valorant, Counter-Strike 2, Apex Legends, and Fortnite, the difference between a 5ms and 15ms response time can determine whether you land that crucial headshot or get eliminated first. Professional esports players routinely test their peripherals to ensure peak performance during tournaments.
+                </p>
+                <p>
+                  Beyond gaming, mouse latency matters for graphic designers requiring pixel-perfect precision, video editors working with timeline scrubbing, music producers using DAW software, and anyone who values a smooth, responsive computing experience. Our browser-based tool provides instant, accurate measurements without requiring any software installation—simply click and get results within 30 seconds.
+                </p>
+              </div>
+            </div>
+            
             {/* Show search-based tests if search parameters detected */}
             {showSearchBasedTests ? (
               <SearchBasedTestRouter />
@@ -418,6 +434,75 @@ export default function Home() {
                     <strong>Yes, completely free.</strong> No registration, no downloads, no hidden costs. Our mission is to help gamers optimize their setup for competitive advantage.
                   </p>
                 </div>
+              </div>
+            </div>
+
+            {/* Detailed Technical Section - Understanding Input Delay */}
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-6">Understanding Mouse Input Delay: A Technical Deep Dive</h2>
+              
+              <div className="space-y-6 text-gray-300">
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-3">What Causes Input Delay?</h3>
+                  <p className="mb-3">
+                    Input delay occurs at multiple stages in the signal chain between your physical mouse click and the on-screen response. The primary contributors include: <strong>hardware processing time</strong> (the mouse's internal microcontroller processing the switch signal), <strong>USB transmission delay</strong> (data traveling through the cable or wireless receiver), <strong>operating system input handling</strong> (Windows, macOS, or Linux processing the HID event), <strong>application processing</strong> (the game or software interpreting the input), and <strong>display rendering</strong> (your monitor refreshing to show the result).
+                  </p>
+                  <p>
+                    Each stage adds microseconds to milliseconds of delay. A high-quality gaming mouse minimizes hardware processing time through optimized firmware and fast optical or mechanical switches. Wired connections eliminate the additional latency introduced by wireless protocols, though modern 2.4GHz wireless mice have largely closed this gap with sub-1ms wireless transmission.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-3">How We Measure Latency</h3>
+                  <p className="mb-3">
+                    Our testing methodology uses the browser's high-resolution <code className="bg-[#23272e] px-2 py-1 rounded text-[#60A5FA]">performance.now()</code> API, which provides sub-millisecond timestamp precision. When you click a target, we record the exact timestamp of the mousedown event and compare it against the target appearance time. By collecting multiple samples and applying statistical analysis (removing outliers and calculating means), we produce accurate, reproducible latency measurements.
+                  </p>
+                  <p>
+                    This browser-based approach measures the complete input pipeline from click to JavaScript event handler—the same path your games and applications use. While dedicated hardware testing tools can isolate specific components, our method reflects real-world performance that directly impacts your user experience.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-3">Polling Rate Explained</h3>
+                  <p className="mb-3">
+                    Polling rate, measured in Hertz (Hz), indicates how frequently your mouse reports its position to your computer. A 1000Hz polling rate means the mouse sends position updates 1,000 times per second, or once every millisecond. Higher polling rates provide smoother cursor movement and reduce the maximum possible delay between your physical movement and the computer receiving that information.
+                  </p>
+                  <p>
+                    Most gaming mice support 125Hz, 500Hz, and 1000Hz polling rates, with some premium models offering 2000Hz, 4000Hz, or even 8000Hz. However, diminishing returns apply—the difference between 1000Hz and 8000Hz (1ms vs 0.125ms maximum delay) is imperceptible to most users. We recommend 1000Hz as the sweet spot for competitive gaming without unnecessary CPU overhead.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-3">Debounce Time and Switch Response</h3>
+                  <p className="mb-3">
+                    Debounce time is a firmware-level delay intentionally added to prevent switch chatter—the phenomenon where mechanical switches can register multiple false clicks from a single press due to contact bounce. While necessary for reliability, excessive debounce time adds latency. Quality gaming mice use advanced debounce algorithms that minimize delay while maintaining click accuracy.
+                  </p>
+                  <p>
+                    Optical switches eliminate mechanical contact bounce entirely, allowing for near-zero debounce times and faster actuation. This is why many competitive gamers prefer optical-switch mice for their consistently low latency. Our jitter measurement helps identify inconsistent debounce behavior—high jitter values may indicate switch wear or suboptimal debounce settings.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Learn More Section */}
+            <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-4">Learn More About Mouse Performance</h2>
+              <p className="text-gray-300 mb-4">
+                Explore our comprehensive resources to master mouse optimization and get the most out of your gaming setup.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <a href="/how-it-works" className="bg-[#23272e] hover:bg-[#2d333b] rounded-xl p-4 transition-colors border border-[#3A3A3A] hover:border-[#60A5FA]">
+                  <h3 className="text-lg font-semibold text-white mb-2">How It Works</h3>
+                  <p className="text-gray-400 text-sm">Detailed explanation of our testing methodology and the science behind accurate latency measurement.</p>
+                </a>
+                <a href="/faq" className="bg-[#23272e] hover:bg-[#2d333b] rounded-xl p-4 transition-colors border border-[#3A3A3A] hover:border-[#60A5FA]">
+                  <h3 className="text-lg font-semibold text-white mb-2">FAQ</h3>
+                  <p className="text-gray-400 text-sm">Answers to common questions about mouse latency, polling rates, and performance optimization.</p>
+                </a>
+                <a href="/complete-guide" className="bg-[#23272e] hover:bg-[#2d333b] rounded-xl p-4 transition-colors border border-[#3A3A3A] hover:border-[#60A5FA]">
+                  <h3 className="text-lg font-semibold text-white mb-2">Complete Guide</h3>
+                  <p className="text-gray-400 text-sm">The ultimate guide to understanding and optimizing mouse latency for competitive gaming.</p>
+                </a>
               </div>
             </div>
               </>

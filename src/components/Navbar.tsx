@@ -37,30 +37,7 @@ export default function Navbar() {
       document.removeEventListener('keydown', handleEscape);
     };
   }, [menuOpen]);
-  const handleTestAgain = (e: React.MouseEvent) => {
-    e.preventDefault();
-    startTest();
-    
-    // Add visual feedback
-    const button = e.currentTarget as HTMLAnchorElement;
-    const originalText = button.textContent;
-    button.textContent = 'Starting...';
-    button.style.opacity = '0.7';
-    
-    // Scroll to test area
-    const el = document.getElementById('test-area');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-    
-    // Reset button after a short delay
-    setTimeout(() => {
-      button.textContent = originalText;
-      button.style.opacity = '1';
-    }, 1000);
-    
-    setMenuOpen(false);
-  };
+
   return (
     <nav className="w-full bg-[#0D0D0D] border-b border-[#1A1A1A] px-4 md:px-8 py-3 flex items-center justify-between sticky top-0 z-40 backdrop-blur-sm bg-[#0D0D0D]/95">
       <div className="flex items-center gap-3">
@@ -74,12 +51,11 @@ export default function Navbar() {
       {/* Desktop Nav */}
       <div className="hidden md:flex items-center gap-6">
         <a href="/leaderboard" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">Leaderboard</a>
-        <a href="#test-area" onClick={handleTestAgain} className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">Test Again</a>
-        <a href="/about" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">About</a>
-        <a href="/guides" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">Guides/FAQ</a>
-        <a href="/contact" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">Contact</a>
+        <a href="/how-it-works" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">How It Works</a>
+        <a href="/complete-guide" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">Guide</a>
+        <a href="/faq" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">FAQ</a>
         <a href="/blog" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">Blog</a>
-        <a href="/accessibility" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">Accessibility</a>
+        <a href="/about" className="text-sm text-gray-300 hover:text-[#60A5FA] transition-all ease-in-out duration-300 font-medium">About</a>
         
         {/* CTA Button */}
         <button 
@@ -132,55 +108,25 @@ export default function Navbar() {
                 Leaderboard
               </a>
               <a 
-                href="#test-area" 
-                className="text-xl md:text-2xl font-heading text-gray-200 hover:text-[#60A5FA] transition-colors duration-200 py-2 px-4 rounded-lg hover:bg-gray-800/50" 
-                onClick={e => { 
-                  e.preventDefault();
-                  startTest();
-                  
-                  // Add visual feedback for mobile
-                  const button = e.currentTarget as HTMLAnchorElement;
-                  const originalText = button.textContent;
-                  button.textContent = 'Starting...';
-                  button.style.opacity = '0.7';
-                  
-                  // Scroll to test area
-                  const el = document.getElementById('test-area');
-                  if (el) {
-                    el.scrollIntoView({ behavior: 'smooth' });
-                  }
-                  
-                  // Reset button after a short delay
-                  setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.opacity = '1';
-                  }, 1000);
-                  
-                  setMenuOpen(false);
-                }}
-              >
-                Test Again
-              </a>
-              <a 
-                href="/about" 
+                href="/how-it-works" 
                 className="text-xl md:text-2xl font-heading text-gray-200 hover:text-[#60A5FA] transition-colors duration-200 py-2 px-4 rounded-lg hover:bg-gray-800/50" 
                 onClick={() => setMenuOpen(false)}
               >
-                About
+                How It Works
               </a>
               <a 
-                href="/guides" 
+                href="/complete-guide" 
                 className="text-xl md:text-2xl font-heading text-gray-200 hover:text-[#60A5FA] transition-colors duration-200 py-2 px-4 rounded-lg hover:bg-gray-800/50" 
                 onClick={() => setMenuOpen(false)}
               >
-                Guides/FAQ
+                Guide
               </a>
               <a 
-                href="/contact" 
+                href="/faq" 
                 className="text-xl md:text-2xl font-heading text-gray-200 hover:text-[#60A5FA] transition-colors duration-200 py-2 px-4 rounded-lg hover:bg-gray-800/50" 
                 onClick={() => setMenuOpen(false)}
               >
-                Contact
+                FAQ
               </a>
               <a 
                 href="/blog" 
@@ -190,11 +136,18 @@ export default function Navbar() {
                 Blog
               </a>
               <a 
-                href="/accessibility" 
+                href="/about" 
                 className="text-xl md:text-2xl font-heading text-gray-200 hover:text-[#60A5FA] transition-colors duration-200 py-2 px-4 rounded-lg hover:bg-gray-800/50" 
                 onClick={() => setMenuOpen(false)}
               >
-                Accessibility
+                About
+              </a>
+              <a 
+                href="/contact" 
+                className="text-xl md:text-2xl font-heading text-gray-200 hover:text-[#60A5FA] transition-colors duration-200 py-2 px-4 rounded-lg hover:bg-gray-800/50" 
+                onClick={() => setMenuOpen(false)}
+              >
+                Contact
               </a>
               
               {/* Mobile CTA Button */}
@@ -207,7 +160,7 @@ export default function Navbar() {
                 }}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 mt-4"
               >
-                Start Test Now
+                Test Now
               </button>
             </div>
           </div>
