@@ -1,5 +1,6 @@
 "use client";
 
+// Main homepage with mouse latency testing tool and comprehensive content
 import PollingRateCard from '@/components/PollingRateCard';
 import ClickLatencyCard from '@/components/ClickLatencyCard';
 import JitterAnalysisCard from '@/components/JitterAnalysisCard';
