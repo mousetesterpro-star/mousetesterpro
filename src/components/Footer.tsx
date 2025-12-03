@@ -13,7 +13,7 @@ const privacyContent = (
       <li>Third-party analytics (e.g., Google Analytics) may be used to understand site usage.</li>
     </ul>
     <p>You may contact us via our <a href="/contact" className="text-[#60A5FA] underline">Contact page</a> for any privacy-related questions.</p>
-    <p className="text-xs text-gray-500">Last updated: July 2024</p>
+    <p className="text-xs text-gray-500">Last updated: December 2024</p>
   </div>
 );
 
@@ -29,7 +29,7 @@ const termsContent = (
       <li>We reserve the right to update these terms at any time.</li>
     </ul>
     <p>For questions, please use our <a href="/contact" className="text-[#60A5FA] underline">Contact page</a>.</p>
-    <p className="text-xs text-gray-500">Last updated: July 2024</p>
+    <p className="text-xs text-gray-500">Last updated: December 2024</p>
   </div>
 );
 
@@ -82,8 +82,8 @@ export default function Footer() {
               <ul className="space-y-2">
                 <li><a href="/about" className="text-gray-400 hover:text-[#60A5FA] transition-colors">About Us</a></li>
                 <li><a href="/accessibility" className="text-gray-400 hover:text-[#60A5FA] transition-colors">Accessibility</a></li>
-                <li><button className="text-gray-400 hover:text-[#60A5FA] transition-colors text-left" onClick={() => setModal("privacy")}>Privacy Policy</button></li>
-                <li><button className="text-gray-400 hover:text-[#60A5FA] transition-colors text-left" onClick={() => setModal("terms")}>Terms of Service</button></li>
+                <li><a href="/privacy" className="text-gray-400 hover:text-[#60A5FA] transition-colors">Privacy Policy</a></li>
+                <li><a href="/terms" className="text-gray-400 hover:text-[#60A5FA] transition-colors">Terms of Service</a></li>
               </ul>
             </div>
           </div>

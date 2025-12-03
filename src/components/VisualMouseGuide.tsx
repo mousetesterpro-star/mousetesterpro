@@ -4,54 +4,76 @@ import React, { useState, useEffect, useRef } from 'react';
 export default function VisualMouseGuide() {
   const [clicks, setClicks] = useState(0);
   const [scrolls, setScrolls] = useState(0);
-  const [activeButton, setActiveButton] = useState<'left' | 'right' | 'scroll' | null>(null);
+  const [activeButton, setActiveButton] = useState<'left' | 'right' | 'scroll-up' | 'scroll-down' | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const handleLeftClick = (e: MouseEvent) => {
-      e.preventDefault();
-      setClicks(prev => prev + 1);
-      setActiveButton('left');
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(() => setActiveButton(null), 300);
+    const handleMouseDown = (e: MouseEvent) => {
+      if (e.button === 0) {
+        // Left click
+        e.preventDefault();
+        setClicks(prev => prev + 1);
+        setActiveButton('left');
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => setActiveButton(null), 200);
+      } else if (e.button === 2) {
+        // Right click
+        e.preventDefault();
+        e.stopPropagation();
+        setClicks(prev => prev + 1);
+        setActiveButton('right');
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => setActiveButton(null), 200);
+      }
     };
 
-    const handleRightClick = (e: MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setClicks(prev => prev + 1);
-      setActiveButton('right');
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(() => setActiveButton(null), 300);
+    const handleMouseUp = () => {
+      if (activeButton === 'left' || activeButton === 'right') {
+        setActiveButton(null);
+      }
     };
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
       setScrolls(prev => prev + 1);
-      setActiveButton('scroll');
+      
+      if (e.deltaY < 0) {
+        // Scroll up
+        setActiveButton('scroll-up');
+      } else {
+        // Scroll down
+        setActiveButton('scroll-down');
+      }
+      
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(() => setActiveButton(null), 300);
+      timeoutRef.current = setTimeout(() => setActiveButton(null), 200);
+    };
+
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
     };
 
     const container = containerRef.current;
     if (container) {
-      container.addEventListener('click', handleLeftClick);
-      container.addEventListener('contextmenu', handleRightClick);
+      container.addEventListener('mousedown', handleMouseDown);
+      container.addEventListener('mouseup', handleMouseUp);
       container.addEventListener('wheel', handleWheel, { passive: false });
+      container.addEventListener('contextmenu', handleContextMenu);
     }
 
     return () => {
       if (container) {
-        container.removeEventListener('click', handleLeftClick);
-        container.removeEventListener('contextmenu', handleRightClick);
+        container.removeEventListener('mousedown', handleMouseDown);
+        container.removeEventListener('mouseup', handleMouseUp);
         container.removeEventListener('wheel', handleWheel);
+        container.removeEventListener('contextmenu', handleContextMenu);
       }
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, []);
+  }, [activeButton]);
 
   const resetCounts = () => {
     setClicks(0);
@@ -87,39 +109,43 @@ export default function VisualMouseGuide() {
         style={{ minHeight: '300px' }}
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center space-y-4 p-6">
-          {/* Custom Mouse Icon with Visual Feedback */}
+          {/* Simple Mouse Design - Based on HTML version */}
           <div className="relative mb-4 flex items-center justify-center">
-            <div className="relative">
-              {/* Mouse Body */}
-              <div className="w-32 h-48 bg-[#2a2a3e] rounded-t-[60px] rounded-b-[20px] border-2 border-[#4a4a6e] relative overflow-hidden">
-                {/* Left Button */}
-                <div 
-                  className={`absolute top-0 left-0 w-1/2 h-1/3 rounded-tl-[60px] border-r-2 border-[#4a4a6e] transition-all duration-200 ${
-                    activeButton === 'left' ? 'bg-[#60A5FA] border-[#4090e6]' : 'bg-[#3a3a4e]'
-                  }`}
-                />
-                
-                {/* Right Button */}
-                <div 
-                  className={`absolute top-0 right-0 w-1/2 h-1/3 rounded-tr-[60px] border-l-2 border-[#4a4a6e] transition-all duration-200 ${
-                    activeButton === 'right' ? 'bg-[#60A5FA] border-[#4090e6]' : 'bg-[#3a3a4e]'
-                  }`}
-                />
-                
-                {/* Scroll Wheel */}
-                <div 
-                  className={`absolute top-1/3 left-1/2 transform -translate-x-1/2 w-2 h-8 rounded-full transition-all duration-200 ${
-                    activeButton === 'scroll' ? 'bg-[#60A5FA] border-2 border-[#4090e6] h-10' : 'bg-[#5a5a7e] border-2 border-[#7a7a9e]'
-                  }`}
-                >
-                  {/* Scroll wheel lines */}
-                  <div className="absolute inset-0 flex flex-col justify-center items-center gap-1">
-                    <div className={`w-3 h-0.5 ${activeButton === 'scroll' ? 'bg-[#4090e6]' : 'bg-[#7a7a9e]'}`}></div>
-                    <div className={`w-3 h-0.5 ${activeButton === 'scroll' ? 'bg-[#4090e6]' : 'bg-[#7a7a9e]'}`}></div>
-                    <div className={`w-3 h-0.5 ${activeButton === 'scroll' ? 'bg-[#4090e6]' : 'bg-[#7a7a9e]'}`}></div>
-                  </div>
-                </div>
-              </div>
+            {/* Mouse Body */}
+            <div 
+              className="relative w-40 h-72 mx-auto bg-[#1c1c1c] rounded-[80px] transition-all duration-200"
+              style={{
+                boxShadow: '0 0 20px rgba(0, 0, 0, 0.8)'
+              }}
+            >
+              {/* Left Button */}
+              <div 
+                className={`absolute top-0 left-0 w-1/2 h-[40%] rounded-tl-[80px] transition-all duration-200 ${
+                  activeButton === 'left' 
+                    ? 'bg-[#4caf50] shadow-[0_0_15px_#4caf50]' 
+                    : 'bg-[#2a2a2a]'
+                }`}
+              />
+              
+              {/* Right Button */}
+              <div 
+                className={`absolute top-0 right-0 w-1/2 h-[40%] rounded-tr-[80px] transition-all duration-200 ${
+                  activeButton === 'right' 
+                    ? 'bg-[#4caf50] shadow-[0_0_15px_#4caf50]' 
+                    : 'bg-[#2a2a2a]'
+                }`}
+              />
+              
+              {/* Scroll Wheel */}
+              <div 
+                className={`absolute top-[90px] left-1/2 transform -translate-x-1/2 w-5 h-12 rounded-[10px] transition-all duration-200 ${
+                  activeButton === 'scroll-up'
+                    ? 'bg-[#2196f3] shadow-[0_0_15px_#2196f3]'
+                    : activeButton === 'scroll-down'
+                    ? 'bg-[#ff9800] shadow-[0_0_15px_#ff9800]'
+                    : 'bg-[#444]'
+                }`}
+              />
             </div>
           </div>
           

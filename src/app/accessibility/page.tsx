@@ -17,7 +17,7 @@ export default function AccessibilityPage() {
         <p className="text-base text-gray-300 mb-2">
           If you experience any difficulty accessing content on this site, please contact us via our <a href="/contact" className="text-[#60A5FA] underline">Contact page</a> and we will do our best to assist you.
         </p>
-        <p className="text-xs text-gray-500">Last updated: July 2024</p>
+        <p className="text-xs text-gray-500">Last updated: December 2024</p>
       </div>
     </section>
   );

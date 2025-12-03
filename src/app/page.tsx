@@ -369,17 +369,17 @@ export default function Home() {
                 <div className="bg-[#23272e] rounded-lg p-4 border border-[#3A3A3A]">
                   <h3 className="text-lg font-bold text-white mb-2">Mouse CPS Test</h3>
                   <p className="text-gray-300 text-sm mb-3">Test your clicks per second for gaming performance</p>
-                  <a href="/cps-test" className="text-blue-400 hover:text-blue-300 text-sm">Coming Soon →</a>
+                  <a href="/cps-test" className="text-blue-400 hover:text-blue-300 text-sm">Learn More →</a>
                 </div>
                 <div className="bg-[#23272e] rounded-lg p-4 border border-[#3A3A3A]">
                   <h3 className="text-lg font-bold text-white mb-2">Keyboard Latency Test</h3>
                   <p className="text-gray-300 text-sm mb-3">Measure keyboard input lag and response time</p>
-                  <a href="/keyboard-test" className="text-blue-400 hover:text-blue-300 text-sm">Coming Soon →</a>
+                  <a href="/keyboard-test" className="text-blue-400 hover:text-blue-300 text-sm">Learn More →</a>
                 </div>
                 <div className="bg-[#23272e] rounded-lg p-4 border border-[#3A3A3A]">
                   <h3 className="text-lg font-bold text-white mb-2">Monitor Response Test</h3>
                   <p className="text-gray-300 text-sm mb-3">Test monitor refresh rate and response time</p>
-                  <a href="/monitor-test" className="text-blue-400 hover:text-blue-300 text-sm">Coming Soon →</a>
+                  <a href="/monitor-test" className="text-blue-400 hover:text-blue-300 text-sm">Learn More →</a>
                 </div>
               </div>
             </div>
