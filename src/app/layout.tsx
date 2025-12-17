@@ -94,7 +94,7 @@ export const metadata: Metadata = {
   },
   other: {
     'google-site-verification': 'Mk-_ipPpCWLnAYDW9V_Rp6P8BIwGURE8Vvceebi47Uw',
-    'google-adsense-account': 'ca-pub-7765938871336081',
+    'google-adsense-account': 'ca-pub-9584387016449943',
     'robots': 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
     'referrer': 'origin-when-cross-origin',
   }
@@ -120,7 +120,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
         <link rel="dns-prefetch" href="https://tpc.googlesyndication.com" />
-        <meta name="google-adsense-account" content="ca-pub-7765938871336081" />
+        <meta name="google-adsense-account" content="ca-pub-9584387016449943" />
         {/*<link rel="canonical" href="https://mousetesterpro.com" />*/}
         <script
           type="application/ld+json"
@@ -383,7 +383,7 @@ export default function RootLayout({
       {/* Google AdSense */}
       <script
         async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7765938871336081"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9584387016449943"
         crossOrigin="anonymous"
         dangerouslySetInnerHTML={{ __html: '' }}
       />
