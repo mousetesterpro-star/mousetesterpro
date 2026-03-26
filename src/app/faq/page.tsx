@@ -19,8 +19,112 @@ export const metadata: Metadata = {
   }
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What exactly is mouse latency and why does it matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mouse latency, also called input lag or click delay, is the time between when you physically click your mouse button and when your computer registers that input. It's measured in milliseconds (ms). For competitive gaming, low latency is crucial because it directly affects your reaction time in-game. A 10ms difference might seem insignificant, but in fast-paced shooters like Valorant or CS2, it can determine whether you land a shot or get eliminated. Professional esports players typically aim for latency under 8ms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is polling rate and what polling rate should I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Polling rate measures how frequently your mouse reports its position to your computer, expressed in Hertz (Hz). A 1000Hz polling rate means 1,000 position updates per second, or one update every millisecond. For gaming, we recommend 1000Hz as the optimal balance between performance and system resources."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is jitter and how does it affect my gaming performance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jitter refers to the inconsistency in timing between mouse position updates. High jitter creates unpredictable input behavior that can affect aim precision in games. A jitter value under 0.5ms is excellent, while anything above 2ms may indicate issues with your USB connection, drivers, or mouse hardware."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my wireless mouse showing higher latency than expected?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Modern wireless gaming mice using 2.4GHz technology typically achieve latency comparable to wired mice. However, interference from other 2.4GHz devices, distance from the receiver, or low battery can increase latency. Place the receiver close to your mouse and use the dedicated 2.4GHz receiver rather than Bluetooth for gaming."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is browser-based latency testing compared to hardware testing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Browser-based testing using the performance.now() API provides sub-millisecond accuracy, sufficient for comparing mice and identifying performance issues. It measures the same input path that browser games and web applications use, making results directly relevant to real-world performance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What causes high latency and how can I reduce it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "High latency can stem from outdated drivers, USB hub usage, high system load, power saving settings, Windows pointer acceleration, and mouse hardware. To reduce latency: use a wired connection or high-quality 2.4GHz wireless, set polling rate to 1000Hz, update drivers, connect to USB 3.0 ports, enable Windows Game Mode, and disable USB selective suspend."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my monitor's refresh rate affect mouse latency test results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your monitor's refresh rate doesn't directly affect latency measurements, but it affects how quickly you perceive the response. A 60Hz monitor updates every 16.7ms, while a 240Hz monitor updates every 4.2ms. For competitive gaming, pair a low-latency mouse with a high refresh rate monitor to minimize total system latency."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do my test results vary between attempts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some variation in results is normal. Human reaction time naturally varies, and system performance fluctuates. Large variations (more than 20ms) may indicate background processes consuming resources, USB bandwidth issues, driver instability, or wireless interference. Test with minimal background applications for the most consistent results."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between click latency and response time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Click latency measures the delay from physical button press to computer registration. Response time can refer to this measurement or, in the context of monitors, the time for a pixel to change color. When evaluating total system responsiveness, consider: mouse click latency + system processing time + monitor response time + monitor input lag."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use a mouse bungee or paracord cable for better latency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mouse bungees and paracord cables don't directly affect latency — they improve cable feel and reduce drag. For pure latency reduction, focus on polling rate, drivers, and USB connection quality instead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do optical switches compare to mechanical switches for latency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Optical switches generally offer lower and more consistent latency. Mechanical switches can cause contact bounce that adds 2-8ms of debounce delay. Optical switches eliminate contact bounce, allowing near-zero debounce times (0.2ms typical). The difference matters most at the highest competitive levels."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can software or drivers reduce my mouse latency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Key optimizations include: installing manufacturer-specific drivers, updating firmware, setting polling rate to 1000Hz, disabling Windows Enhance pointer precision, enabling Windows Game Mode, disabling USB selective suspend, and closing unnecessary background applications."
+      }
+    }
+  ]
+};
+
 export default function FAQPage() {
   const faqs = [
+
     {
       question: "What exactly is mouse latency and why does it matter?",
       answer: `Mouse latency, also called input lag or click delay, is the time between when you physically click your mouse button and when your computer registers that input. It's measured in milliseconds (ms). For competitive gaming, low latency is crucial because it directly affects your reaction time in-game. A 10ms difference might seem insignificant, but in fast-paced shooters like Valorant or CS2, it can determine whether you land a shot or get eliminated. Professional esports players typically aim for latency under 8ms. Beyond gaming, low latency improves the responsiveness of any precision work—graphic design, video editing, music production, and general productivity all benefit from faster input response.`
@@ -73,6 +177,7 @@ export default function FAQPage() {
 
   return (
     <section className="w-full max-w-4xl mx-auto px-4 py-12 md:py-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 text-center">Frequently Asked Questions</h1>
       <p className="text-gray-400 text-center mb-8 max-w-2xl mx-auto">
         Expert answers to common questions about mouse latency, polling rate, jitter, and gaming performance optimization.
