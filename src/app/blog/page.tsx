@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 const blogPosts = [
   {
     id: "mouse-test-latency",
-    title: "Mouse Test Latency - Free Online Tool 2025 | Instant Results",
+    title: "Mouse Test Latency — Free Online Tool 2026 | Instant Results",
     description: "Free mouse test latency tool with instant results. Test your gaming mouse performance online with accurate measurements. Professional-grade testing for competitive gaming.",
-    date: "2025-01-15",
+    date: "2026-04-15",
     readTime: "5 min read",
     category: "Gaming"
   },
@@ -27,7 +27,7 @@ const blogPosts = [
     title: "Top 5 Ways to Reduce Mouse Latency",
     description: "Learn the most effective methods to reduce mouse latency and improve your gaming performance. From hardware upgrades to software optimizations.",
     date: "2025-01-15",
-    readTime: "5 min read",
+    readTime: "7 min read",
     category: "Performance"
   },
   {
@@ -35,7 +35,7 @@ const blogPosts = [
     title: "Why Input Lag Matters for Gamers",
     description: "Understanding the impact of input lag on competitive gaming and how even small improvements can give you a significant advantage.",
     date: "2025-01-10",
-    readTime: "4 min read",
+    readTime: "6 min read",
     category: "Gaming"
   },
   {
@@ -51,7 +51,7 @@ const blogPosts = [
     title: "How to Test Mouse Latency: Complete Guide for Gamers",
     description: "Learn how to test mouse latency accurately. Complete guide for gamers to measure click response time, improve gaming performance, and optimize mouse settings.",
     date: "2024-08-04",
-    readTime: "5 min read",
+    readTime: "6 min read",
     category: "How To"
   },
   {
@@ -59,8 +59,32 @@ const blogPosts = [
     title: "Mouse Jitter vs Polling Rate: What Affects Gaming Performance?",
     description: "Understand the difference between mouse jitter and polling rate. Learn how these factors affect gaming performance and how to optimize your mouse settings.",
     date: "2024-08-04",
-    readTime: "6 min read",
+    readTime: "7 min read",
     category: "Education"
+  },
+  {
+    id: "welcome-to-mousetester-pro",
+    title: "Welcome to MouseTester Pro — Here's Why We Built It",
+    description: "The story behind MouseTester Pro: why we built a browser-based mouse latency tool, what problems it solves, and what makes it different from other testing tools.",
+    date: "2024-07-19",
+    readTime: "5 min read",
+    category: "News"
+  },
+  {
+    id: "new-feature-shareable-results",
+    title: "New: Share Your Mouse Test Results With a Link",
+    description: "You can now share your mouse latency test results with a link. Compare results, post to forums, and get community feedback on your gaming setup.",
+    date: "2024-07-18",
+    readTime: "4 min read",
+    category: "Feature"
+  },
+  {
+    id: "guides-faq-now-live",
+    title: "Guides & FAQ Are Now Live",
+    description: "Detailed guides on mouse latency, polling rate, jitter, and optimization are now available on MouseTester Pro.",
+    date: "2024-07-17",
+    readTime: "4 min read",
+    category: "Update"
   }
 ];
 
@@ -76,6 +100,7 @@ export default function BlogPage() {
         </p>
       </div>
 
+      {/* Featured Posts — show top 3 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogPosts.slice(0, 3).map((post) => (
           <article key={post.id} className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 border border-[#3A3A3A] hover:border-[#60A5FA] transition-all duration-300">
