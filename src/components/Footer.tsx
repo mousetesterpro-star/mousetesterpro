@@ -89,12 +89,12 @@ export default function Footer() {
         
         {/* Bottom Bar */}
         <div className="max-w-6xl mx-auto pt-6 border-t border-[#23272e] flex flex-col md:flex-row items-center justify-between gap-4 text-gray-400 text-sm">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-white">Mouse Tester Pro</span>
+        <div className="flex items-center gap-2">
+          <span className="font-bold text-white">Mouse Tester Pro</span>
             <span className="text-gray-600">—</span>
             <span className="text-gray-500">Professional Mouse Performance Testing</span>
-          </div>
-          <div className="text-xs text-gray-500">&copy; {new Date().getFullYear()} Mouse Tester Pro. All rights reserved.</div>
+        </div>
+        <div className="text-xs text-gray-500">&copy; {new Date().getFullYear()} Mouse Tester Pro. All rights reserved.</div>
         </div>
         
         {/* Modal */}

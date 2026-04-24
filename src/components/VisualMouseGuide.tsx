@@ -12,18 +12,18 @@ export default function VisualMouseGuide() {
     const handleMouseDown = (e: MouseEvent) => {
       if (e.button === 0) {
         // Left click
-        e.preventDefault();
-        setClicks(prev => prev + 1);
-        setActiveButton('left');
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      e.preventDefault();
+      setClicks(prev => prev + 1);
+      setActiveButton('left');
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(() => setActiveButton(null), 200);
       } else if (e.button === 2) {
         // Right click
-        e.preventDefault();
-        e.stopPropagation();
-        setClicks(prev => prev + 1);
-        setActiveButton('right');
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      e.preventDefault();
+      e.stopPropagation();
+      setClicks(prev => prev + 1);
+      setActiveButton('right');
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(() => setActiveButton(null), 200);
       }
     };
@@ -111,33 +111,33 @@ export default function VisualMouseGuide() {
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center space-y-4 p-6">
           {/* Simple Mouse Design - Based on HTML version */}
           <div className="relative mb-4 flex items-center justify-center">
-            {/* Mouse Body */}
+              {/* Mouse Body */}
             <div 
               className="relative w-40 h-72 mx-auto bg-[#1c1c1c] rounded-[80px] transition-all duration-200"
               style={{
                 boxShadow: '0 0 20px rgba(0, 0, 0, 0.8)'
               }}
             >
-              {/* Left Button */}
-              <div 
+                {/* Left Button */}
+                <div 
                 className={`absolute top-0 left-0 w-1/2 h-[40%] rounded-tl-[80px] transition-all duration-200 ${
                   activeButton === 'left' 
                     ? 'bg-[#4caf50] shadow-[0_0_15px_#4caf50]' 
                     : 'bg-[#2a2a2a]'
-                }`}
-              />
-              
-              {/* Right Button */}
-              <div 
+                  }`}
+                />
+                
+                {/* Right Button */}
+                <div 
                 className={`absolute top-0 right-0 w-1/2 h-[40%] rounded-tr-[80px] transition-all duration-200 ${
                   activeButton === 'right' 
                     ? 'bg-[#4caf50] shadow-[0_0_15px_#4caf50]' 
                     : 'bg-[#2a2a2a]'
-                }`}
-              />
-              
-              {/* Scroll Wheel */}
-              <div 
+                  }`}
+                />
+                
+                {/* Scroll Wheel */}
+                <div 
                 className={`absolute top-[90px] left-1/2 transform -translate-x-1/2 w-5 h-12 rounded-[10px] transition-all duration-200 ${
                   activeButton === 'scroll-up'
                     ? 'bg-[#2196f3] shadow-[0_0_15px_#2196f3]'
