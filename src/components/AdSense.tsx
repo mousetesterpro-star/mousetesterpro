@@ -23,7 +23,7 @@ export default function AdSense({ adSlot, adFormat = 'auto', className = '', sty
       <ins
         className="adsbygoogle"
         style={{ display: 'block', textAlign: 'center' as const }}
-        data-ad-client="ca-pub-7765938871336081"
+        data-ad-client="ca-pub-9584387016449943"
         data-ad-slot={adSlot}
         data-ad-format={adFormat}
         data-full-width-responsive="true"
