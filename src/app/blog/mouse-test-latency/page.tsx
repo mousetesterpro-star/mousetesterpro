@@ -2,23 +2,23 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: "Mouse Test Latency - Free Online Tool 2025 | Instant Results",
+  title: "Mouse Test Latency - Free Online Tool 2026 | Instant Results",
   description: "Free mouse latency test with instant results. Test your gaming mouse performance online with accurate measurements for professional-grade and competitive play.",
   keywords: [
     "mouse test latency",
     "free mouse latency test",
     "mouse latency test online",
     "gaming mouse performance test",
-    "mouse latency tester 2025",
+    "mouse latency tester 2026",
     "instant mouse latency test",
     "accurate mouse latency test"
   ],
   openGraph: {
-    title: "Mouse Test Latency - Free Online Tool 2025",
+    title: "Mouse Test Latency - Free Online Tool 2026",
     description: "Free mouse test latency tool with instant results. Test your gaming mouse performance online with accurate measurements.",
   },
   twitter: {
-    title: "Mouse Test Latency - Free Online Tool 2025",
+    title: "Mouse Test Latency - Free Online Tool 2026",
     description: "Free mouse test latency tool with instant results. Test your gaming mouse performance online with accurate measurements.",
   }
 };
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Mouse Test Latency — Free Online Tool 2025",
-  "datePublished": "2025-01-15",
-  "dateModified": "2025-03-01",
+  "headline": "Mouse Test Latency — Free Online Tool 2026",
+  "datePublished": "2026-04-15",
+  "dateModified": "2026-04-15",
   "author": { "@type": "Organization", "name": "Mouse Tester Pro" },
   "publisher": { "@type": "Organization", "name": "Mouse Tester Pro", "url": "https://mousetesterpro.com" },
   "description": "Everything you need to know about testing mouse latency online — how the test works, what your numbers mean, and how to improve them."
@@ -42,7 +42,7 @@ export default function MouseTestLatencyPage() {
       <article className="bg-[#1A1A1A] rounded-2xl shadow-sm p-8">
         <header className="mb-10">
           <h1 className="text-4xl font-bold text-white mb-4">
-            Mouse Test Latency — Free Online Tool 2025
+            Mouse Test Latency — Free Online Tool 2026
           </h1>
           <p className="text-gray-400 text-lg">
             Test your mouse latency instantly with no downloads, no signups, and no guesswork. Get real numbers for your gaming or productivity setup in under two minutes.

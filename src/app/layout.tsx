@@ -25,49 +25,21 @@ export const metadata: Metadata = {
   title: "Mouse Latency Test - Check Input Delay For Free",
   description: "Test mouse latency instantly - no download needed! Get accurate click delay results in seconds. Perfect for gaming performance optimization.",
   keywords: [
-    "mouse test latency",
     "mouse latency test",
     "mouse click latency test online",
     "free mouse latency test",
-    "instant mouse latency test",
-    "accurate mouse latency test",
-    "mouse latency test 2025",
-    "free mouse latency tester",
-    "mouse click speed test online",
     "gaming mouse performance test",
     "mouse polling rate test",
-    "mouse jitter test free",
-    "mouse latency tester India",
-    "gaming mouse test India",
-    "free mouse performance tool India",
-    "online mouse testing tool India",
-    "mouse accuracy test free India",
-    "mouse latency tester US",
-    "gaming mouse test America",
-    "mouse latency tester UK",
-    "gaming mouse test England",
-    "mouse latency tester Canada",
-    "gaming mouse test Canada",
-    "mouse latency tester Australia",
-    "gaming mouse test Australia",
-    "mouse latency tester Germany",
-    "gaming mouse test Deutschland",
-    "mouse latency tester Brazil",
-    "gaming mouse test Brasil",
-    "how to test mouse latency for gaming",
-    "best mouse latency for competitive gaming",
-    "free mouse performance tester online",
-    "gaming mouse click speed test",
-    "mouse polling rate vs latency gaming",
-    "mouse latency test for Valorant India",
-    "gaming mouse performance test free online",
-    "competitive gaming mouse test",
-    "esports mouse performance tool",
+    "mouse jitter test",
     "mouse response time test",
-    "gaming peripheral test free"
+    "input lag test",
+    "click speed test",
+    "competitive gaming mouse test",
+    "mouse debounce test",
+    "mouse accuracy test"
   ],
   openGraph: {
-    title: "Desktop Mouse Latency Test [2025] | Free Gaming Mouse Tester",
+    title: "Desktop Mouse Latency Test [2026] | Free Gaming Mouse Tester",
     description: "Test mouse latency on desktop instantly. Free gaming mouse tester with CPS test, polling rate & input lag analysis. Professional results in seconds.",
     url: "https://mousetesterpro.com",
     siteName: "Mouse Tester Pro",
@@ -84,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Desktop Mouse Latency Test [2025] | Free Gaming Mouse Tester",
+    title: "Desktop Mouse Latency Test [2026] | Free Gaming Mouse Tester",
     description: "Test mouse latency on desktop instantly. Free gaming mouse tester with CPS test, polling rate & input lag analysis. Professional results in seconds.",
     images: [
       "https://mousetesterpro.com/og-image.png"
@@ -299,12 +271,11 @@ export default function RootLayout({
         />
 
       </head>
-      {/* Google AdSense */}
-      <script
-        async
+      {/* Google AdSense - loaded via Script component */}
+      <Script
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9584387016449943"
         crossOrigin="anonymous"
-        dangerouslySetInnerHTML={{ __html: '' }}
+        strategy="afterInteractive"
       />
       {/* Google Analytics */}
       <Script

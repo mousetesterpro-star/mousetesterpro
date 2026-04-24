@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Privacy Policy | MouseTester Pro",
-  description: "Privacy Policy for MouseTester Pro. Learn how we collect, use, and protect your data.",
-  robots: 'noindex, follow'
+  description: "Privacy Policy for MouseTester Pro. Learn how we collect, use, and protect your data."
 };
 
 export default function PrivacyPage() {
@@ -13,7 +12,7 @@ export default function PrivacyPage() {
       
       <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 md:p-8 space-y-6 text-gray-300">
         <div>
-          <p className="text-sm text-gray-400 mb-4">Last updated: December 2024</p>
+          <p className="text-sm text-gray-400 mb-4">Last updated: April 2026</p>
         </div>
 
         <div>

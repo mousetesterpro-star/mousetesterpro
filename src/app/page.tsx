@@ -204,15 +204,15 @@ export default function Home() {
 
             {/* Trust Signals */}
             <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 mb-8">
-              <h2 className="text-xl font-bold text-white mb-4">Trusted by Gamers Worldwide</h2>
+              <h2 className="text-xl font-bold text-white mb-4">Built for Gamers, By Gamers</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-400 mb-2">50K+</div>
-                  <div className="text-gray-300 text-sm">Tests Completed</div>
+                  <div className="text-3xl font-bold text-blue-400 mb-2">Free</div>
+                  <div className="text-gray-300 text-sm">No Downloads or Signup</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-green-400 mb-2">99.9%</div>
-                  <div className="text-gray-300 text-sm">Accuracy Rate</div>
+                  <div className="text-3xl font-bold text-green-400 mb-2">Sub-ms</div>
+                  <div className="text-gray-300 text-sm">Timing Precision</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-purple-400 mb-2">30s</div>
