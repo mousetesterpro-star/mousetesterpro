@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { FooterAd } from './AdSense';
 
 const privacyContent = (
   <div className="space-y-4 text-gray-200 text-sm max-h-[60vh] overflow-y-auto">
@@ -39,7 +38,6 @@ export default function Footer() {
 
   return (
     <>
-      <FooterAd />
       <footer className="w-full bg-[#10131a] border-t border-[#23272e] py-8 px-4">
         {/* Footer Links Grid */}
         <div className="max-w-6xl mx-auto mb-6">

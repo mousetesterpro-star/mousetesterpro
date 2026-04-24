@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Terms of Service | MouseTester Pro",
-  description: "Terms of Service for MouseTester Pro. Read our terms and conditions for using our mouse latency testing service.",
-  robots: 'noindex, follow'
+  description: "Terms of Service for MouseTester Pro. Read our terms and conditions for using our mouse latency testing service."
 };
 
 export default function TermsPage() {
@@ -13,7 +12,7 @@ export default function TermsPage() {
       
       <div className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 md:p-8 space-y-6 text-gray-300">
         <div>
-          <p className="text-sm text-gray-400 mb-4">Last updated: December 2024</p>
+          <p className="text-sm text-gray-400 mb-4">Last updated: April 2026</p>
         </div>
 
         <div>

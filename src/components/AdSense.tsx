@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 
 interface AdSenseProps {
   adSlot: string;
@@ -9,50 +9,20 @@ interface AdSenseProps {
   style?: React.CSSProperties;
 }
 
+// AdSense ads are disabled until approval is received and real slot IDs are configured.
+// The AdSense verification script is loaded in layout.tsx for the approval process.
+// Once approved, replace the placeholder slot IDs below with your real ones and
+// set ADSENSE_APPROVED to true.
+const ADSENSE_APPROVED = false;
+
 export default function AdSense({ adSlot, adFormat = 'auto', className = '', style = {} }: AdSenseProps) {
-  useEffect(() => {
-    try {
-      // Push the command to Google AdSense
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (error) {
-      console.log('AdSense error:', error);
-    }
-  }, []);
-
-  const getAdStyle = () => {
-    switch (adFormat) {
-      case 'banner':
-        return { display: 'block', textAlign: 'center' as const, overflow: 'hidden' };
-      case 'rectangle':
-        return { display: 'block', textAlign: 'center' as const };
-      case 'fluid':
-        return { display: 'block', textAlign: 'center' as const };
-      default:
-        return { display: 'block', textAlign: 'center' as const };
-    }
-  };
-
-  // Show placeholder until AdSense is approved
-  const showPlaceholder = false; // Set to false when AdSense is approved
-
-  if (showPlaceholder) {
-    return (
-      <div className={`ad-container ${className}`} style={style}>
-        <div className="w-full h-24 bg-gray-900 rounded-xl flex items-center justify-center text-gray-400 text-sm border border-gray-800">
-          <div className="text-center">
-            <div className="text-xs text-gray-500 mb-1">Advertisement</div>
-            <div className="text-xs text-gray-600">AdSense Pending Approval</div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  if (!ADSENSE_APPROVED) return null;
 
   return (
     <div className={`ad-container ${className}`} style={style}>
       <ins
         className="adsbygoogle"
-        style={getAdStyle()}
+        style={{ display: 'block', textAlign: 'center' as const }}
         data-ad-client="ca-pub-7765938871336081"
         data-ad-slot={adSlot}
         data-ad-format={adFormat}
@@ -62,51 +32,20 @@ export default function AdSense({ adSlot, adFormat = 'auto', className = '', sty
   );
 }
 
-// Specific ad components for different placements
+// Ad placement components — all return null until AdSense is approved.
+// Replace slot IDs with real ones from your AdSense dashboard after approval.
 export function HeaderAd() {
-  return (
-    <div className="w-full flex justify-center mb-4">
-      <AdSense 
-        adSlot="1234567890" // Replace with your actual ad slot ID
-        adFormat="banner"
-        className="w-full max-w-4xl"
-      />
-    </div>
-  );
+  return <AdSense adSlot="REPLACE_WITH_REAL_SLOT_ID" adFormat="banner" className="w-full max-w-4xl" />;
 }
 
 export function SidebarAd() {
-  return (
-    <div className="w-full flex justify-center my-4">
-      <AdSense 
-        adSlot="1234567891" // Replace with your actual ad slot ID
-        adFormat="rectangle"
-        className="w-full max-w-xs"
-      />
-    </div>
-  );
+  return <AdSense adSlot="REPLACE_WITH_REAL_SLOT_ID" adFormat="rectangle" className="w-full max-w-xs" />;
 }
 
 export function ContentAd() {
-  return (
-    <div className="w-full flex justify-center my-6">
-      <AdSense 
-        adSlot="1234567892" // Replace with your actual ad slot ID
-        adFormat="auto"
-        className="w-full max-w-2xl"
-      />
-    </div>
-  );
+  return <AdSense adSlot="REPLACE_WITH_REAL_SLOT_ID" adFormat="auto" className="w-full max-w-2xl" />;
 }
 
 export function FooterAd() {
-  return (
-    <div className="w-full flex justify-center mt-6">
-      <AdSense 
-        adSlot="1234567893" // Replace with your actual ad slot ID
-        adFormat="banner"
-        className="w-full max-w-4xl"
-      />
-    </div>
-  );
+  return <AdSense adSlot="REPLACE_WITH_REAL_SLOT_ID" adFormat="banner" className="w-full max-w-4xl" />;
 } 
