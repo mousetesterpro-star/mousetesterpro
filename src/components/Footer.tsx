@@ -12,7 +12,7 @@ const privacyContent = (
       <li>Third-party analytics (e.g., Google Analytics) may be used to understand site usage.</li>
     </ul>
     <p>You may contact us via our <a href="/contact" className="text-[#60A5FA] underline">Contact page</a> for any privacy-related questions.</p>
-    <p className="text-xs text-gray-500">Last updated: December 2024</p>
+    <p className="text-xs text-gray-500">Last updated: April 2026</p>
   </div>
 );
 
@@ -28,7 +28,7 @@ const termsContent = (
       <li>We reserve the right to update these terms at any time.</li>
     </ul>
     <p>For questions, please use our <a href="/contact" className="text-[#60A5FA] underline">Contact page</a>.</p>
-    <p className="text-xs text-gray-500">Last updated: December 2024</p>
+    <p className="text-xs text-gray-500">Last updated: April 2026</p>
   </div>
 );
 
