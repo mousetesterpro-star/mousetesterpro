@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/how-it-works' },
   title: "How Mouse Latency Testing Works | MouseTester Pro",
   description: "Learn the science behind mouse latency testing. Understand how we measure click delay, polling rate, and jitter with professional-grade accuracy.",
   keywords: [

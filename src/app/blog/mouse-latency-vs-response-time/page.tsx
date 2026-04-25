@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/blog/mouse-latency-vs-response-time' },
   title: "Mouse Latency vs Response Time: Key Differences | Gaming Performance",
   description: "Explore the differences between mouse latency and response time, and why both metrics are crucial for optimal gaming performance and competitive advantage.",
   keywords: [

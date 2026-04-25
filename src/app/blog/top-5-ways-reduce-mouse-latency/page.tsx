@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/blog/top-5-ways-reduce-mouse-latency' },
   title: "Top 5 Ways to Reduce Mouse Latency | Gaming Performance Guide",
   description: "Learn the most effective methods to reduce mouse latency and improve your gaming performance. From hardware upgrades to software optimizations for competitive gaming.",
   keywords: [

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/blog/why-input-lag-matters-gamers' },
   title: "Why Input Lag Matters for Gamers | Competitive Gaming Impact",
   description: "Understanding the impact of input lag on competitive gaming and how even small improvements can give you a significant advantage in fast-paced games.",
   keywords: [

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/faq' },
   title: "Mouse Latency FAQ - Frequently Asked Questions | MouseTester Pro",
   description: "Get answers to common questions about mouse latency, polling rate, jitter, and gaming performance. Expert explanations for gamers and professionals.",
   keywords: [
@@ -182,7 +183,7 @@ export default function FAQPage() {
       <p className="text-gray-400 text-center mb-8 max-w-2xl mx-auto">
         Expert answers to common questions about mouse latency, polling rate, jitter, and gaming performance optimization.
       </p>
-      
+
       <div className="space-y-6">
         {faqs.map((faq, index) => (
           <div key={index} className="bg-[#1A1A1A] rounded-2xl shadow-sm p-6 md:p-8">
@@ -203,20 +204,20 @@ export default function FAQPage() {
           Can't find the answer you're looking for? We're here to help. Check out our other resources or get in touch with us directly.
         </p>
         <div className="flex flex-wrap gap-4">
-          <a 
-            href="/how-it-works" 
+          <a
+            href="/how-it-works"
             className="bg-[#23272e] hover:bg-[#2d333b] text-white font-medium py-2 px-6 rounded-xl transition-colors border border-[#3A3A3A]"
           >
             How It Works
           </a>
-          <a 
-            href="/complete-guide" 
+          <a
+            href="/complete-guide"
             className="bg-[#23272e] hover:bg-[#2d333b] text-white font-medium py-2 px-6 rounded-xl transition-colors border border-[#3A3A3A]"
           >
             Complete Guide
           </a>
-          <a 
-            href="/contact" 
+          <a
+            href="/contact"
             className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-xl transition-colors"
           >
             Contact Us
@@ -225,8 +226,8 @@ export default function FAQPage() {
       </div>
 
       <div className="mt-8 text-center">
-        <a 
-          href="/" 
+        <a
+          href="/"
           className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
         >
           Test Your Mouse Now

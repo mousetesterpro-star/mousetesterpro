@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/blog' },
   title: "Gaming Mouse Blog | Tips, Guides & Performance Insights",
   description: "Expert gaming mouse guides, performance tips, and latency optimization advice. Learn how to improve your gaming setup and reduce input lag.",
   openGraph: {

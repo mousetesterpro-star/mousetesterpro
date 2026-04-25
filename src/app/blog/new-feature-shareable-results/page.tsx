@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/blog/new-feature-shareable-results' },
   title: 'Share Your Mouse Test Results — New Feature | MouseTester Pro Blog',
   description: 'You can now share your mouse latency test results with a link. Compare results, post to forums, and get community feedback on your gaming setup.',
   openGraph: {

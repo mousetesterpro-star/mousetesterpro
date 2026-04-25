@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/blog/how-to-test-mouse-latency' },
   title: 'How to Test Mouse Latency: Complete Guide for Gamers',
   description: 'Learn how to test mouse latency accurately. Complete guide for gamers to measure click response time, improve gaming performance, and optimize mouse settings.',
   keywords: [

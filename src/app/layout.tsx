@@ -6,16 +6,15 @@ import Footer from '@/components/Footer';
 // Google Fonts imports for Orbitron and IBM Plex Mono
 import { Orbitron, IBM_Plex_Mono } from "next/font/google";
 import Script from 'next/script';
-import DynamicCanonical from "@/components/DynamicCanonical";
 
-const orbitron = Orbitron({ 
-  subsets: ["latin"], 
+const orbitron = Orbitron({
+  subsets: ["latin"],
   weight: ["700", "800"],
   display: 'swap',
   preload: true
 });
-const ibmPlexMono = IBM_Plex_Mono({ 
-  subsets: ["latin"], 
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
   weight: ["400", "700"],
   display: 'swap',
   preload: true
@@ -34,9 +33,7 @@ export const metadata: Metadata = {
     "mouse response time test",
     "input lag test",
     "click speed test",
-    "competitive gaming mouse test",
-    "mouse debounce test",
-    "mouse accuracy test"
+    "competitive gaming mouse test"
   ],
   openGraph: {
     title: "Desktop Mouse Latency Test [2026] | Free Gaming Mouse Tester",
@@ -178,9 +175,9 @@ export default function RootLayout({
         />
         {/* FAQPage JSON-LD removed from root layout — lives only in /faq/page.tsx */}
         {/* Having it here caused GSC "duplicate FAQPage" error across all pages */}
-        <script 
-          type="application/ld+json" 
-          dangerouslySetInnerHTML={{ 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebPage',
@@ -216,12 +213,12 @@ export default function RootLayout({
                   }
                 ]
               }
-            }) 
-          }} 
+            })
+          }}
         />
-        <script 
-          type="application/ld+json" 
-          dangerouslySetInnerHTML={{ 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'HowTo',
@@ -266,16 +263,17 @@ export default function RootLayout({
                   url: 'https://mousetesterpro.com'
                 }
               ]
-            }) 
-          }} 
+            })
+          }}
         />
 
       </head>
       {/* Google AdSense - loaded via Script component */}
-      <Script
+      <Script 
+        id="adsbygoogle-init"
+        strategy="afterInteractive"
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9584387016449943"
         crossOrigin="anonymous"
-        strategy="afterInteractive"
       />
       {/* Google Analytics */}
       <Script
@@ -307,7 +305,6 @@ export default function RootLayout({
         `}
       </Script>
       <body className={`${orbitron.className} ${ibmPlexMono.className} bg-[#0D0D0D] min-h-screen flex flex-col`}>
-        <DynamicCanonical />
         <TestSessionProvider>
           <div className="flex flex-col min-h-screen">
             <Navbar />
