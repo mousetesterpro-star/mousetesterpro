@@ -4,6 +4,7 @@ Allow: /
 # Prevent crawling of internal system folders
 Disallow: /api/
 Disallow: /admin/
+Disallow: /_next/static/
 
 # Allow important public sections
 Allow: /blog/

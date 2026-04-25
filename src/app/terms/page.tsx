@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/terms' },
   title: "Terms of Service | MouseTester Pro",
   description: "Terms of Service for MouseTester Pro. Read our terms and conditions for using our mouse latency testing service."
 };

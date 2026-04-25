@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/blog/mouse-jitter-vs-polling-rate' },
   title: 'Mouse Jitter vs Polling Rate: What Affects Gaming Performance?',
   description: 'Understand the difference between mouse jitter and polling rate. Learn how these factors affect gaming performance and how to optimize your mouse settings.',
   keywords: [

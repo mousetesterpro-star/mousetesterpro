@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/guides' },
   title: 'Mouse Performance Guides — Latency, Polling Rate & Optimization | MouseTester Pro',
   description: 'In-depth guides on mouse latency, polling rate, jitter, and setup optimization. Learn what your test results mean and how to improve your gaming mouse performance.',
   openGraph: {

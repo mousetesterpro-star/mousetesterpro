@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/blog/welcome-to-mousetester-pro' },
   title: 'Welcome to MouseTester Pro — Why We Built It | MouseTester Pro Blog',
   description: 'The story behind MouseTester Pro: why we built a browser-based mouse latency tool, what problems it solves, and what makes it different from other testing tools.',
   openGraph: {

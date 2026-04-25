@@ -12,6 +12,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${post.title} | MouseTester Pro Blog`,
     description: post.summary || `Read ${post.title} on the MouseTester Pro blog.`,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.summary || `Read ${post.title} on the MouseTester Pro blog.`,

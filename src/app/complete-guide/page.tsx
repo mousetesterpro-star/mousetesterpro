@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/complete-guide' },
   title: "Complete Guide to Mouse Latency | MouseTester Pro",
   description: "The ultimate guide to understanding and optimizing mouse latency for competitive gaming. Learn about polling rate, jitter, switches, and performance optimization.",
   keywords: [
