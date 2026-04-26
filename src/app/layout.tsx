@@ -96,20 +96,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': ['WebSite', 'SoftwareApplication'],
+              '@type': 'WebSite',
               name: 'Mouse Tester Pro',
               alternateName: 'MouseTesterPro',
               url: 'https://mousetesterpro.com',
               description: 'Test your mouse latency, click speed & polling rate FREE online. Professional gaming mouse performance tester for gamers worldwide.',
-              applicationCategory: 'UtilitiesApplication',
-              operatingSystem: 'Any',
-              browserRequirements: 'Requires JavaScript. Requires HTML5.',
               inLanguage: 'en-US',
-              isAccessibleForFree: true,
-              author: {
-                '@type': 'Organization',
-                name: 'Mouse Tester Pro'
-              },
               publisher: {
                 '@type': 'Organization',
                 name: 'Mouse Tester Pro',
@@ -118,154 +110,20 @@ export default function RootLayout({
                   url: 'https://mousetesterpro.com/logo.webp'
                 }
               },
-              screenshot: {
-                '@type': 'ImageObject',
-                url: 'https://mousetesterpro.com/og-image.png',
-                description: 'Mouse Tester Pro interface showing latency test results'
-              },
-              offers: {
-                '@type': 'Offer',
-                price: '0',
-                priceCurrency: 'USD',
-                availability: 'https://schema.org/InStock'
-              },
-              featureList: 'Mouse Latency Test, Polling Rate Test, Jitter Analysis, Click Speed Test, Response Time Measurement, Performance Leaderboard',
-              keywords: 'mouse latency test, polling rate, input lag, gaming mouse test, CPS test, jitter test',
               potentialAction: {
-                '@type': 'UseAction',
+                '@type': 'SearchAction',
                 target: {
                   '@type': 'EntryPoint',
-                  urlTemplate: 'https://mousetesterpro.com',
-                  actionPlatform: [
-                    'http://schema.org/DesktopWebPlatform',
-                    'http://schema.org/MobileWebPlatform'
-                  ]
+                  urlTemplate: 'https://mousetesterpro.com/blog?q={search_term_string}'
                 },
-                name: 'Test Mouse Latency'
-              },
-              hasPart: [
-                {
-                  '@type': 'SoftwareApplication',
-                  name: 'Click Latency Test',
-                  description: 'Measure mouse response time and click accuracy',
-                  applicationCategory: 'UtilitiesApplication',
-                  operatingSystem: 'Any'
-                },
-                {
-                  '@type': 'SoftwareApplication',
-                  name: 'Polling Rate Test',
-                  description: 'Test mouse polling rate and jitter analysis',
-                  applicationCategory: 'UtilitiesApplication',
-                  operatingSystem: 'Any'
-                },
-                {
-                  '@type': 'SoftwareApplication',
-                  name: 'Mobile Tap Test',
-                  description: 'Test touch screen response time and accuracy',
-                  applicationCategory: 'UtilitiesApplication',
-                  operatingSystem: 'Any'
-                }
-              ],
-              sameAs: [
-                'https://github.com/shashi123454/MouseTesterPro',
-                'https://twitter.com/MouseTesterPro'
-              ]
+                'query-input': 'required name=search_term_string'
+              }
             })
           }}
         />
         {/* FAQPage JSON-LD removed from root layout — lives only in /faq/page.tsx */}
         {/* Having it here caused GSC "duplicate FAQPage" error across all pages */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebPage',
-              name: 'Mouse Latency Test | Accurate Online Tool',
-              description: 'Test mouse latency, input lag, and click delay instantly online. Accurate, free, and easy-to-use tool for gamers & tech users.',
-              url: 'https://mousetesterpro.com',
-              mainEntity: {
-                '@type': 'SoftwareApplication',
-                name: 'Mouse Latency Test',
-                description: 'Free online tool to test mouse latency, input lag, and click delay',
-                applicationCategory: 'ProductivityApplication',
-                operatingSystem: 'Web Browser',
-                offers: {
-                  '@type': 'Offer',
-                  price: '0',
-                  priceCurrency: 'USD'
-                }
-              },
-              breadcrumb: {
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                  {
-                    '@type': 'ListItem',
-                    position: 1,
-                    name: 'Home',
-                    item: 'https://mousetesterpro.com'
-                  },
-                  {
-                    '@type': 'ListItem',
-                    position: 2,
-                    name: 'Mouse Latency Test',
-                    item: 'https://mousetesterpro.com'
-                  }
-                ]
-              }
-            })
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'HowTo',
-              name: 'How to Test Mouse Latency for Gaming',
-              description: 'Complete guide on testing mouse latency, polling rate, and jitter for competitive gaming performance.',
-              image: 'https://mousetesterpro.com/og-image.png',
-              totalTime: 'PT5M',
-              estimatedCost: {
-                '@type': 'MonetaryAmount',
-                currency: 'USD',
-                value: '0'
-              },
-              step: [
-                {
-                  '@type': 'HowToStep',
-                  name: 'Open the Mouse Latency Tester',
-                  text: 'Visit our free online mouse latency tester tool.',
-                  url: 'https://mousetesterpro.com'
-                },
-                {
-                  '@type': 'HowToStep',
-                  name: 'Run the Click Latency Test',
-                  text: 'Click the start button and perform the click latency test to measure response time.',
-                  url: 'https://mousetesterpro.com'
-                },
-                {
-                  '@type': 'HowToStep',
-                  name: 'Test Polling Rate',
-                  text: 'Use the polling rate test to measure how often your mouse reports position.',
-                  url: 'https://mousetesterpro.com'
-                },
-                {
-                  '@type': 'HowToStep',
-                  name: 'Analyze Jitter Results',
-                  text: 'Review the jitter analysis to understand consistency of your mouse performance.',
-                  url: 'https://mousetesterpro.com'
-                },
-                {
-                  '@type': 'HowToStep',
-                  name: 'Compare Results',
-                  text: 'Compare your results with professional standards and other gamers worldwide.',
-                  url: 'https://mousetesterpro.com'
-                }
-              ]
-            })
-          }}
-        />
+
 
       </head>
       {/* Google AdSense - loaded via Script component */}
