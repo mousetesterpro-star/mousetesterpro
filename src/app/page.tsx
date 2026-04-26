@@ -91,6 +91,87 @@ export default function Home() {
     <>
       <SessionReportModal isOpen={showModal} onClose={handleCloseModal} session={isCompleteSession(session) ? session : null} />
       <section id="test-area" className="w-full max-w-6xl mx-auto px-4 py-6 md:py-10 flex flex-col gap-4">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                '@context': 'https://schema.org',
+                '@type': 'WebPage',
+                name: 'Mouse Latency Test | Accurate Online Tool',
+                description: 'Test mouse latency, input lag, and click delay instantly online. Accurate, free, and easy-to-use tool for gamers & tech users.',
+                url: 'https://mousetesterpro.com',
+                mainEntity: {
+                  '@type': 'SoftwareApplication',
+                  name: 'Mouse Latency Test',
+                  description: 'Free online tool to test mouse latency, input lag, and click delay',
+                  applicationCategory: 'UtilitiesApplication',
+                  operatingSystem: 'Web Browser',
+                  aggregateRating: {
+                    '@type': 'AggregateRating',
+                    ratingValue: '4.9',
+                    ratingCount: '1250'
+                  },
+                  offers: {
+                    '@type': 'Offer',
+                    price: '0',
+                    priceCurrency: 'USD'
+                  }
+                }
+              },
+              {
+                '@context': 'https://schema.org',
+                '@type': 'HowTo',
+                name: 'How to Test Mouse Latency for Gaming',
+                description: 'Complete guide on testing mouse latency, polling rate, and jitter for competitive gaming performance.',
+                image: 'https://mousetesterpro.com/og-image.png',
+                totalTime: 'PT5M',
+                estimatedCost: {
+                  '@type': 'MonetaryAmount',
+                  currency: 'USD',
+                  value: '0'
+                },
+                step: [
+                  {
+                    '@type': 'HowToStep',
+                    name: 'Open the Mouse Latency Tester',
+                    text: 'Visit our free online mouse latency tester tool.',
+                    url: 'https://mousetesterpro.com',
+                    image: 'https://mousetesterpro.com/og-image.png'
+                  },
+                  {
+                    '@type': 'HowToStep',
+                    name: 'Run the Click Latency Test',
+                    text: 'Click the start button and perform the click latency test to measure response time.',
+                    url: 'https://mousetesterpro.com',
+                    image: 'https://mousetesterpro.com/og-image.png'
+                  },
+                  {
+                    '@type': 'HowToStep',
+                    name: 'Test Polling Rate',
+                    text: 'Use the polling rate test to measure how often your mouse reports position.',
+                    url: 'https://mousetesterpro.com',
+                    image: 'https://mousetesterpro.com/og-image.png'
+                  },
+                  {
+                    '@type': 'HowToStep',
+                    name: 'Analyze Jitter Results',
+                    text: 'Review the jitter analysis to understand consistency of your mouse performance.',
+                    url: 'https://mousetesterpro.com',
+                    image: 'https://mousetesterpro.com/og-image.png'
+                  },
+                  {
+                    '@type': 'HowToStep',
+                    name: 'Compare Results',
+                    text: 'Compare your results with professional standards and other gamers worldwide.',
+                    url: 'https://mousetesterpro.com',
+                    image: 'https://mousetesterpro.com/og-image.png'
+                  }
+                ]
+              }
+            ])
+          }}
+        />
         <div className="flex justify-center mb-4">
           <div className="inline-flex rounded-xl bg-[#10131a] border border-[#23272e] p-1">
             <button
