@@ -162,6 +162,10 @@ export default function RootLayout({
           }
         `}
       </Script>
+      {/* Mediavine Grow */}
+      <Script id="mediavine-grow" strategy="afterInteractive">
+        {`!(function(){window.growMe||((window.growMe=function(e){window.growMe._.push(e);}),(window.growMe._=[]));var e=document.createElement("script");(e.type="text/javascript"),(e.src="https://faves.grow.me/main.js"),(e.defer=!0),e.setAttribute("data-grow-faves-site-id","U2l0ZTo3MDAyM2E2Zi05N2U1LTQ0ZjMtOTk3MC1iNDNjMjNiMzBkM2I=");var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t);})();`}
+      </Script>
       <body className={`${orbitron.className} ${ibmPlexMono.className} bg-[#0D0D0D] min-h-screen flex flex-col`}>
         <TestSessionProvider>
           <div className="flex flex-col min-h-screen">

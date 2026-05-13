@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/cps-test' },
   title: "CPS Test - Clicks Per Second Testing | Mouse Tester Pro",
   description: "Learn about Clicks Per Second (CPS) testing for gaming performance. Measure your clicking speed and improve your gaming skills.",
-  robots: "noindex, follow",
 };
 
 export default function CPSTestPage() {
