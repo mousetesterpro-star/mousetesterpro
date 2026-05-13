@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/accessibility' },
   title: 'Accessibility Statement | MouseTester Pro',
   description: 'MouseTester Pro is committed to digital accessibility. Learn about our WCAG 2.1 compliance efforts, assistive technology support, and how to report accessibility issues.',
 };

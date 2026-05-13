@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/monitor-test' },
   title: "Monitor Test - Display Performance Testing | Mouse Tester Pro",
   description: "Learn about monitor testing for gaming performance. Measure refresh rate, response time, and display latency.",
-  robots: "noindex, follow",
 };
 
 export default function MonitorTestPage() {

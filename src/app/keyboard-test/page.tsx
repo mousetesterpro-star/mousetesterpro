@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/keyboard-test' },
   title: "Keyboard Test - Keyboard Latency Testing | Mouse Tester Pro",
   description: "Learn about keyboard latency testing for gaming performance. Measure keyboard input lag, polling rate, and response time.",
-  robots: "noindex, follow",
 };
 
 export default function KeyboardTestPage() {
